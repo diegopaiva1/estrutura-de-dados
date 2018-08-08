@@ -6,6 +6,6 @@ Implementação de algoritmos e estrutura de dados da disciplina DCC012 - Estrut
 
 ### Ordenação
 
-*  Selection Sort
+*  Insertion Sort
 
 **README em construção**
