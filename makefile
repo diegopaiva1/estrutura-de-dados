@@ -1,4 +1,4 @@
-PROJECT_NAME = estruturaDados
+PROJECT_NAME = bin/estruturaDados
 CPP_FILES := $(shell find . -name "*.cpp")
 
 all: $(PROJECT_NAME)
