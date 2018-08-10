@@ -4,13 +4,13 @@ Implementação de algoritmos e estrutura de dados da disciplina DCC012 - Estrut
 
 ## Utilização:
 
-Compilando o código fonte para gerar o binário `./estruturaDados`:
+Compilando o código fonte para gerar o binário `./bin/estruturaDados`:
 
 `make all`
 
 Para executar o programa:
 
-`./estruturaDados`
+`./bin/estruturaDados`
 
 Apagar o binário, caso desejável:
 
