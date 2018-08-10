@@ -1,5 +1,10 @@
 /**
- * Classe que implementa o algoritmo InsertionSort para ordenação de um array de elementos.
+ * @file    InsertionSort.h
+ * @author  Diego Paiva e Silva
+ * @date    08/08/2018
+ * @version 1.0
+ *
+ * Classe que implementa o algoritmo InsertionSort para ordenação de um array de inteiros.
  * Complexidade:
  *  => Melhor caso: n
  *  => Caso médio: n²
@@ -14,10 +19,10 @@
 
 class InsertionSort
 {
-private:
-
 public:
-
+  InsertionSort() {};
+  ~InsertionSort() {};
+  void sort(int *unsortedNumbers, int size);
 };
 
 #endif // INSERTIONSORT_H_INCLUDED
