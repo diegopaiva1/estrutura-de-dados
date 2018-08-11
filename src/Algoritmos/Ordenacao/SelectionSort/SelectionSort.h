@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-#include "../../../Utils/ArrayUtils/ArrayUtils.h" // swapValues and findMinimunValueIndex
+#include "../../../Utils/ArrayUtils/ArrayUtils.h"
 
 class SelectionSort
 {

@@ -2,6 +2,10 @@
  * @file    ArrayUtils.h
  * @author  Diego Paiva e Silva
  * @date    11/08/2018
+ *
+ * A classe ArrayUtils implementa algumas operações frequentemente utilizadas
+ * quando manipula-se arrays, como por exemplo: troca de posição entre dois valores,
+ * contar o número total de elementos, etc.
  */
 
 #ifndef ARRAYUTILS_H_INCLUDED
