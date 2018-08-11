@@ -8,7 +8,7 @@
  * A estratégia consiste em:
  * 1. Supor a existência de duas partições no array: a partição ordenada (inicialmente vazia)
  *    e a partição não-ordenada;
- * 2. Encontrar o menor elemento do array;
+ * 2. Encontrar o menor elemento da partição não ordenada;
  * 3. Trocá-lo de posição com o primeiro elemento da partição não-ordenada e movê-lo para a
  *    partição ordenada;
  * 4. Repetir para os demais elementos não-ordenados.
