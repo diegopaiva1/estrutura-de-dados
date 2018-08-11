@@ -20,7 +20,7 @@ Apagar o binário, caso desejável:
 
 ### Ordenação
 
-*  Insertion Sort
 *  Selection Sort
+*  Insertion Sort
 
 ***Em construção***
