@@ -21,5 +21,6 @@ Apagar o binário, caso desejável:
 ### Ordenação
 
 *  Insertion Sort
+*  Selection Sort
 
 ***Em construção***
