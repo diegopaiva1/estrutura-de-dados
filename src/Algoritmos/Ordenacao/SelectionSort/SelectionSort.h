@@ -9,12 +9,10 @@
 
 #include <iostream>
 
+#include "../../../Utils/ArrayUtils/ArrayUtils.h" // swapValues and findMinimunValueIndex
+
 class SelectionSort
 {
-private:
-  int findMinimumValue(int array[], int size, int index);
-  int findMinimumValueIndex(int array[], int size, int index);
-  void swapValues(int array[], int firstIndex, int secondIndex);
 public:
   SelectionSort() {};
   ~SelectionSort() {};
