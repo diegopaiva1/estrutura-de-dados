@@ -4,12 +4,12 @@
 
 int main(int argc, char const *argv[])
 {
-  int sortedList1[3] = {8, 12, 90};
-  int sortedList2[3] = {7, 29, 53};
-  int mergedList[6];
+  int sortedList1[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+  int sortedList2[10] = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+  int mergedList[20];
   MergeSort *mergeSort = new MergeSort();
-  mergeSort->mergeTwoSortedLists(sortedList1, 3, sortedList2, 3, mergedList);
-  for (int i = 0; i < 6; i++)
+  mergeSort->mergeTwoSortedLists(sortedList1, 10, sortedList2, 10, mergedList);
+  for (int i = 0; i < 20; i++)
   {
     std::cout << mergedList[i] << " ";
   }
