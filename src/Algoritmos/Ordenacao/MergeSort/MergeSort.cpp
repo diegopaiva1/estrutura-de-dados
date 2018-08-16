@@ -1,6 +1,7 @@
 #include "MergeSort.h"
 
 // TODO - Remover essa caralhada de comentário horroroso explicando o codigo
+// TODO - Tratar para quantidade impar de numeros
 void MergeSort::mergeTwoSortedLists(int sortedList1[], int size1,
                                     int sortedList2[], int size2,
                                     int mergedList[])
@@ -36,5 +37,41 @@ void MergeSort::mergeTwoSortedLists(int sortedList1[], int size1,
         j++;
       }
     }
+  }
+}
+
+void MergeSort::obterPrimeiraMetade(int auxiliar1[], int unsortedNumbers[], int size)
+{
+  for (int i = 0; i < size/2; ++i)
+  {
+    auxiliar1[i] = unsortedNumbers[i];
+  }
+}
+
+void MergeSort::obterSegundaMetade(int auxiliar2[], int unsortedNumbers[], int size)
+{
+  for (int i = size/2; i < size; i++)
+  {
+    auxiliar2[i - size/2] = unsortedNumbers[i];
+  }
+}
+
+void MergeSort::sort(int unsortedNumbers[], int size, int sortedNumbers[])
+{
+  int auxiliar1[size/2];
+  int auxiliar2[size/2];
+  int arrayf1[size/2];
+  int arrayf2[size/2];
+  if(size == 1)
+  {
+    sortedNumbers[0] = unsortedNumbers[0];
+  }
+  else
+  {
+    obterPrimeiraMetade(auxiliar1, unsortedNumbers, size);
+    obterSegundaMetade(auxiliar2, unsortedNumbers, size);
+    sort(auxiliar1, size/2, arrayf1);
+    sort(auxiliar2, size/2, arrayf2);
+    mergeTwoSortedLists(arrayf1, size/2, arrayf2, size/2, sortedNumbers);
   }
 }
