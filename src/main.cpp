@@ -4,10 +4,10 @@
 
 int main(int argc, char const *argv[])
 {
-  int numbers[9] = {9, 90, 39, 10, 67, 19, 11, 210, 119};
+  int numbers[7] = {30, 4, 5, 92, 18, 73, 22};
   MergeSort *mergeSort = new MergeSort();
-  mergeSort->sort(numbers, 9);
-  for (int i = 0; i < 9; ++i)
+  mergeSort->sort(numbers, 7);
+  for (int i = 0; i < 7; ++i)
   {
     std::cout << numbers[i] << " ";
   }

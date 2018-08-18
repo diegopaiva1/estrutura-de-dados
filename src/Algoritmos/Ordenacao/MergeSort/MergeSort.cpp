@@ -51,18 +51,17 @@ void MergeSort::generateSortedArrayByMergingTwoSortedArrays(int sorted1[], int s
   {
     if(arrayWasFullyCovered(firstArrayIterator, size1) && !arrayWasFullyCovered(secondArrayIterator, size2))
     {
-      // Basta inserir na merged os elementos do array que não foi todo percorrido
+      // Basta inserir em merged os elementos do array que não foi todo percorrido
       merged[i] = sorted2[secondArrayIterator];
       secondArrayIterator++;
     }
     else if(arrayWasFullyCovered(secondArrayIterator, size2) && !arrayWasFullyCovered(firstArrayIterator, size1))
     {
-      // Basta inserir na merged os elementos do array que não foi todo percorrido
       merged[i] = sorted1[firstArrayIterator];
       firstArrayIterator++;
     }
     else {
-      // Continuamos comparando os elementos e os inserindo na merged
+      // Continuamos comparando os elementos e os inserindo em merged
       if(sorted2[secondArrayIterator] < sorted1[firstArrayIterator])
       {
         merged[i] = sorted2[secondArrayIterator];
