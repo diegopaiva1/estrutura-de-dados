@@ -22,5 +22,6 @@ Apagar o binário, caso desejável:
 
 *  Selection Sort
 *  Insertion Sort
+*  Merge Sort
 
 ***Em construção***
