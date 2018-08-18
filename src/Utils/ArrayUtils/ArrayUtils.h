@@ -18,6 +18,8 @@ class ArrayUtils
 public:
   static int findMinimumValueIndex(int array[], int size, int startingIndex);
   static void swapValues(int array[], int firstIndex, int secondIndex);
+  static void copyArrayValuesIntoAnotherArray(int arrayToCopyValuesFrom[], int arrayToReceiveValues[],
+                                              int startingIndex, int lastIndex);
 };
 
 #endif // ARRAYUTILS_H_INCLUDED

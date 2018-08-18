@@ -4,13 +4,12 @@
 
 int main(int argc, char const *argv[])
 {
-  int numbers[16] = {56, 20, 9, 98, 45, 65, 7, 89, 102, 66, 124, 56, 1, 14, 16, 15};
-  int sortedList[16];
+  int numbers[9] = {9, 90, 39, 10, 67, 19, 11, 210, 119};
   MergeSort *mergeSort = new MergeSort();
-  mergeSort->sort(numbers, 16, sortedList);
-  for (int i = 0; i < 16; ++i)
+  mergeSort->sort(numbers, 9);
+  for (int i = 0; i < 9; ++i)
   {
-    std::cout << sortedList[i] << " ";
+    std::cout << numbers[i] << " ";
   }
   return 0;
 }

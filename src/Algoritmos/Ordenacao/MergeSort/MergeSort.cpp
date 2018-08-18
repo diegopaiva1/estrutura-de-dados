@@ -1,77 +1,83 @@
 #include "MergeSort.h"
 
-// TODO - Remover essa caralhada de comentário horroroso explicando o codigo
-// TODO - Tratar para quantidade impar de numeros
-void MergeSort::mergeTwoSortedLists(int sortedList1[], int size1,
-                                    int sortedList2[], int size2,
-                                    int mergedList[])
+void MergeSort::sort(int unsortedNumbers[], int size)
 {
-  int j = 0; // Iterador da primeira lista
-  int k = 0; // Iterador da segunda lista
-  for (int i = 0; i < size1 + size2; i++)
-  {
-    // Se a segunda lista ja foi toda percorrida e a primeira não, então basta inserir os elementos
-    // da primeira lista na mergedList
-    if(k == size2 && j < size1)
-    {
-      mergedList[i] = sortedList1[j];
-      j++;
-    }
-    // Se a primeira lista ja foi toda percorrida e a segunda não, então basta inserir os elementos
-    // da segunda lista na mergedList
-    else if(j == size1 && k < size2)
-    {
-      mergedList[i] = sortedList2[k];
-      k++;
-    }
-    // Senão, continue comparando os elementos e os inserindo
-    else {
-      if(sortedList2[k] < sortedList1[j])
-      {
-        mergedList[i] = sortedList2[k];
-        k++;
-      }
-      else
-      {
-        mergedList[i] = sortedList1[j];
-        j++;
-      }
-    }
-  }
-}
-
-void MergeSort::obterPrimeiraMetade(int auxiliar1[], int unsortedNumbers[], int size)
-{
-  for (int i = 0; i < size/2; ++i)
-  {
-    auxiliar1[i] = unsortedNumbers[i];
-  }
-}
-
-void MergeSort::obterSegundaMetade(int auxiliar2[], int unsortedNumbers[], int size)
-{
-  for (int i = size/2; i < size; i++)
-  {
-    auxiliar2[i - size/2] = unsortedNumbers[i];
-  }
-}
-
-void MergeSort::sort(int unsortedNumbers[], int size, int sortedNumbers[])
-{
-  int auxiliar1[size/2];
-  int auxiliar2[size/2];
-  int arrayf1[size/2];
-  int arrayf2[size/2];
+  int sortedNumbers[size];
   if(size == 1)
   {
+    // Uma lista com um único elemento já está naturalmente ordenada
     sortedNumbers[0] = unsortedNumbers[0];
   }
   else
   {
-    obterPrimeiraMetade(auxiliar1, unsortedNumbers, size);
-    obterSegundaMetade(auxiliar2, unsortedNumbers, size);
-    sort(auxiliar1, size/2, arrayf1);
-    sort(auxiliar2, size/2, arrayf2);
-    mergeTwoSortedLists(arrayf1, size/2, arrayf2, size/2, sortedNumbers);
+    int firstSliceSize;
+    int secondSliceSize;
+    if(sizeIsEven(size))
+    {
+      firstSliceSize = size/2;
+      secondSliceSize = size/2;
+    }
+    else
+    {
+      // Ex: Array de tamanho 17 será divido em duas partições de tamanhos 8 e 9
+      firstSliceSize = (size - 1)/2;
+      secondSliceSize = size - firstSliceSize;
+    }
+    int firstSlice[firstSliceSize];
+    int secondSlice[secondSliceSize];
+    ArrayUtils::copyArrayValuesIntoAnotherArray(unsortedNumbers, firstSlice, 0, firstSliceSize - 1);
+    ArrayUtils::copyArrayValuesIntoAnotherArray(unsortedNumbers, secondSlice, firstSliceSize, size - 1);
+    sort(firstSlice, firstSliceSize);
+    sort(secondSlice, secondSliceSize);
+    generateSortedArrayByMergingTwoSortedArrays(firstSlice, firstSliceSize,
+                                                secondSlice, secondSliceSize,
+                                                sortedNumbers);
   }
+  ArrayUtils::copyArrayValuesIntoAnotherArray(sortedNumbers, unsortedNumbers, 0, size - 1);
+}
+
+bool MergeSort::sizeIsEven(int size)
+{
+  return size % 2 == 0;
+}
+
+void MergeSort::generateSortedArrayByMergingTwoSortedArrays(int sorted1[], int size1,
+                                                            int sorted2[], int size2,
+                                                            int merged[])
+{
+  int firstArrayIterator = 0;
+  int secondArrayIterator = 0;
+  for (int i = 0; i < size1 + size2; i++)
+  {
+    if(arrayWasFullyCovered(firstArrayIterator, size1) && !arrayWasFullyCovered(secondArrayIterator, size2))
+    {
+      // Basta inserir na merged os elementos do array que não foi todo percorrido
+      merged[i] = sorted2[secondArrayIterator];
+      secondArrayIterator++;
+    }
+    else if(arrayWasFullyCovered(secondArrayIterator, size2) && !arrayWasFullyCovered(firstArrayIterator, size1))
+    {
+      // Basta inserir na merged os elementos do array que não foi todo percorrido
+      merged[i] = sorted1[firstArrayIterator];
+      firstArrayIterator++;
+    }
+    else {
+      // Continuamos comparando os elementos e os inserindo na merged
+      if(sorted2[secondArrayIterator] < sorted1[firstArrayIterator])
+      {
+        merged[i] = sorted2[secondArrayIterator];
+        secondArrayIterator++;
+      }
+      else
+      {
+        merged[i] = sorted1[firstArrayIterator];
+        firstArrayIterator++;
+      }
+    }
+  }
+}
+
+bool MergeSort::arrayWasFullyCovered(int iterator, int size)
+{
+  return iterator >= size;
 }

@@ -10,17 +10,20 @@
 
 #include <iostream>
 
+#include "../../../Utils/ArrayUtils/ArrayUtils.h"
+
 class MergeSort
 {
+private:
+  bool sizeIsEven(int size);
+  void generateSortedArrayByMergingTwoSortedArrays(int sorted1[], int size1,
+                                                   int sorted2[], int size2,
+                                                   int merged[]);
+  bool arrayWasFullyCovered(int iterator, int size);
 public:
   MergeSort() {};
   ~MergeSort() {};
-  void obterPrimeiraMetade(int auxiliar1[], int unsortedNumbers[], int size);
-  void obterSegundaMetade(int auxiliar2[], int unsortedNumbers[], int size);
-  void mergeTwoSortedLists(int sortedList1[], int size1,
-                           int sortedList2[], int size2,
-                           int mergedList[]);
-  void sort(int unsortedNumbers[], int size, int sortedNumbers[]);
+  void sort(int unsortedNumbers[], int size);
 };
 
 #endif // MERGESORT_H_INCLUDED
