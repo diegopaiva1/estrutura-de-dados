@@ -8,6 +8,8 @@
 #define DEPUTY_H_INCLUDED
 
 #include <iostream>
+#include <vector>
+#include <string>
 
 class Deputy
 {
@@ -22,9 +24,7 @@ public:
   std::string stateCode;
   std::string establishmentName;
   std::string receiptValue;
-  Deputy(std::string buggedDate, std::string receiptDate, std::string id, std::string party, std::string stateCode,
-         std::string name, std::string receiptSocialSecurityNumber, std::string receiptDescription,
-         std::string establishmentName, std::string receiptValue);
+  Deputy(std::vector<std::string> data);
   ~Deputy() {};
 };
 

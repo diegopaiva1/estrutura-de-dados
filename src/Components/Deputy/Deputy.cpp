@@ -1,17 +1,15 @@
 #include "Deputy.h"
 
-Deputy::Deputy(std::string buggedDate, std::string receiptDate, std::string id, std::string party, std::string stateCode,
-               std::string name, std::string receiptSocialSecurityNumber, std::string receiptDescription,
-               std::string establishmentName, std::string receiptValue)
+Deputy::Deputy(std::vector<std::string> data)
 {
-  this->buggedDate = buggedDate;
-  this->id = id;
-  this->name = name;
-  this->party = party;
-  this->receiptDate = receiptDate;
-  this->receiptSocialSecurityNumber = receiptSocialSecurityNumber;
-  this->receiptDescription = receiptDescription;
-  this->stateCode = stateCode;
-  this->establishmentName = establishmentName;
-  this->receiptValue = receiptValue;
+  this->buggedDate = data.at(0);
+  this->receiptDate = data.at(1);
+  this->id = data.at(2);
+  this->party = data.at(3);
+  this->stateCode = data.at(4);
+  this->name = data.at(5);
+  this->receiptSocialSecurityNumber = data.at(6);
+  this->receiptDescription = data.at(7);
+  this->establishmentName = data.at(8);
+  this->receiptValue = data.at(9);
 }
