@@ -2,6 +2,9 @@
  * @file    Deputy.h
  * @author  Diego Paiva e Silva
  * @date    19/08/2018
+ *
+ * Esta classe armazena os dados dos deputados. Por se tratar de uma estrutura feita somente para
+ * armazenar e acessar tais dados, todas as variáveis são públicas.
  */
 
 #ifndef DEPUTY_H_INCLUDED

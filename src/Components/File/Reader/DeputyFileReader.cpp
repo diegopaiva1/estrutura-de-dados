@@ -1,10 +1,10 @@
 #include "DeputyFileReader.h"
 
-void DeputyFileReader::read(std::string fileName, std::vector<Deputy *> &deputies)
+std::vector<Deputy *> DeputyFileReader::read(std::string fileName)
 {
   std::ifstream inFile(fileName);
 
-  std::string line;
+  std::vector<Deputy *> deputies;
 
   if (!inFile.is_open())
   {
@@ -15,6 +15,7 @@ void DeputyFileReader::read(std::string fileName, std::vector<Deputy *> &deputie
   {
     int lineNumber = 1;
     std::vector<std::string> data;
+    std::string line;
     std::cout << "Processando..." << std::endl;
     while(std::getline(inFile, line))
     {
@@ -30,14 +31,16 @@ void DeputyFileReader::read(std::string fileName, std::vector<Deputy *> &deputie
   }
 
   inFile.close();
+
+  return deputies;
 }
 
-std::vector<std::string> DeputyFileReader::explode(std::string const & s, char delim)
+std::vector<std::string> DeputyFileReader::explode(std::string const & string, char delimiter)
 {
   std::vector<std::string> result;
-  std::istringstream iss(s);
+  std::istringstream iss(string);
 
-  for (std::string token; std::getline(iss, token, delim); )
+  for (std::string token; std::getline(iss, token, delimiter); )
   {
     result.push_back(std::move(token));
   }
