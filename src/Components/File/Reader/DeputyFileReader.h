@@ -10,7 +10,7 @@
  * Linha 1:       col1,col2,col3,col4,col5,col6,col7,col8,col9,col10
  * Demais linhas: val1,val2,val3,val4,val5,val6,val7,val8,val9,val10
  *
- * Linhas fora do formato esperado podem gerar erros de execução indesejáveis.
+ * Linhas fora do formato esperado podem gerar erros de execução indesejados.
  */
 
 #ifndef DEPUTYFILEREADER_H_INCLUDED
