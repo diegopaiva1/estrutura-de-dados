@@ -13,5 +13,6 @@ int main(int argc, char const *argv[])
   {
     std::cout << sortedNames.at(i) << " ";
   }
+  printf("\n");
   return 0;
 }
