@@ -1,6 +1,8 @@
 #include <iostream>
+#include <string>
+#include <vector>
 
-#include "./Algoritmos/Ordenacao/SelectionSort/SelectionSort.h"
+#include "./Algoritmos/Ordenacao/SelectionSort.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -9,7 +11,7 @@ int main(int argc, char const *argv[])
   selectionSort->sort(numbers, 15);
   for (int i = 0; i < 15; i++)
   {
-    std::cout << numbers[i] << " ";
+    std::cout << sortedNames.at(i) << " ";
   }
   printf("\n");
   return 0;
