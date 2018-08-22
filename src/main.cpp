@@ -1,15 +1,17 @@
 #include <iostream>
+#include <string>
+#include <vector>
 
-#include "./Algoritmos/Ordenacao/SelectionSort/SelectionSort.h"
+#include "./Algoritmos/Ordenacao/SelectionSort.hpp"
 
 int main(int argc, char const *argv[])
 {
-  int numbers[6] = {23, 42, 4, 16, 8, 15};
+  std::vector<std::string> names = {"Diego", "Manoel", "Isabella", "Maria de Lourdes", "Orony", "Aldivino"};
   SelectionSort *selectionSort = new SelectionSort();
-  selectionSort->sort(numbers, 6);
-  for (int i = 0; i < 6; i++)
+  auto sortedNames = selectionSort->sort(names);
+  for (unsigned int i = 0; i < sortedNames.size(); i++)
   {
-    std::cout << numbers[i] << " ";
+    std::cout << sortedNames.at(i) << " ";
   }
   printf("\n");
   return 0;
