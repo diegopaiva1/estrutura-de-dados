@@ -32,12 +32,17 @@ public:
   {
     for (unsigned int i = 0; i < unsorted.size(); i++)
     {
-      int minElementIndex = std::distance(
-                              unsorted.begin(), std::min_element(unsorted.begin() + i, unsorted.end())
-                            );
+      int minElementIndex = getMinElementIndex(unsorted, i);
       std::swap(unsorted[i], unsorted[minElementIndex]);
     }
     return unsorted;
+  }
+
+private:
+  template<typename T>
+  int getMinElementIndex(std::vector<T> v, int startingIndex = 0)
+  {
+    return std::distance(v.begin(), std::min_element(v.begin() + startingIndex, v.end()));
   }
 };
 
