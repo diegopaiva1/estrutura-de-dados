@@ -28,7 +28,7 @@ public:
   ~SelectionSort() {};
 
   template<typename T>
-  std::vector<T> sort(std::vector<T> &unsorted)
+  std::vector<T> sort(std::vector<T> unsorted)
   {
     for (unsigned int i = 0; i < unsorted.size(); i++)
     {
