@@ -2,13 +2,13 @@
 #include <string>
 #include <vector>
 
-#include "./Algoritmos/Ordenacao/InsertionSort.hpp"
+#include "./Algoritmos/Ordenacao/MergeSort.hpp"
 
 int main(int argc, char const *argv[])
 {
-  std::vector<int> v = {3, 44, 12, 125, 98, 765, 12, 155, 99, 258, 13, 50, 49, 80, 450};
-  InsertionSort *insertionSort = new InsertionSort();
-  insertionSort->sort(v);
+  std::vector<int> v = {564, 15615, 132, 165, 22, 66, 89, 156, 33, 165, 99};
+  MergeSort *mergeSort = new MergeSort();
+  mergeSort->sort(v);
   for (unsigned int i = 0; i < v.size(); i++)
   {
     std::cout << v.at(i) << " ";
@@ -16,5 +16,3 @@ int main(int argc, char const *argv[])
   printf("\n");
   return 0;
 }
-
-
