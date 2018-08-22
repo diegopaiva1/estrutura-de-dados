@@ -1,15 +1,17 @@
 #include <iostream>
+#include <string>
+#include <vector>
 
-#include "./Algoritmos/Ordenacao/MergeSort/MergeSort.h"
+#include "./Algoritmos/Ordenacao/SelectionSort.hpp"
 
 int main(int argc, char const *argv[])
 {
-  int numbers[7] = {30, 4, 5, 92, 18, 73, 22};
-  MergeSort *mergeSort = new MergeSort();
-  mergeSort->sort(numbers, 7);
-  for (int i = 0; i < 7; ++i)
+  std::vector<std::string> names = {"Diego", "Manoel", "Isabella", "Maria de Lourdes", "Orony", "Aldivino"};
+  SelectionSort *selectionSort = new SelectionSort();
+  auto sortedNames = selectionSort->sort(names);
+  for (unsigned int i = 0; i < sortedNames.size(); i++)
   {
-    std::cout << numbers[i] << " ";
+    std::cout << sortedNames.at(i) << " ";
   }
   return 0;
 }
