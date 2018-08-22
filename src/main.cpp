@@ -2,16 +2,16 @@
 #include <string>
 #include <vector>
 
-#include "./Algoritmos/Ordenacao/SelectionSort.hpp"
+#include "./Algoritmos/Ordenacao/SelectionSort/SelectionSort.h"
 
 int main(int argc, char const *argv[])
 {
-  std::vector<std::string> names = {"Diego", "Manoel", "Isabella", "Maria de Lourdes", "Orony", "Aldivino"};
+  int numbers[15] = {3, 44, 12, 125, 98, 765, 12, 155, 99, 258, 13, 50, 49, 80, 450};
   SelectionSort *selectionSort = new SelectionSort();
-  auto sortedNames = selectionSort->sort(names);
-  for (unsigned int i = 0; i < sortedNames.size(); i++)
+  selectionSort->sort(numbers, 15);
+  for (int i = 0; i < 15; i++)
   {
-    std::cout << sortedNames.at(i) << " ";
+    std::cout << numbers[i] << " ";
   }
   printf("\n");
   return 0;
