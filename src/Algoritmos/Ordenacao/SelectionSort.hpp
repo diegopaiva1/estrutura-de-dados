@@ -19,7 +19,9 @@
 
 #include <iostream>
 #include <vector>
-#include <algorithm> // std::distance, std::swap
+#include <algorithm> // std::swap
+
+#include "../../Utils/VectorUtils.hpp"
 
 class SelectionSort
 {
@@ -28,21 +30,13 @@ public:
   ~SelectionSort() {};
 
   template<typename T>
-  std::vector<T> sort(std::vector<T> &unsorted)
+  void sort(std::vector<T> &unsorted)
   {
     for (unsigned int i = 0; i < unsorted.size(); i++)
     {
-      int minElementIndex = getMinElementIndex(unsorted, i);
+      int minElementIndex = VectorUtils::getMinElementIndex(unsorted, i);
       std::swap(unsorted[i], unsorted[minElementIndex]);
     }
-    return unsorted;
-  }
-
-private:
-  template<typename T>
-  int getMinElementIndex(std::vector<T> v, int startingIndex = 0)
-  {
-    return std::distance(v.begin(), std::min_element(v.begin() + startingIndex, v.end()));
   }
 };
 
