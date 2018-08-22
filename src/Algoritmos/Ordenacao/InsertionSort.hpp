@@ -24,7 +24,33 @@ class InsertionSort
 public:
   InsertionSort() {};
   ~InsertionSort() {};
-  void sort(int unsortedNumbers[], int size);
+
+  template<typename T>
+  void sort(std::vector<T> &unsorted)
+  {
+    // Consideramos que o primeiro número do array ja está ordenado
+    int amountOfSortedNumbers = 1;
+
+    // Portanto, começamos iterando pelo segundo número
+    for (unsigned int i = 1; i < unsorted.size(); i++)
+    {
+      int numberToBeSorted = unsorted.at(i);
+
+      // Indice para acessar elementos já ordenados
+      int j = amountOfSortedNumbers - 1;
+
+      while(j >= 0 && unsorted.at(j) > numberToBeSorted)
+      {
+        // Arredamos uma posição para a direita
+        unsorted.at(j+1) = unsorted.at(j);
+        j--;
+      }
+      // Inserimos o número
+      unsorted.at(j+1) = numberToBeSorted;
+
+      amountOfSortedNumbers++;
+    }
+  }
 };
 
 #endif // INSERTIONSORT_H_INCLUDED
