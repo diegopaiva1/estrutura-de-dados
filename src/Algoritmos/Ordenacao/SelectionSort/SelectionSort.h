@@ -1,30 +1,32 @@
 /**
- * @file    InsertionSort.h
+ * @file    SelectionSort.h
  * @author  Diego Paiva e Silva
- * @date    08/08/2018
+ * @date    11/08/2018
  *
- * O algoritmo InsertionSort é um algoritmo O(n²) estável para ordenação de elementos de uma lista.
+ * O algoritmo SelectionSort é um algoritmo O(n²) instável para ordenação de elementos de uma lista.
  * Esta classe implementa o algoritmo para ordenação de um array de inteiros.
  * A estratégia consiste em:
- * 1. Considerar o primeiro elemento como já ordenado e o supor em uma partição de elementos já ordenados;
- * 2. Percorrer as posições do array, começando pelo segundo elemento (indíce 1);
- * 3. Comparar o elemento atual com os elementos da partição ordenada, da direita para esquerda;
- * 4. Enquanto o elemento da partição ordenada for maior que o elemento a ser ordenado, move-se o elemento
- *    da partição ordenada uma posição à direita;
- * 5. Quando a condição acima não for satisfeita, inserir o elemento não-ordenado na posição vaga.
+ * 1. Supor a existência de duas partições no array: a partição ordenada (inicialmente vazia)
+ *    e a partição não-ordenada;
+ * 2. Encontrar o menor elemento do array;
+ * 3. Trocá-lo de posição com o primeiro elemento da partição não-ordenada e movê-lo para a
+ *    partição ordenada;
+ * 4. Repetir para os demais elementos não-ordenados.
  */
 
-#ifndef INSERTIONSORT_H_INCLUDED
-#define INSERTIONSORT_H_INCLUDED
+#ifndef SELECTIONSORT_H_INCLUDED
+#define SELECTIONSORT_H_INCLUDED
 
 #include <iostream>
 
-class InsertionSort
+#include "../../../Utils/ArrayUtils/ArrayUtils.h"
+
+class SelectionSort
 {
 public:
-  InsertionSort() {};
-  ~InsertionSort() {};
+  SelectionSort() {};
+  ~SelectionSort() {};
   void sort(int unsortedNumbers[], int size);
 };
 
-#endif // INSERTIONSORT_H_INCLUDED
+#endif // SELECTIONSORT_H_INCLUDED
