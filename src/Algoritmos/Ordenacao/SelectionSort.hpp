@@ -19,7 +19,6 @@
 
 #include <iostream>
 #include <vector>
-#include <string>
 #include <algorithm> // std::distance, std::swap
 
 class SelectionSort
