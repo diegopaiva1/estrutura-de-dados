@@ -33,8 +33,9 @@ public:
   {
     for (unsigned int i = 0; i < unsorted.size(); i++)
     {
-      int minElementIndex = std::distance(unsorted.begin(),
-                                          std::min_element(unsorted.begin() + i, unsorted.end()));
+      int minElementIndex = std::distance(
+                              unsorted.begin(), std::min_element(unsorted.begin() + i, unsorted.end())
+                            );
       std::swap(unsorted[i], unsorted[minElementIndex]);
     }
     return unsorted;
