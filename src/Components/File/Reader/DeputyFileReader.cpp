@@ -1,6 +1,6 @@
-#include "DeputyFileReader.h"
+#include "DeputyFileReader.hpp"
 
-std::vector<Deputy *> DeputyFileReader::read(std::string fileName)
+std::vector<Deputy *> DeputyFileReader::constructDeputies(std::string fileName)
 {
   std::ifstream inFile(fileName);
 
@@ -22,7 +22,7 @@ std::vector<Deputy *> DeputyFileReader::read(std::string fileName)
       // Não queremos ler a primeira linha do arquivo pois ela é o cabeçalho contendo as colunas
       if(lineNumber != 1)
       {
-        data = explode(line, ',');
+        data = explode(line, ';');
         Deputy *deputy = new Deputy(data);
         deputies.push_back(deputy);
       }

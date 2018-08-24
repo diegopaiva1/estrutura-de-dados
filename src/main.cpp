@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 
-#include "Components/Deputy/Deputy.h"
-#include "Components/File/Reader/DeputyFileReader.h"
+#include "Components/Deputy/Deputy.hpp"
+#include "Components/File/Reader/DeputyFileReader.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
 
   DeputyFileReader *deputyFileReader = new DeputyFileReader();
 
-  std::vector<Deputy *> deputies = deputyFileReader->read(fileName);
+  std::vector<Deputy *> deputies = deputyFileReader->constructDeputies(fileName);
 
   for (deputy : deputies)
   {
