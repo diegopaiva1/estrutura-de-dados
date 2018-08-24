@@ -73,15 +73,17 @@ public:
   }
 
   template<typename T>
-  static bool vectorWasFullyCovered(std::vector<T> v, int iterator)
-  {
-    return iterator >= v.size();
-  }
-
-  template<typename T>
   static int getMinElementIndex(std::vector<T> v, int startingIndex = 0)
   {
     return std::distance(v.begin(), std::min_element(v.begin() + startingIndex, v.end()));
+  }
+
+private:
+
+  template<typename T>
+  static bool vectorWasFullyCovered(std::vector<T> v, int iterator)
+  {
+    return iterator >= v.size();
   }
 };
 
