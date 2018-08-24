@@ -1,18 +1,26 @@
 #include <iostream>
 #include <string>
-#include <vector>
 
-#include "./Algorithms/Sorting/MergeSort.hpp"
+#include "Components/Deputy/Deputy.h"
+#include "Components/File/Reader/DeputyFileReader.h"
 
 int main(int argc, char const *argv[])
 {
-  std::vector<float> v = {73.60301, 90.10401, 90.20021, 3.14159, 89.6875, 89.6857};
-  MergeSort *mergeSort = new MergeSort();
-  mergeSort->sort(v);
-  for (unsigned int i = 0; i < v.size(); i++)
+  // Arquivo passado por linha de comando
+  std::string fileName = argv[1];
+
+  DeputyFileReader *deputyFileReader = new DeputyFileReader();
+
+  std::vector<Deputy *> deputies = deputyFileReader->read(fileName);
+
+  for (deputy : deputies)
   {
-    std::cout << v.at(i) << " ";
+    std::cout << "Nome: " << deputy->name << std::endl;
+    std::cout << "Partido: " << deputy->party << std::endl;
+    std::cout << "Nome do estabelecimento: " << deputy->establishmentName << std::endl;
+    std::cout << "Valor do recibo: " << deputy->receiptValue << std::endl;
+    printf("\n");
   }
-  printf("\n");
+
   return 0;
 }
