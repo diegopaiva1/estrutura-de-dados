@@ -4,7 +4,7 @@
  * @date    11/08/2018
  *
  * O algoritmo SelectionSort é um algoritmo O(n²) instável para ordenação de elementos de uma lista.
- * Esta classe implementa o algoritmo para ordenação de um array de elementos de qualquer tipo.
+ * Esta classe implementa o algoritmo para ordenação de um array de elementos de QUALQUER tipo.
  * A estratégia consiste em:
  * 1. Supor a existência de duas partições no array: a partição ordenada (inicialmente vazia)
  *    e a partição não-ordenada;

@@ -5,7 +5,7 @@
  *
  * O algoritmo MergeSort é um algoritmo O(nlogn) instável que utiliza o paradigma divisão e conquista
  * para ordenação de elementos de uma lista.
- * Esta classe implementa o algoritmo para ordenação de um array de inteiros.
+ * Esta classe implementa o algoritmo para ordenação de um vector para elementos de QUALQUER tipo.
  * A estratégia consiste em:
  * 1. Dada uma lista de N números, dividi-la até que obtenham-se N listas de tamanho 1 (recursivamente);
  * 2. Partindo da ideia de que uma lista com um único elemento já está naturalmente ordenada,
@@ -51,6 +51,7 @@ public:
     else
     {
       // O vector já está naturalmente ordenado, pois só contem um único elemento
+      return;
     }
   }
 };

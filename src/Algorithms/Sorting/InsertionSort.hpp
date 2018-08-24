@@ -4,7 +4,7 @@
  * @date    08/08/2018
  *
  * O algoritmo InsertionSort é um algoritmo O(n²) estável para ordenação de elementos de uma lista.
- * Esta classe implementa o algoritmo para ordenação de um array de inteiros.
+ * Esta classe implementa o algoritmo para ordenação de um array de elementos de QUALQUER tipo.
  * A estratégia consiste em:
  * 1. Considerar o primeiro elemento como já ordenado e o supor em uma partição de elementos já ordenados;
  * 2. Percorrer as posições do array, começando pelo segundo elemento (indíce 1);
