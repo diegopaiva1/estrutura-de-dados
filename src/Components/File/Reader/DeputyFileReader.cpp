@@ -1,10 +1,10 @@
 #include "DeputyFileReader.hpp"
 
-std::vector<Deputy *> DeputyFileReader::constructDeputies(std::string fileName)
+std::vector<Deputy> DeputyFileReader::constructDeputies(std::string fileName)
 {
   std::ifstream inFile(fileName);
 
-  std::vector<Deputy *> deputies;
+  std::vector<Deputy> deputies;
 
   if (!inFile.is_open())
   {
@@ -24,7 +24,7 @@ std::vector<Deputy *> DeputyFileReader::constructDeputies(std::string fileName)
       {
         data = explode(line, ';');
         Deputy *deputy = new Deputy(data);
-        deputies.push_back(deputy);
+        deputies.push_back(*deputy);
       }
       lineNumber++;
     }

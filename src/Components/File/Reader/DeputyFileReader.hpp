@@ -32,7 +32,7 @@ private:
 public:
   DeputyFileReader() {};
   ~DeputyFileReader() {};
-  std::vector<Deputy *> constructDeputies(std::string fileName);
+  std::vector<Deputy> constructDeputies(std::string fileName);
 };
 
 #endif // DEPUTYFILEREADER_H_INCLUDED

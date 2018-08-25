@@ -1,8 +1,9 @@
 #include <iostream>
 #include <string>
 
-#include "Components/Deputy/Deputy.hpp"
 #include "Components/File/Reader/DeputyFileReader.hpp"
+#include "Components/Deputy/Deputy.hpp"
+#include "Algorithms/Sorting/MergeSort.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -11,14 +12,17 @@ int main(int argc, char const *argv[])
 
   DeputyFileReader *deputyFileReader = new DeputyFileReader();
 
-  std::vector<Deputy *> deputies = deputyFileReader->constructDeputies(fileName);
+  std::vector<Deputy> deputies = deputyFileReader->constructDeputies(fileName);
 
-  for (deputy : deputies)
+  MergeSort *mergeSort = new MergeSort();
+  mergeSort->sort(deputies);
+
+  for(deputy : deputies)
   {
-    std::cout << "Nome: " << deputy->name << std::endl;
-    std::cout << "Partido: " << deputy->party << std::endl;
-    std::cout << "Nome do estabelecimento: " << deputy->establishmentName << std::endl;
-    std::cout << "Valor do recibo: " << deputy->receiptValue << std::endl;
+    std::cout << "Nome: " << deputy.name << std::endl;
+    std::cout << "Partido: " << deputy.party << std::endl;
+    std::cout << "Nome do estabelecimento: " << deputy.establishmentName << std::endl;
+    std::cout << "Valor do recibo: " << deputy.receiptValue << std::endl;
     printf("\n");
   }
 
