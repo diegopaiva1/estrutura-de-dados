@@ -35,7 +35,7 @@ public:
     for (unsigned int i = 0; i < unsorted.size(); i++)
     {
       int minElementIndex = VectorUtils::getMinElementIndex(unsorted, i);
-      std::swap(unsorted[i], unsorted[minElementIndex]);
+      std::swap(unsorted.at(i), unsorted.at(minElementIndex));
     }
   }
 };

@@ -34,19 +34,19 @@ public:
     // Portanto, começamos iterando pelo segundo número
     for (unsigned int i = 1; i < unsorted.size(); i++)
     {
-      int numberToBeSorted = unsorted.at(i);
+      auto elementToBeSorted = unsorted.at(i);
 
       // Indice para acessar elementos já ordenados
       int j = amountOfSortedNumbers - 1;
 
-      while(j >= 0 && unsorted.at(j) > numberToBeSorted)
+      while(j >= 0 && unsorted.at(j) > elementToBeSorted)
       {
         // Arredamos uma posição para a direita
         unsorted.at(j+1) = unsorted.at(j);
         j--;
       }
       // Inserimos o número
-      unsorted.at(j+1) = numberToBeSorted;
+      unsorted.at(j+1) = elementToBeSorted;
 
       amountOfSortedNumbers++;
     }
