@@ -12,5 +12,5 @@ Deputy::Deputy(std::vector<std::string> data)
   this->receiptSocialSecurityNumber = data.at(6);
   this->receiptDescription = data.at(7);
   this->establishmentName = data.at(8);
-  this->receiptValue = data.at(9);
+  this->receiptValue = std::stoi(data.at(9));
 }

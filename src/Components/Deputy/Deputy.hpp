@@ -17,6 +17,8 @@
 class Deputy
 {
 public:
+  Deputy(std::vector<std::string> data);
+  ~Deputy() {};
   std::string buggedDate;
   std::string id;
   std::string name;
@@ -26,9 +28,13 @@ public:
   std::string receiptDescription;
   std::string stateCode;
   std::string establishmentName;
-  std::string receiptValue;
-  Deputy(std::vector<std::string> data);
-  ~Deputy() {};
+  int receiptValue;
+  bool operator>(const Deputy& deputy) const { return receiptValue > deputy.receiptValue; }
+  bool operator<(const Deputy& deputy) const { return receiptValue < deputy.receiptValue; }
+  bool operator==(const Deputy& deputy) const { return receiptValue == deputy.receiptValue; }
+  bool operator!=(const Deputy& deputy) const { return !(operator==(deputy)); }
+  bool operator>=(const Deputy& deputy) const { return receiptValue >= deputy.receiptValue; }
+  bool operator<=(const Deputy& deputy) const { return receiptValue <= deputy.receiptValue; }
 };
 
 #endif // DEPUTY_H_INCLUDED
