@@ -3,7 +3,7 @@
 
 #include "Components/File/Reader/DeputyFileReader.hpp"
 #include "Components/Deputy/Deputy.hpp"
-#include "Algorithms/Sorting/MergeSort.hpp"
+#include "Algorithms/Sorting/InsertionSort.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -14,8 +14,8 @@ int main(int argc, char const *argv[])
 
   std::vector<Deputy> deputies = deputyFileReader->constructDeputies(fileName);
 
-  MergeSort *mergeSort = new MergeSort();
-  mergeSort->sort(deputies);
+  InsertionSort *insertionSort = new InsertionSort();
+  insertionSort->sort(deputies);
 
   for(deputy : deputies)
   {
