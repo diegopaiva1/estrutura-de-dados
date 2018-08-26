@@ -1,6 +1,3 @@
-#include <iostream>
-#include <string>
-
 #include "Components/File/Reader/DeputyFileReader.hpp"
 #include "Components/Deputy/Deputy.hpp"
 #include "Algorithms/Sorting/MergeSort.hpp"

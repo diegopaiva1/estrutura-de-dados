@@ -25,66 +25,11 @@ public:
   }
 
   template<typename T>
-  static std::vector<T> generateSubvectorFrom(std::vector<T> v, int startingIndex, int lastIndex)
-  {
-    std::vector<T> subvector;
-    for (int i = startingIndex; i <= lastIndex; i++)
-    {
-      subvector.push_back(v.at(i));
-    }
-    return subvector;
-  }
-
-  template<typename T>
-  static void generateSortedVectorByMergingTwoSortedVectors(std::vector<T> sorted1, std::vector<T> sorted2,
-                                                            std::vector<T> &merged)
-  {
-    int firstVectorIterator = 0;
-    int secondVectorIterator = 0;
-    for (unsigned int i = 0; i < sorted1.size() + sorted2.size(); i++)
-    {
-      if(vectorWasFullyCovered(sorted1, firstVectorIterator) &&
-         !vectorWasFullyCovered(sorted2, secondVectorIterator))
-      {
-        // Basta inserir em merged os elementos do array que não foi todo percorrido
-        merged.at(i) = sorted2.at(secondVectorIterator);
-        secondVectorIterator++;
-      }
-      else if(vectorWasFullyCovered(sorted2, secondVectorIterator) &&
-              !vectorWasFullyCovered(sorted1, firstVectorIterator))
-      {
-        merged.at(i) = sorted1.at(firstVectorIterator);
-        firstVectorIterator++;
-      }
-      else {
-        // Continuamos comparando os elementos e os inserindo em merged
-        if(sorted2.at(secondVectorIterator) < sorted1.at(firstVectorIterator))
-        {
-          merged.at(i) = sorted2.at(secondVectorIterator);
-          secondVectorIterator++;
-        }
-        else
-        {
-          merged.at(i) = sorted1.at(firstVectorIterator);
-          firstVectorIterator++;
-        }
-      }
-    }
-  }
-
-  template<typename T>
   static int getMinElementIndex(std::vector<T> v, int startingIndex = 0)
   {
     return std::distance(v.begin(), std::min_element(v.begin() + startingIndex, v.end()));
   }
 
-private:
-
-  template<typename T>
-  static bool vectorWasFullyCovered(std::vector<T> v, int iterator)
-  {
-    return iterator >= v.size();
-  }
 };
 
 #endif // VECTORUTILS_H_INCLUDED

@@ -18,6 +18,7 @@ class Deputy
 {
 public:
   Deputy(std::vector<std::string> data);
+  Deputy() {};
   ~Deputy() {};
   std::string buggedDate;
   std::string id;

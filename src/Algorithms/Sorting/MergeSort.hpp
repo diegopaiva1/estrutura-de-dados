@@ -27,26 +27,35 @@ public:
   MergeSort() {};
   ~MergeSort() {};
 
+  // Invocado pelo usuário
   template<typename T>
   void sort(std::vector<T> &unsorted)
   {
-    if(unsorted.size() != 1)
+    // O vetor auxiliar serve pra armazenar os valores durante o merge que irão ao vetor original
+    std::vector<T> aux (unsorted.size());
+    sort(unsorted, 0, unsorted.size() - 1, aux);
+  }
+
+private:
+
+  template<typename T>
+  void sort(std::vector<T> &unsorted, int firstIndex, int lastIndex, std::vector<T> &aux)
+  {
+    if(firstIndex != lastIndex)
     {
-      int firstSliceSize;
-      if(VectorUtils::hasEvenSize(unsorted))
+      int midIndex;
+      if( ((firstIndex + lastIndex + 1) % 2 == 0) )
       {
-        firstSliceSize = unsorted.size()/2;
+        // Ex: Em um vector de tamanho 17, a posição do meio será igual a 8
+        midIndex = (firstIndex + lastIndex + 1)/2;
       }
       else
       {
-        // Ex: Array de tamanho 17 será divido em duas partições de tamanhos 8 e 9
-        firstSliceSize = (unsorted.size() - 1)/2;
+        midIndex = (firstIndex + lastIndex)/2;
       }
-      auto firstSlice  = VectorUtils::generateSubvectorFrom(unsorted, 0, firstSliceSize - 1);
-      auto secondSlice = VectorUtils::generateSubvectorFrom(unsorted, firstSliceSize, unsorted.size() - 1);
-      sort(firstSlice);
-      sort(secondSlice);
-      VectorUtils::generateSortedVectorByMergingTwoSortedVectors(firstSlice, secondSlice, unsorted);
+      sort(unsorted, firstIndex, midIndex - 1, aux);
+      sort(unsorted, midIndex, lastIndex, aux);
+      merge(unsorted, firstIndex, midIndex, lastIndex, aux);
     }
     else
     {
@@ -54,6 +63,50 @@ public:
       return;
     }
   }
+
+  template <typename T>
+  void merge(std::vector<T> &v, int firstIndex, int midIndex, int lastIndex, std::vector<T> &aux)
+  {
+    int leftSliceIterator = firstIndex;
+    int rightSliceIterator = midIndex;
+
+    for (int i = firstIndex; i <= lastIndex; i++)
+    {
+      if (leftSliceIterator >= midIndex && rightSliceIterator <= lastIndex)
+      {
+        // Basta inserir os elementos na partição à direita
+        aux.at(i) = v.at(rightSliceIterator);
+        rightSliceIterator++;
+      }
+      else if(rightSliceIterator > lastIndex && leftSliceIterator < midIndex)
+      {
+        // Basta inserir os elementos na partição à esquerda
+        aux.at(i) = v.at(leftSliceIterator);
+        leftSliceIterator++;
+      }
+      else
+      {
+        // Seguimos comparando os elementos de cada partição
+        if(v.at(leftSliceIterator) < v.at(rightSliceIterator))
+        {
+          aux.at(i) = v.at(leftSliceIterator);
+          leftSliceIterator++;
+        }
+        else
+        {
+          aux.at(i) = v.at(rightSliceIterator);
+          rightSliceIterator++;
+        }
+      }
+    }
+
+    // Copiando de volta
+    for (int i = firstIndex; i <= lastIndex; i++)
+    {
+      v.at(i) = aux.at(i);
+    }
+  }
+
 };
 
 #endif // MERGESORT_H_INCLUDED
