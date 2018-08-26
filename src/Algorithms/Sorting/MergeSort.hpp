@@ -27,7 +27,6 @@ public:
   MergeSort() {};
   ~MergeSort() {};
 
-  // Invocado pelo usuário
   template<typename T>
   void sort(std::vector<T> &unsorted)
   {
