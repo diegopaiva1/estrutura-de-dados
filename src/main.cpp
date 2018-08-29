@@ -1,6 +1,3 @@
-#include <iostream>
-#include <string>
-
 #include "Components/File/Reader/DeputyFileReader.hpp"
 #include "Components/Deputy/Deputy.hpp"
 #include "Algorithms/Sorting/InsertionSort.hpp"
@@ -17,7 +14,7 @@ int main(int argc, char const *argv[])
   InsertionSort *insertionSort = new InsertionSort();
   insertionSort->sort(deputies);
 
-  for(deputy : deputies)
+  for (deputy : deputies)
   {
     std::cout << "Nome: " << deputy.name << std::endl;
     std::cout << "Partido: " << deputy.party << std::endl;
