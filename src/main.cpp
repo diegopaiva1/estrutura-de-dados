@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
   MergeSort *mergeSort = new MergeSort();
   mergeSort->sort(deputies);
 
-  for(deputy : deputies)
+  for (deputy : deputies)
   {
     std::cout << "Nome: " << deputy.name << std::endl;
     std::cout << "Partido: " << deputy.party << std::endl;

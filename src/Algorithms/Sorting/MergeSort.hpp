@@ -40,16 +40,17 @@ private:
   template<typename T>
   void sort(std::vector<T> &unsorted, int firstIndex, int lastIndex, std::vector<T> &aux)
   {
-    if(firstIndex != lastIndex)
+    if (firstIndex != lastIndex)
     {
       int midIndex;
-      if( ((firstIndex + lastIndex + 1) % 2 == 0) )
+      if (hasEvenAmountOfPositions(firstIndex, lastIndex))
       {
-        // Ex: Em um vector de tamanho 17, a posição do meio será igual a 8
+        // Exatamente a posição do meio
         midIndex = (firstIndex + lastIndex + 1)/2;
       }
       else
       {
+        // Ex: Em um vector de tamanho 17, a posição do meio será igual a 8
         midIndex = (firstIndex + lastIndex)/2;
       }
       sort(unsorted, firstIndex, midIndex - 1, aux);
@@ -61,6 +62,11 @@ private:
       // O vector já está naturalmente ordenado, pois só contem um único elemento
       return;
     }
+  }
+
+  bool hasEvenAmountOfPositions(int firstIndex, int lastIndex)
+  {
+    return ( (firstIndex + lastIndex + 1) % 2 == 0);
   }
 
   template <typename T>
@@ -77,7 +83,7 @@ private:
         aux.at(i) = v.at(rightSliceIterator);
         rightSliceIterator++;
       }
-      else if(rightSliceIterator > lastIndex && leftSliceIterator < midIndex)
+      else if (rightSliceIterator > lastIndex && leftSliceIterator < midIndex)
       {
         // Basta inserir os elementos na partição à esquerda
         aux.at(i) = v.at(leftSliceIterator);
@@ -86,7 +92,7 @@ private:
       else
       {
         // Seguimos comparando os elementos de cada partição
-        if(v.at(leftSliceIterator) < v.at(rightSliceIterator))
+        if (v.at(leftSliceIterator) < v.at(rightSliceIterator))
         {
           aux.at(i) = v.at(leftSliceIterator);
           leftSliceIterator++;
