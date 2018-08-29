@@ -23,7 +23,7 @@
 #include <sstream>
 #include <utility>
 
-#include "../../Deputy/Deputy.hpp"
+#include "../../deputy/Deputy.hpp"
 
 class DeputyFileReader
 {

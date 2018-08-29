@@ -19,7 +19,7 @@
 
 #include <iostream>
 
-#include "../../Utils/VectorUtils.hpp"
+#include "../../utils/VectorUtils.hpp"
 
 class MergeSort
 {

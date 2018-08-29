@@ -21,7 +21,7 @@
 #include <vector>
 #include <algorithm> // std::swap
 
-#include "../../Utils/VectorUtils.hpp"
+#include "../../utils/VectorUtils.hpp"
 
 class SelectionSort
 {
