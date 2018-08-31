@@ -52,7 +52,7 @@ public:
         return *i;
       }
     }
-    return INT_MIN;
+    throw "Dado inexistente!";
   }
 
 private:

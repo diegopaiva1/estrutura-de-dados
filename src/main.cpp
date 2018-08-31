@@ -6,7 +6,16 @@ int main(int argc, char const *argv[])
 
   HashTable *hashTable = new HashTable(data, 0.75);
 
-  std::cout << hashTable->get(134) << std::endl;
+  hashTable->remove(134);
+
+  try
+  {
+    std::cout << hashTable->get(134) << std::endl;
+  }
+  catch (const char* error)
+  {
+    std::cerr << error << '\n';
+  }
 
   return 0;
 }
