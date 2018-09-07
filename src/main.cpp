@@ -14,12 +14,12 @@ int main(int argc, char const *argv[])
   MergeSort *mergeSort = new MergeSort();
   mergeSort->sort(deputies);
 
-  for (deputy : deputies)
+  for (auto deputy : deputies)
   {
-    std::cout << "Nome: " << deputy.name << std::endl;
-    std::cout << "Partido: " << deputy.party << std::endl;
+    std::cout << "Nome: "                    << deputy.name              << std::endl;
+    std::cout << "Partido: "                 << deputy.party             << std::endl;
     std::cout << "Nome do estabelecimento: " << deputy.establishmentName << std::endl;
-    std::cout << "Valor do recibo: " << deputy.receiptValue << std::endl;
+    std::cout << "Valor do recibo: "         << deputy.receiptValue      << std::endl;
     printf("\n");
   }
 
