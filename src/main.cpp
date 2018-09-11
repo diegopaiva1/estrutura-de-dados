@@ -1,6 +1,6 @@
 #include "components/file/reader/DeputyFileReader.hpp"
 #include "components/deputy/Deputy.hpp"
-#include "algorithms/sorting/MergeSort.hpp"
+#include "algorithms/sorting/InsertionSort.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
 
   std::vector<Deputy> deputies = deputyFileReader->constructDeputies(fileName);
 
-  MergeSort *mergeSort = new MergeSort();
+  InsertionSort *mergeSort = new InsertionSort();
   mergeSort->sort(deputies);
 
   for (auto deputy : deputies)

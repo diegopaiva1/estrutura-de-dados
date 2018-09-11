@@ -18,6 +18,7 @@
 #define INSERTIONSORT_H_INCLUDED
 
 #include <iostream>
+#include <vector>
 
 class InsertionSort
 {
