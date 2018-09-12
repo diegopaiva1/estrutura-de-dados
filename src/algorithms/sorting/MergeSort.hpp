@@ -1,5 +1,5 @@
 /**
- * @file    MergeSort.h
+ * @file    MergeSort.hpp
  * @author  Diego Paiva e Silva
  * @date    15/08/2018
  *
@@ -27,7 +27,7 @@ public:
   MergeSort() {};
   ~MergeSort() {};
 
-  template<typename T>
+  template <typename T>
   void sort(std::vector<T> &unsorted)
   {
     // O vetor auxiliar serve pra armazenar os valores durante o merge que irão ao vetor original
@@ -36,8 +36,7 @@ public:
   }
 
 private:
-
-  template<typename T>
+  template <typename T>
   void sort(std::vector<T> &unsorted, int firstIndex, int lastIndex, std::vector<T> &aux)
   {
     if (firstIndex != lastIndex)
