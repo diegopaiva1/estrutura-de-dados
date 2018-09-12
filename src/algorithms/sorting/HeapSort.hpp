@@ -24,7 +24,7 @@ public:
     for(int i = unsorted.size() - 1; i >= 0; i--)
     {
       std::swap(unsorted.at(0), unsorted.at(i));
-      maxHeapify(unsorted, 0);
+      maxHeapify(unsorted, 0, unsorted.size() - i);
     }
   }
 
@@ -40,18 +40,18 @@ private:
     }
   }
 
-  void maxHeapify(std::vector<int> &unsorted, unsigned int i)
+  void maxHeapify(std::vector<int> &unsorted, unsigned int i, int offset = 0)
   {
     unsigned int leftChildIndex  = 2 * i + 1;
     unsigned int rightChildIndex = 2 * i + 2;
     unsigned int maxIndex = i;
 
-    if(leftChildIndex < unsorted.size() && unsorted.at(leftChildIndex) > unsorted.at(i))
+    if(leftChildIndex < unsorted.size() - offset && unsorted.at(leftChildIndex) > unsorted.at(i))
     {
       maxIndex = leftChildIndex;
     }
 
-    if(rightChildIndex < unsorted.size() && unsorted.at(rightChildIndex) > unsorted.at(maxIndex))
+    if(rightChildIndex < unsorted.size() - offset && unsorted.at(rightChildIndex) > unsorted.at(maxIndex))
     {
       maxIndex = rightChildIndex;
     }
@@ -59,7 +59,7 @@ private:
     if(maxIndex != i)
     {
       std::swap(unsorted.at(i), unsorted.at(maxIndex));
-      maxHeapify(unsorted, maxIndex);
+      maxHeapify(unsorted, maxIndex, offset);
     }
   }
 };
