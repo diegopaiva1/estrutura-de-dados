@@ -23,5 +23,6 @@ Apagar o binário, caso desejável:
 *  Insertion Sort
 *  Merge Sort
 *  Selection Sort
+*  Heap Sort
 
 ***Em construção***
