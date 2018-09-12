@@ -13,7 +13,7 @@
  * 2. Trocar o maior elemento (indice = 0) de posição com o último elemento da heap. Portanto o elemento
  *    que foi pra última posição já está ordenado;
  * 3. Transformar o conjunto remanescente desordenado em um max-heap;
- * 4. Repetimos os passos 2 e 3 até que o conjunto remanescente esteja completamente ordenado.
+ * 4. Repetir os passos 2 e 3 até que o conjunto remanescente esteja completamente ordenado.
  */
 
 #ifndef HEAPSORT_H_INCLUDED
