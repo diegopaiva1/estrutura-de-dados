@@ -1,6 +1,6 @@
 #include "components/deputy/file/reader/DeputyFileReader.hpp"
 #include "components/deputy/Deputy.hpp"
-#include "algorithms/sorting/SelectionSort.hpp"
+#include "algorithms/sorting/HeapSort.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
 
   std::vector<Deputy> deputies = deputyFileReader->constructDeputies(fileName);
 
-  SelectionSort *heapSort = new SelectionSort();
+  HeapSort *heapSort = new HeapSort();
   heapSort->sort(deputies);
 
   for (auto deputy : deputies)
