@@ -55,7 +55,7 @@ private:
 
   template <typename T>
   /* O valor do offset ser igual a 0 signfica que estamos estamos aplicando o algoritmo
-   * á toda extensão do vetor. Caso não seja igual a zero, aplicamos até unsorted.size() - offset.
+   * á toda extensão do vetor. Caso não seja igual a 0, aplicamos até unsorted.size() - offset.
    */
   void maxHeapify(std::vector<T> &unsorted, unsigned int i, int offset = 0)
   {
