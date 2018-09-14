@@ -1,10 +1,10 @@
 /**
- * @file    DeputyFileReader.h
+ * @file    DeputyFileReader.hpp
  * @author  Diego Paiva e Silva
  * @date    19/08/2018
  *
- * A classe DeputyFileReader realiza a leitura do dataset de deputados e retorna, através do método read,
- * um vector contendo todos os deputados (objetos da classe Deputy).
+ * A classe DeputyFileReader realiza a leitura do dataset de deputados e retorna, através do método
+ * constructDeputies, um vector contendo todos os deputados (objetos da classe Deputy).
  * O formato esperado do arquivo é:
  *
  * Linha 1:       col1;col2;col3;col4;col5;col6;col7;col8;col9;col10

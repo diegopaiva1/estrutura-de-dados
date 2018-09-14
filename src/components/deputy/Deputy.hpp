@@ -1,5 +1,5 @@
 /**
- * @file    Deputy.h
+ * @file    Deputy.hpp
  * @author  Diego Paiva e Silva
  * @date    19/08/2018
  *
