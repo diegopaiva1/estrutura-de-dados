@@ -20,9 +20,9 @@ Apagar o binário, caso desejável:
 
 ### Ordenação
 
+*  [Heap Sort](https://pt.wikipedia.org/wiki/Heapsort)
 *  [Insertion Sort](https://pt.wikipedia.org/wiki/Insertion_sort)
 *  [Merge Sort](https://pt.wikipedia.org/wiki/Merge_sort)
 *  [Selection Sort](https://pt.wikipedia.org/wiki/Selection_sort)
-*  [Heap Sort](https://pt.wikipedia.org/wiki/Heapsort)
 
 ***Em construção***
