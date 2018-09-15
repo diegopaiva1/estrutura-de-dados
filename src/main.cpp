@@ -1,6 +1,7 @@
 #include "components/file/reader/DeputyFileReader.hpp"
 #include "components/deputy/Deputy.hpp"
 #include "algorithms/sorting/MergeSort.hpp"
+#include "algorithms/sorting/QuickSort.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -11,17 +12,17 @@ int main(int argc, char const *argv[])
 
   std::vector<Deputy> deputies = deputyFileReader->constructDeputies(fileName);
 
-  MergeSort *mergeSort = new MergeSort();
-  mergeSort->sort(deputies);
+  QuickSort *quickSort = new QuickSort();
+  quickSort->sort(deputies);
 
-  for (deputy : deputies)
+  /*for (auto deputy : deputies)
   {
     std::cout << "Nome: " << deputy.name << std::endl;
     std::cout << "Partido: " << deputy.party << std::endl;
     std::cout << "Nome do estabelecimento: " << deputy.establishmentName << std::endl;
     std::cout << "Valor do recibo: " << deputy.receiptValue << std::endl;
     printf("\n");
-  }
+  }*/
 
   return 0;
 }
