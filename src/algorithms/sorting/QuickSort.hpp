@@ -10,31 +10,21 @@ public:
   ~QuickSort() {};
 
   template<typename T>
-  void sort(std::vector<T> &unsorted)
+  void sort(std::vector<T> &unsorted, int k = 0)
   {
-    sort(unsorted, 0, unsorted.size() - 1);
-  }
-
-  template<typename T>
-  void sortInsertion(std::vector<T> &unsorted)
-  {
-    int i,j;
-    for (i = 1; i < unsorted.size(); ++i) {
-        auto elementToBeSorted = unsorted.at(i);
-        for (j = i-1; j >= 0 && unsorted.at(j) > elementToBeSorted; --j){
-           unsorted.at(j+1) = unsorted.at(j);
-        }
-        unsorted.at(j+1) = elementToBeSorted;
-    }
+    sort(unsorted, 0, unsorted.size() - 1, k);
   }
 
 private:
 
   template<typename T>
-  void sort(std::vector<T> &unsorted, int firstIndex, int lastIndex)
+  void sort(std::vector<T> &unsorted, int firstIndex, int lastIndex, int k)
   {
     //Determinação do pivô
-    auto pivot = unsorted.at((firstIndex+lastIndex)/2);
+    T pivot;
+    if(k==0){
+      pivot = unsorted.at((firstIndex+lastIndex)/2);
+    }
 
     //Particionamento
     int leftPointer = firstIndex;
@@ -61,11 +51,11 @@ private:
     //Ordenação das sublistas recursivamente
     if(firstIndex < rightPointer)
     {
-      sort(unsorted, firstIndex, rightPointer);
+      sort(unsorted, firstIndex, rightPointer, k);
     }
     if(leftPointer < lastIndex)
     {
-      sort(unsorted, leftPointer+1, lastIndex);
+      sort(unsorted, leftPointer+1, lastIndex, k);
     }
   }
 
