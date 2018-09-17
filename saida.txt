@@ -1,45 +1,92 @@
-Resultados para P9MergeSort:
+Resultados para P9MergeSort em Mon Sep 17 18:22:48 2018
 
-Tempo de execução para N = 1000 - Conjunto 1: 0.001079s
-Tempo de execução para N = 1000 - Conjunto 2: 0.0009615s
-Tempo de execução para N = 1000 - Conjunto 3: 0.0009733s
-Tempo de execução para N = 1000 - Conjunto 4: 0.0009689s
-Tempo de execução para N = 1000 - Conjunto 5: 0.0009289s
-Tempo médio de execução = 0.0009824s
+Tempo de execução para N = 1000 - Conjunto 1: 0.005061s
+Tempo de execução para N = 1000 - Conjunto 2: 0.004713s
+Tempo de execução para N = 1000 - Conjunto 3: 0.004922s
+Tempo de execução para N = 1000 - Conjunto 4: 0.005286s
+Tempo de execução para N = 1000 - Conjunto 5: 0.002875s
+Tempo médio de execução = 0.004571s
 
-Tempo de execução para N = 5000 - Conjunto 1: 0.005444s
-Tempo de execução para N = 5000 - Conjunto 2: 0.005621s
-Tempo de execução para N = 5000 - Conjunto 3: 0.005309s
-Tempo de execução para N = 5000 - Conjunto 4: 0.00556s
-Tempo de execução para N = 5000 - Conjunto 5: 0.005449s
-Tempo médio de execução = 0.005477s
+Tempo de execução para N = 5000 - Conjunto 1: 0.01076s
+Tempo de execução para N = 5000 - Conjunto 2: 0.006606s
+Tempo de execução para N = 5000 - Conjunto 3: 0.005471s
+Tempo de execução para N = 5000 - Conjunto 4: 0.005367s
+Tempo de execução para N = 5000 - Conjunto 5: 0.005456s
+Tempo médio de execução = 0.006733s
 
-Tempo de execução para N = 10000 - Conjunto 1: 0.01159s
-Tempo de execução para N = 10000 - Conjunto 2: 0.01169s
-Tempo de execução para N = 10000 - Conjunto 3: 0.01228s
-Tempo de execução para N = 10000 - Conjunto 4: 0.01142s
-Tempo de execução para N = 10000 - Conjunto 5: 0.0119s
-Tempo médio de execução = 0.01178s
+Tempo de execução para N = 10000 - Conjunto 1: 0.01232s
+Tempo de execução para N = 10000 - Conjunto 2: 0.01183s
+Tempo de execução para N = 10000 - Conjunto 3: 0.01141s
+Tempo de execução para N = 10000 - Conjunto 4: 0.01151s
+Tempo de execução para N = 10000 - Conjunto 5: 0.01188s
+Tempo médio de execução = 0.01179s
 
-Tempo de execução para N = 50000 - Conjunto 1: 0.06814s
-Tempo de execução para N = 50000 - Conjunto 2: 0.06787s
-Tempo de execução para N = 50000 - Conjunto 3: 0.06756s
-Tempo de execução para N = 50000 - Conjunto 4: 0.06933s
-Tempo de execução para N = 50000 - Conjunto 5: 0.06827s
-Tempo médio de execução = 0.06823s
+Tempo de execução para N = 50000 - Conjunto 1: 0.06956s
+Tempo de execução para N = 50000 - Conjunto 2: 0.06902s
+Tempo de execução para N = 50000 - Conjunto 3: 0.07276s
+Tempo de execução para N = 50000 - Conjunto 4: 0.0714s
+Tempo de execução para N = 50000 - Conjunto 5: 0.06922s
+Tempo médio de execução = 0.07039s
 
-Tempo de execução para N = 100000 - Conjunto 1: 0.1407s
-Tempo de execução para N = 100000 - Conjunto 2: 0.1385s
-Tempo de execução para N = 100000 - Conjunto 3: 0.1404s
-Tempo de execução para N = 100000 - Conjunto 4: 0.1393s
-Tempo de execução para N = 100000 - Conjunto 5: 0.1405s
-Tempo médio de execução = 0.1399s
+Tempo de execução para N = 100000 - Conjunto 1: 0.1465s
+Tempo de execução para N = 100000 - Conjunto 2: 0.145s
+Tempo de execução para N = 100000 - Conjunto 3: 0.1403s
+Tempo de execução para N = 100000 - Conjunto 4: 0.1404s
+Tempo de execução para N = 100000 - Conjunto 5: 0.1565s
+Tempo médio de execução = 0.1457s
 
-Tempo de execução para N = 500000 - Conjunto 1: 0.7902s
-Tempo de execução para N = 500000 - Conjunto 2: 0.8011s
-Tempo de execução para N = 500000 - Conjunto 3: 0.8002s
-Tempo de execução para N = 500000 - Conjunto 4: 0.7945s
-Tempo de execução para N = 500000 - Conjunto 5: 0.793s
+Tempo de execução para N = 500000 - Conjunto 1: 0.801s
+Tempo de execução para N = 500000 - Conjunto 2: 0.8029s
+Tempo de execução para N = 500000 - Conjunto 3: 0.79s
+Tempo de execução para N = 500000 - Conjunto 4: 0.7888s
+Tempo de execução para N = 500000 - Conjunto 5: 0.7964s
 Tempo médio de execução = 0.7958s
 
-Fim do processo
+===================== Fim do processo =====================
+
+Resultados para P8HeapSort em Mon Sep 17 18:22:53 2018
+
+Tempo de execução para N = 1000 - Conjunto 1: 0.0009562s
+Tempo de execução para N = 1000 - Conjunto 2: 0.0009324s
+Tempo de execução para N = 1000 - Conjunto 3: 0.0009417s
+Tempo de execução para N = 1000 - Conjunto 4: 0.0009371s
+Tempo de execução para N = 1000 - Conjunto 5: 0.0009432s
+Tempo médio de execução = 0.0009421s
+
+Tempo de execução para N = 5000 - Conjunto 1: 0.00592s
+Tempo de execução para N = 5000 - Conjunto 2: 0.006019s
+Tempo de execução para N = 5000 - Conjunto 3: 0.005935s
+Tempo de execução para N = 5000 - Conjunto 4: 0.005923s
+Tempo de execução para N = 5000 - Conjunto 5: 0.005974s
+Tempo médio de execução = 0.005954s
+
+Tempo de execução para N = 10000 - Conjunto 1: 0.01293s
+Tempo de execução para N = 10000 - Conjunto 2: 0.01428s
+Tempo de execução para N = 10000 - Conjunto 3: 0.01477s
+Tempo de execução para N = 10000 - Conjunto 4: 0.0129s
+Tempo de execução para N = 10000 - Conjunto 5: 0.01282s
+Tempo médio de execução = 0.01354s
+
+Tempo de execução para N = 50000 - Conjunto 1: 0.07929s
+Tempo de execução para N = 50000 - Conjunto 2: 0.07836s
+Tempo de execução para N = 50000 - Conjunto 3: 0.08249s
+Tempo de execução para N = 50000 - Conjunto 4: 0.07875s
+Tempo de execução para N = 50000 - Conjunto 5: 0.07984s
+Tempo médio de execução = 0.07975s
+
+Tempo de execução para N = 100000 - Conjunto 1: 0.1687s
+Tempo de execução para N = 100000 - Conjunto 2: 0.1674s
+Tempo de execução para N = 100000 - Conjunto 3: 0.2043s
+Tempo de execução para N = 100000 - Conjunto 4: 0.1891s
+Tempo de execução para N = 100000 - Conjunto 5: 0.1741s
+Tempo médio de execução = 0.1807s
+
+Tempo de execução para N = 500000 - Conjunto 1: 0.965s
+Tempo de execução para N = 500000 - Conjunto 2: 0.9487s
+Tempo de execução para N = 500000 - Conjunto 3: 1.031s
+Tempo de execução para N = 500000 - Conjunto 4: 0.9651s
+Tempo de execução para N = 500000 - Conjunto 5: 0.9947s
+Tempo médio de execução = 0.9809s
+
+===================== Fim do processo =====================
+

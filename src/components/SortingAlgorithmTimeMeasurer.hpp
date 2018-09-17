@@ -36,6 +36,7 @@
 #include <string>
 #include <iomanip> // std::setprecision()
 #include <typeinfo> // typeid
+#include <time.h>
 
 typedef std::chrono::high_resolution_clock Time;
 
@@ -53,7 +54,7 @@ public:
 
     std::ifstream inFile(inFileName);
 
-    std::ofstream outFile(outFileName, std::ifstream::out | std::ifstream::trunc);
+    std::ofstream outFile(outFileName, std::ifstream::app);
 
     if (!inFile.is_open())
     {
@@ -64,8 +65,12 @@ public:
     {
       int n;
 
-      // Escrevendo o nome do algoritmo passado como entrada
-      outFile << "Resultados para " << typeid(algorithm).name() << ":\n" << std::endl;
+      time_t _tm = time(NULL);
+      struct tm * currentTime = localtime(&_tm);
+
+      // Nome do algoritmo passado como entrada e data que foi compilado
+      outFile << "Resultados para " << typeid(algorithm).name()
+              << " em " << asctime(currentTime) << std::endl;
 
       while(inFile >> n)
       {
@@ -98,7 +103,7 @@ public:
                 << "s\n\n";
       }
     }
-    outFile << "Fim do processo";
+    outFile << "===================== Fim do processo =====================\n" << std::endl;
     inFile.close();
     outFile.close();
   }
