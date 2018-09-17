@@ -65,12 +65,9 @@ public:
     {
       int n;
 
-      time_t _tm = time(NULL);
-      struct tm * currentTime = localtime(&_tm);
-
       // Nome do algoritmo passado como entrada e data que foi compilado
       outFile << "Resultados para " << typeid(algorithm).name()
-              << " em " << asctime(currentTime) << std::endl;
+              << " em " << getCurrentTime() << std::endl;
 
       while(inFile >> n)
       {
@@ -111,6 +108,13 @@ public:
 private:
   std::vector<int> randomNumbers;
   double executionTimes[EXECUTIONS_AMOUNT];
+
+  char* getCurrentTime()
+  {
+    time_t _tm = time(NULL);
+    struct tm * currentTime = localtime(&_tm);
+    return asctime(currentTime);
+  }
 
   double convertNanosecondsToSeconds(double value)
   {
