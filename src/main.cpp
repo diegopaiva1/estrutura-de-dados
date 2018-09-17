@@ -1,5 +1,5 @@
 #include "components/SortingAlgorithmTimeMeasurer.hpp"
-#include "algorithms/sorting/HeapSort.hpp"
+#include "algorithms/sorting/MergeSort.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -8,7 +8,7 @@ int main(int argc, char const *argv[])
 
   SortingAlgorithmTimeMeasurer *measurer = new SortingAlgorithmTimeMeasurer();
 
-  measurer->printResults(fileName, new HeapSort());
+  measurer->printResults(fileName, new MergeSort());
 
   return 0;
 }

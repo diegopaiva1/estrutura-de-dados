@@ -17,6 +17,8 @@
 #include <vector>
 #include <chrono>
 #include <string>
+#include <iomanip> // std::setprecision()
+#include <typeinfo> // typeid
 
 typedef std::chrono::high_resolution_clock Time;
 
@@ -34,6 +36,8 @@ public:
 
     std::ifstream inFile(fileName);
 
+    std::ofstream outFile("saida.txt", std::ifstream::out | std::ifstream::trunc);
+
     if (!inFile.is_open())
     {
       std::cout << "Falha na leitura do arquivo" << std::endl;
@@ -42,6 +46,9 @@ public:
     else
     {
       int dataSize;
+
+      // Escrevendo o nome do algoritmo passado como entrada
+      outFile << "Resultados para " << typeid(algorithm).name() << ":\n" << std::endl;
 
       while(inFile >> dataSize)
       {
@@ -56,7 +63,7 @@ public:
             randomNumbers.at(i) = rand() % dataSize + 1;
           }
 
-          // Colhe-se o tempo iniciail e final para calcular o tempo total de execução posteriormente
+          // Colhe-se o tempo inicial e final para calcular o tempo total de execução posteriormente
           Time::time_point t1 = Time::now();
           algorithm->sort(randomNumbers);
           Time::time_point t2 = Time::now();
@@ -66,13 +73,16 @@ public:
 
           executionTimes[execution] = convertNanosecondsToSeconds(duration);
 
-          printf("Tempo de execução para N = %6d - Conjunto %1d: %.4fs\n",
-                 dataSize, execution + 1, executionTimes[execution]);
+          // TODO - Abstrair em métodos essas escritas
+          outFile << "Tempo de execução para N = " << dataSize  << " - Conjunto " << execution + 1 << ": "
+                  << std::setprecision(4) << executionTimes[execution] << "s" << std::endl;
         }
-        printf("Tempo médio de execução = %.4fs\n\n", calculateAverageExecutionTime());
+        outFile << "Tempo médio de execução = " << std::setprecision(4) << calculateAverageExecutionTime()
+                << "s\n\n";
       }
     }
     inFile.close();
+    outFile.close();
   }
 
 private:

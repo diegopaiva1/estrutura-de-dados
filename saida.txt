@@ -1,0 +1,44 @@
+Resultados para P9MergeSort:
+
+Tempo de execução para N = 1000 - Conjunto 1: 0.005024s
+Tempo de execução para N = 1000 - Conjunto 2: 0.004614s
+Tempo de execução para N = 1000 - Conjunto 3: 0.004641s
+Tempo de execução para N = 1000 - Conjunto 4: 0.003509s
+Tempo de execução para N = 1000 - Conjunto 5: 0.002747s
+Tempo médio de execução = 0.004107s
+
+Tempo de execução para N = 5000 - Conjunto 1: 0.009505s
+Tempo de execução para N = 5000 - Conjunto 2: 0.006579s
+Tempo de execução para N = 5000 - Conjunto 3: 0.005303s
+Tempo de execução para N = 5000 - Conjunto 4: 0.005178s
+Tempo de execução para N = 5000 - Conjunto 5: 0.005931s
+Tempo médio de execução = 0.006499s
+
+Tempo de execução para N = 10000 - Conjunto 1: 0.01131s
+Tempo de execução para N = 10000 - Conjunto 2: 0.01115s
+Tempo de execução para N = 10000 - Conjunto 3: 0.01118s
+Tempo de execução para N = 10000 - Conjunto 4: 0.01115s
+Tempo de execução para N = 10000 - Conjunto 5: 0.01189s
+Tempo médio de execução = 0.01134s
+
+Tempo de execução para N = 50000 - Conjunto 1: 0.06514s
+Tempo de execução para N = 50000 - Conjunto 2: 0.06503s
+Tempo de execução para N = 50000 - Conjunto 3: 0.06459s
+Tempo de execução para N = 50000 - Conjunto 4: 0.0651s
+Tempo de execução para N = 50000 - Conjunto 5: 0.0642s
+Tempo médio de execução = 0.06481s
+
+Tempo de execução para N = 100000 - Conjunto 1: 0.1364s
+Tempo de execução para N = 100000 - Conjunto 2: 0.1394s
+Tempo de execução para N = 100000 - Conjunto 3: 0.1381s
+Tempo de execução para N = 100000 - Conjunto 4: 0.1399s
+Tempo de execução para N = 100000 - Conjunto 5: 0.1407s
+Tempo médio de execução = 0.1389s
+
+Tempo de execução para N = 500000 - Conjunto 1: 0.8121s
+Tempo de execução para N = 500000 - Conjunto 2: 0.8171s
+Tempo de execução para N = 500000 - Conjunto 3: 0.8011s
+Tempo de execução para N = 500000 - Conjunto 4: 0.7869s
+Tempo de execução para N = 500000 - Conjunto 5: 0.7817s
+Tempo médio de execução = 0.7998s
+
