@@ -3,8 +3,25 @@
  * @author  Diego Paiva e Silva
  * @date    17/09/2018
  *
- *  TODO - Class description
+ * O propósito da classe SortingAlgorithmTimeMeasurer é contabilizar, para um determinado conjunto de dados,
+ * o tempo total de execução dos algoritmos de ordenação implementados dentro deste projeto.
+ * Este conjunto de dados é gerado a partir da leitura de um arquivo que deve ser passado como parâmetro.
+ * O arquivo deve estar disposto da seguinte forma:
  *
+ * n1
+ * n2
+ * n3
+ * ...
+ * nf
+ *
+ * Tal que n1, n2, n3, ..., nf são valores inteiros e "nf" representa o ultimo valor do arquivo.
+ * Para cada linha lida do arquivo, o vetor de números adere à capacidade correspondente ao valor
+ * de "n" da linha lida. O vetor é completamente preenchido com valores aleatórios para poder servir ao
+ * algoritmo que é passado por parâmetro.
+ * Para cada valor de "n" lido, podem-se realizar várias execuções com conjuntos de valores diferentes,
+ * para que se possa registrar o tempo de execução para cada um desses conjuntos e ao fim calcular o
+ * tempo médio de execução do algoritmo para aquele valor de "n". O número padrão de execuções para cada
+ * valor de "n" é 5. Todos os resultados são gravados em um arquivo de saída.
  */
 
 #ifndef SORTINGALGORITHMTIMEMEASURER_H_INCLUDED
@@ -29,14 +46,14 @@ public:
   ~SortingAlgorithmTimeMeasurer() {};
 
   template<typename T>
-  void printResults(std::string fileName, T* algorithm)
+  void printResults(std::string inFileName, T* algorithm, std::string outFileName = "saida.txt")
   {
     // Initialize random seed
     srand(time(NULL));
 
-    std::ifstream inFile(fileName);
+    std::ifstream inFile(inFileName);
 
-    std::ofstream outFile("saida.txt", std::ifstream::out | std::ifstream::trunc);
+    std::ofstream outFile(outFileName, std::ifstream::out | std::ifstream::trunc);
 
     if (!inFile.is_open())
     {
@@ -45,22 +62,22 @@ public:
     }
     else
     {
-      int dataSize;
+      int n;
 
       // Escrevendo o nome do algoritmo passado como entrada
       outFile << "Resultados para " << typeid(algorithm).name() << ":\n" << std::endl;
 
-      while(inFile >> dataSize)
+      while(inFile >> n)
       {
         // Adaptamos a capacidade do vector ao valor que acabou de ser lido do arquivo
-        randomNumbers.resize(dataSize);
+        randomNumbers.resize(n);
 
         for (int execution = 0; execution < EXECUTIONS_AMOUNT; execution++)
         {
-          for (int i = 0; i < dataSize; i++)
+          for (int i = 0; i < n; i++)
           {
             // Preenchendo com números aleatórios
-            randomNumbers.at(i) = rand() % dataSize + 1;
+            randomNumbers.at(i) = rand() % n + 1;
           }
 
           // Colhe-se o tempo inicial e final para calcular o tempo total de execução posteriormente
@@ -73,14 +90,15 @@ public:
 
           executionTimes[execution] = convertNanosecondsToSeconds(duration);
 
-          // TODO - Abstrair em métodos essas escritas
-          outFile << "Tempo de execução para N = " << dataSize  << " - Conjunto " << execution + 1 << ": "
+          // Escrita do tempo de execução no arquivo de saída
+          outFile << "Tempo de execução para N = " << n  << " - Conjunto " << execution + 1 << ": "
                   << std::setprecision(4) << executionTimes[execution] << "s" << std::endl;
         }
         outFile << "Tempo médio de execução = " << std::setprecision(4) << calculateAverageExecutionTime()
                 << "s\n\n";
       }
     }
+    outFile << "Fim do processo";
     inFile.close();
     outFile.close();
   }
@@ -97,7 +115,7 @@ private:
   double calculateAverageExecutionTime()
   {
     double executionTimesSum = 0.0;
-    for(int i = 0; i < EXECUTIONS_AMOUNT; i++)
+    for (int i = 0; i < EXECUTIONS_AMOUNT; i++)
     {
       executionTimesSum += executionTimes[i];
     }
