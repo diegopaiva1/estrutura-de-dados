@@ -19,9 +19,9 @@
  * de "n" da linha lida. O vetor é completamente preenchido com valores aleatórios para poder servir ao
  * algoritmo que é passado por parâmetro.
  * Para cada valor de "n" lido, podem-se realizar várias execuções com conjuntos de valores diferentes,
- * para que se possa registrar o tempo de execução para cada um desses conjuntos e ao fim calcular o
- * tempo médio de execução do algoritmo para aquele valor de "n". O número padrão de execuções para cada
- * valor de "n" é 5. Todos os resultados são gravados em um arquivo de saída.
+ * afim de registrar o tempo de execução para cada um desses conjuntos e ao fim calcular o tempo médio
+ * de execução do algoritmo para aquele valor de "n". O número padrão de execuções para cada valor de
+ * "n" é 5. Todos os resultados são gravados em um arquivo de saída.
  */
 
 #ifndef SORTINGALGORITHMTIMEMEASURER_H_INCLUDED
@@ -47,7 +47,7 @@ public:
   ~SortingAlgorithmTimeMeasurer() {};
 
   template<typename T>
-  void printResults(std::string inFileName, T* algorithm, std::string outFileName = "saida.txt")
+  void storeExecutionTimeResults(std::string inFileName, T* algorithm, std::string outFileName = "saida.txt")
   {
     // Initialize random seed
     srand(time(NULL));
@@ -66,8 +66,7 @@ public:
       int n;
 
       // Nome do algoritmo passado como entrada e data que foi compilado
-      outFile << "Resultados para " << typeid(algorithm).name()
-              << " em " << getCurrentTime() << std::endl;
+      outFile << "Resultados para " << typeid(algorithm).name() << " em " << getCurrentTime() << std::endl;
 
       while(inFile >> n)
       {

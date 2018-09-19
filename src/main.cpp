@@ -9,8 +9,8 @@ int main(int argc, char const *argv[])
 
   SortingAlgorithmTimeMeasurer *timeMeasurer = new SortingAlgorithmTimeMeasurer();
 
-  timeMeasurer->printResults(fileName, new MergeSort());
-  timeMeasurer->printResults(fileName, new HeapSort());
+  timeMeasurer->storeExecutionTimeResults(fileName, new MergeSort());
+  timeMeasurer->storeExecutionTimeResults(fileName, new HeapSort());
 
   return 0;
 }
