@@ -1,5 +1,5 @@
 /**
- * @file    SelectionSort.h
+ * @file    SelectionSort.hpp
  * @author  Diego Paiva e Silva
  * @date    11/08/2018
  *
@@ -29,10 +29,10 @@ public:
   SelectionSort() {};
   ~SelectionSort() {};
 
-  template<typename T>
+  template <typename T>
   void sort(std::vector<T> &unsorted)
   {
-    for (unsigned int i = 0; i < unsorted.size(); i++)
+    for (int i = 0; i < unsorted.size(); i++)
     {
       int minElementIndex = VectorUtils::getMinElementIndex(unsorted, i);
       std::swap(unsorted.at(i), unsorted.at(minElementIndex));
