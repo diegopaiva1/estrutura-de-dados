@@ -1,12 +1,17 @@
-#include "data-structures/hash-table/HashTableOpenAddressing.hpp"
+#include "components/SortingAlgorithmTimeMeasurer.hpp"
+#include "algorithms/sorting/MergeSort.hpp"
+#include "algorithms/sorting/HeapSort.hpp"
+#include "algorithms/sorting/QuickSort.hpp"
 
 int main(int argc, char const *argv[])
 {
-  std::vector<int> data = {1, 2, 10, 3, 4, 687, 93, 11};
+  std::string fileName = argv[1];
 
-  HashTableOpenAddressing *hashTableOpenAddressing = new HashTableOpenAddressing(10, "Linear Probing");
+  SortingAlgorithmTimeMeasurer *measurer = new SortingAlgorithmTimeMeasurer();
 
-  hashTableOpenAddressing->insert(3);
+  measurer->storeExecutionTimeResults(fileName, new MergeSort());
+  measurer->storeExecutionTimeResults(fileName, new HeapSort());
+  measurer->storeExecutionTimeResults(fileName, new QuickSort());
 
   return 0;
 }
