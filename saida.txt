@@ -1,0 +1,92 @@
+Resultados para P9MergeSort em Sun Sep 23 16:37:02 2018
+
+Tempo de execução para N = 1000 - Conjunto 1: 0.001082s
+Tempo de execução para N = 1000 - Conjunto 2: 0.001045s
+Tempo de execução para N = 1000 - Conjunto 3: 0.001013s
+Tempo de execução para N = 1000 - Conjunto 4: 0.001025s
+Tempo de execução para N = 1000 - Conjunto 5: 0.001027s
+Tempo médio de execução = 0.001038s
+
+Tempo de execução para N = 5000 - Conjunto 1: 0.005789s
+Tempo de execução para N = 5000 - Conjunto 2: 0.005278s
+Tempo de execução para N = 5000 - Conjunto 3: 0.005359s
+Tempo de execução para N = 5000 - Conjunto 4: 0.005477s
+Tempo de execução para N = 5000 - Conjunto 5: 0.005232s
+Tempo médio de execução = 0.005427s
+
+Tempo de execução para N = 10000 - Conjunto 1: 0.01139s
+Tempo de execução para N = 10000 - Conjunto 2: 0.01291s
+Tempo de execução para N = 10000 - Conjunto 3: 0.01348s
+Tempo de execução para N = 10000 - Conjunto 4: 0.01132s
+Tempo de execução para N = 10000 - Conjunto 5: 0.01217s
+Tempo médio de execução = 0.01226s
+
+Tempo de execução para N = 50000 - Conjunto 1: 0.06792s
+Tempo de execução para N = 50000 - Conjunto 2: 0.06822s
+Tempo de execução para N = 50000 - Conjunto 3: 0.07051s
+Tempo de execução para N = 50000 - Conjunto 4: 0.07219s
+Tempo de execução para N = 50000 - Conjunto 5: 0.06756s
+Tempo médio de execução = 0.06928s
+
+Tempo de execução para N = 100000 - Conjunto 1: 0.14s
+Tempo de execução para N = 100000 - Conjunto 2: 0.142s
+Tempo de execução para N = 100000 - Conjunto 3: 0.1427s
+Tempo de execução para N = 100000 - Conjunto 4: 0.1432s
+Tempo de execução para N = 100000 - Conjunto 5: 0.1441s
+Tempo médio de execução = 0.1424s
+
+Tempo de execução para N = 500000 - Conjunto 1: 0.8184s
+Tempo de execução para N = 500000 - Conjunto 2: 0.789s
+Tempo de execução para N = 500000 - Conjunto 3: 0.7815s
+Tempo de execução para N = 500000 - Conjunto 4: 0.7991s
+Tempo de execução para N = 500000 - Conjunto 5: 0.8051s
+Tempo médio de execução = 0.7986s
+
+===================== Fim do processo =====================
+
+Resultados para P8HeapSort em Sun Sep 23 16:37:08 2018
+
+Tempo de execução para N = 1000 - Conjunto 1: 0.0009506s
+Tempo de execução para N = 1000 - Conjunto 2: 0.001004s
+Tempo de execução para N = 1000 - Conjunto 3: 0.0009481s
+Tempo de execução para N = 1000 - Conjunto 4: 0.001018s
+Tempo de execução para N = 1000 - Conjunto 5: 0.0009707s
+Tempo médio de execução = 0.0009782s
+
+Tempo de execução para N = 5000 - Conjunto 1: 0.005907s
+Tempo de execução para N = 5000 - Conjunto 2: 0.005966s
+Tempo de execução para N = 5000 - Conjunto 3: 0.005838s
+Tempo de execução para N = 5000 - Conjunto 4: 0.005871s
+Tempo de execução para N = 5000 - Conjunto 5: 0.005934s
+Tempo médio de execução = 0.005903s
+
+Tempo de execução para N = 10000 - Conjunto 1: 0.01271s
+Tempo de execução para N = 10000 - Conjunto 2: 0.01433s
+Tempo de execução para N = 10000 - Conjunto 3: 0.01374s
+Tempo de execução para N = 10000 - Conjunto 4: 0.01389s
+Tempo de execução para N = 10000 - Conjunto 5: 0.013s
+Tempo médio de execução = 0.01353s
+
+Tempo de execução para N = 50000 - Conjunto 1: 0.08086s
+Tempo de execução para N = 50000 - Conjunto 2: 0.0847s
+Tempo de execução para N = 50000 - Conjunto 3: 0.08615s
+Tempo de execução para N = 50000 - Conjunto 4: 0.07682s
+Tempo de execução para N = 50000 - Conjunto 5: 0.07666s
+Tempo médio de execução = 0.08104s
+
+Tempo de execução para N = 100000 - Conjunto 1: 0.1637s
+Tempo de execução para N = 100000 - Conjunto 2: 0.1616s
+Tempo de execução para N = 100000 - Conjunto 3: 0.1669s
+Tempo de execução para N = 100000 - Conjunto 4: 0.1666s
+Tempo de execução para N = 100000 - Conjunto 5: 0.1672s
+Tempo médio de execução = 0.1652s
+
+Tempo de execução para N = 500000 - Conjunto 1: 0.9539s
+Tempo de execução para N = 500000 - Conjunto 2: 0.9955s
+Tempo de execução para N = 500000 - Conjunto 3: 0.9934s
+Tempo de execução para N = 500000 - Conjunto 4: 1.068s
+Tempo de execução para N = 500000 - Conjunto 5: 0.9602s
+Tempo médio de execução = 0.9941s
+
+===================== Fim do processo =====================
+
