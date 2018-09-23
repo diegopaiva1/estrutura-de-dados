@@ -1,4 +1,4 @@
-#include "data-structures/HashTable.hpp"
+#include "data-structures/hash-table/HashTableSeparateChaining.hpp"
 #include <chrono>
 
 typedef std::chrono::high_resolution_clock Time;
@@ -7,19 +7,14 @@ int main(int argc, char const *argv[])
 {
   srand(time(NULL));
 
-  std::vector<int> data;
+  std::vector<int> data = {10, 20, 30, 60, 80};
 
-  for (int i = 0; i < 5000000; i++)
-  {
-    data.push_back(rand() % 5000000 + 1);
-  }
-
-  HashTable *hashTable = new HashTable(data, 0.75);
+  HashTableSeparateChaining *hashTable = new HashTableSeparateChaining(data, 0.75);
 
   Time::time_point t1 = Time::now();
   try
   {
-    std::cout << hashTable->get(13528) << std::endl;
+    hashTable->remove(9);
   }
   catch (const char* error)
   {
