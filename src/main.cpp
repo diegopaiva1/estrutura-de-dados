@@ -1,31 +1,53 @@
-#include "components/file/reader/DeputyFileReader.hpp"
-#include "components/deputy/Deputy.hpp"
-#include "algorithms/sorting/MergeSort.hpp"
-#include "algorithms/sorting/QuickSort.hpp"
+#include "data-structures/HashTableQuadraticProbing.hpp"
+#include "data-structures/HashTableLinearProbing.hpp"
+#include "data-structures/HashTableDoubleHashing.hpp"
 
 int main(int argc, char const *argv[])
 {
-  //srand(time(NULL));
-  //int a=rand() % 1 + 1000;
+  std::vector<int> data = {0,0,10,3,4};
 
-  // Arquivo passado por linha de comando
-  std::string fileName = argv[1];
+  HashTableQuadraticProbing *hashTableQuadraticProbing = new HashTableQuadraticProbing(data, 0.75);
+  HashTableLinearProbing *hashTableLinearProbing = new HashTableLinearProbing(data, 0.75);
+  HashTableDoubleHashing *hashTableDoubleHashing = new HashTableDoubleHashing(data, 0.75);
 
-  DeputyFileReader *deputyFileReader = new DeputyFileReader();
+  hashTableQuadraticProbing->imprimir();
+  hashTableLinearProbing->imprimir();
+  hashTableDoubleHashing->imprimir();
 
-  std::vector<Deputy> deputies = deputyFileReader->constructDeputies(fileName);
+  hashTableQuadraticProbing->remove(165);
+  hashTableLinearProbing->remove(165);
+  hashTableDoubleHashing->remove(165);
 
-  QuickSort *quickSort = new QuickSort();
-  quickSort->sort(deputies);
+  hashTableQuadraticProbing->imprimir();
+  hashTableLinearProbing->imprimir();
+  hashTableDoubleHashing->imprimir();
 
-  /*for (auto deputy : deputies)
+  try
   {
-    std::cout << "Nome: " << deputy.name << std::endl;
-    std::cout << "Partido: " << deputy.party << std::endl;
-    std::cout << "Nome do estabelecimento: " << deputy.establishmentName << std::endl;
-    std::cout << "Valor do recibo: " << deputy.receiptValue << std::endl;
-    printf("\n");
-  }*/
+    std::cout << hashTableQuadraticProbing->get(165) << std::endl;
+  }
+  catch (const char* error)
+  {
+    std::cerr << error << '\n';
+  }
+
+  try
+  {
+    std::cout << hashTableLinearProbing->get(165) << std::endl;
+  }
+  catch (const char* error)
+  {
+    std::cerr << error << '\n';
+  }
+
+  try
+  {
+    std::cout << hashTableDoubleHashing->get(165) << std::endl;
+  }
+  catch (const char* error)
+  {
+    std::cerr << error << '\n';
+  }
 
   return 0;
 }

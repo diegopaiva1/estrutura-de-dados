@@ -24,4 +24,8 @@ Apagar o binário, caso desejável:
 *  Merge Sort
 *  Selection Sort
 
+## Estruturas de dados
+
+*  Tabela Hash
+
 ***Em construção***
