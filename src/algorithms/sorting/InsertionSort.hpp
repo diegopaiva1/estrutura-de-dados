@@ -1,5 +1,5 @@
 /**
- * @file    InsertionSort.h
+ * @file    InsertionSort.hpp
  * @author  Diego Paiva e Silva
  * @date    08/08/2018
  *
@@ -18,6 +18,7 @@
 #define INSERTIONSORT_H_INCLUDED
 
 #include <iostream>
+#include <vector>
 
 class InsertionSort
 {
@@ -25,7 +26,7 @@ public:
   InsertionSort() {};
   ~InsertionSort() {};
 
-  template<typename T>
+  template <typename T>
   void sort(std::vector<T> &unsorted)
   {
     // Consideramos que o primeiro número do array ja está ordenado

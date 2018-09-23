@@ -1,5 +1,5 @@
 /**
- * @file    Deputy.h
+ * @file    Deputy.hpp
  * @author  Diego Paiva e Silva
  * @date    19/08/2018
  *
@@ -17,9 +17,6 @@
 class Deputy
 {
 public:
-  Deputy(std::vector<std::string> data);
-  Deputy() {};
-  ~Deputy() {};
   std::string buggedDate;
   std::string id;
   std::string name;
@@ -30,6 +27,24 @@ public:
   std::string stateCode;
   std::string establishmentName;
   int receiptValue;
+
+  Deputy(std::vector<std::string> data)
+  {
+    // Cada indice corresponde à coluna em que o dado se encontra no arquivo de leitura
+    this->buggedDate = data.at(0);
+    this->receiptDate = data.at(1);
+    this->id = data.at(2);
+    this->party = data.at(3);
+    this->stateCode = data.at(4);
+    this->name = data.at(5);
+    this->receiptSocialSecurityNumber = data.at(6);
+    this->receiptDescription = data.at(7);
+    this->establishmentName = data.at(8);
+    this->receiptValue = std::stoi(data.at(9));
+  };
+  Deputy() {};
+  ~Deputy() {};
+
   bool operator>(const Deputy& deputy) const { return receiptValue > deputy.receiptValue; }
   bool operator<(const Deputy& deputy) const { return receiptValue < deputy.receiptValue; }
   bool operator==(const Deputy& deputy) const { return receiptValue == deputy.receiptValue; }

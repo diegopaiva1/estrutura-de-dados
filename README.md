@@ -20,9 +20,15 @@ Apagar o binário, caso desejável:
 
 ### Ordenação
 
-*  Insertion Sort
-*  Merge Sort
-*  Selection Sort
+*  [Heap Sort](https://pt.wikipedia.org/wiki/Heapsort)
+*  [Insertion Sort](https://pt.wikipedia.org/wiki/Insertion_sort)
+*  [Merge Sort](https://pt.wikipedia.org/wiki/Merge_sort)
+*  [Selection Sort](https://pt.wikipedia.org/wiki/Selection_sort)
+
+## Estruturas de dados
+
+*  Tabela Hash
+   *  Encadeamento separado
 
 ## Estruturas de dados
 
