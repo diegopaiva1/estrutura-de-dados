@@ -1,20 +1,23 @@
-#ifndef HASHTABLELINEARPROBING_H_INCLUDED
-#define HASHTABLELINEARPROBING_H_INCLUDED
+#ifndef HASHTABLEOPENADDRESSING_H_INCLUDED
+#define HASHTABLEOPENADDRESSING_H_INCLUDED
 
 #include <iostream>
 #include <vector>
 #include <list>
 
-class HashTableLinearProbing
+class HashTableOpenAddressing
 {
 public:
-  HashTableLinearProbing() {};
-  ~HashTableLinearProbing() {};
+  HashTableOpenAddressing() {};
+  ~HashTableOpenAddressing() {};
 
-  HashTableLinearProbing(std::vector<int> data, float loadFactor)
+  HashTableOpenAddressing(std::vector<int> data, float loadFactor, std::string algorithm)
   {
     // Calculamos o tamanho da tabela
     this->size = (int) data.size()/loadFactor;
+
+    //Defini o tipo de endereçamento
+    this->algorithm = algorithm;
 
     // Alocamos espaço suficiente para os dados de entrada
     this->data.resize(this->size);
@@ -25,20 +28,41 @@ public:
     }
   }
 
+  HashTableOpenAddressing(int size, std::string algorithm)
+  {
+    //Tamanho da tabela
+    this->size = size;
+
+    //Defini o tipo de endereçamento
+    this->algorithm = algorithm;
+
+    // Alocamos espaço suficiente para os dados de entrada
+    this->data.resize(this->size);
+  }
+
   void insert(int data)
   {
     int position = hash(data);
     int collisions = 0;
-    while(this->data.at(position)!=NULL && collisions!=this->size){
+    while(this->data.at(position) != NULL && collisions != this->size)
+    {
         collisions++;
-        position = hash(hash(data)+collisions);
+        if(this->algorithm=="Linear Probing"){
+            position = hash(hash(data) + collisions);
+        }
+        else if(this->algorithm=="Quadratic Probing"){
+            position = hash(hash(data)+(collisions*collisions));
+        }
+        else if(this->algorithm=="Double Hashing"){
+            position = hash(hash(data)+(collisions*hash(data)));
+        }
     }
-    if(this->data.at(position)==NULL){
-        auto i = this->data.begin() + position;
-        this->data.erase(i);
-        this->data.insert(i, data);
+    if(this->data.at(position) == NULL)
+    {
+        this->data.at(position) = data;
     }
-    else{
+    else
+    {
         throw "Tabela lotada!";
     }
   }
@@ -47,15 +71,17 @@ public:
   {
     int position = hash(data);
     int collisions = 0;
-    while(this->data.at(position)!=data  && collisions!=this->size){
+    while(this->data.at(position) != data  && collisions != this->size)
+    {
         collisions++;
-        position = hash(hash(data)+collisions);
+        position = hash(hash(data) + collisions);
     }
-    if(this->data.at(position)==data){
-        auto i = this->data.begin() + position;
-        this->data.erase(i);
+    if(this->data.at(position) == data)
+    {
+        this->data.at(position) = NULL;
     }
-    else{
+    else
+    {
         throw "Dado inexistente!";
     }
   }
@@ -64,28 +90,23 @@ public:
   {
     int position = hash(data);
     int collisions = 0;
-    while(this->data.at(position)!=data  && collisions!=this->size){
+    while(this->data.at(position) != data  && collisions != this->size)
+    {
         collisions++;
-        position = hash(hash(data)+collisions);
+        position = hash(hash(data) + collisions);
     }
-    if(this->data.at(position)==data){
+    if(this->data.at(position) == data)
+    {
         return this->data.at(position);
     }
 
     throw "Dado inexistente!";
   }
 
-  void imprimir()
-  {
-    for(auto i=this->data.begin(); i!=this->data.end(); i++){
-        std:: cout << *i << "   ";
-    }
-    std:: cout << std::endl;
-  }
-
 private:
   std::vector<int> data;
   int size;
+  std::string algorithm;
 
   int hash(int data)
   {
