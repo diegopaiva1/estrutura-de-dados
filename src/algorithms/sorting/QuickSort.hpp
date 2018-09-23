@@ -2,6 +2,7 @@
 #define QUICKSORT_H_INCLUDED
 
 #include <iostream>
+#include <vector>
 
 class QuickSort
 {
