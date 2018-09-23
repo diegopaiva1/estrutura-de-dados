@@ -28,5 +28,6 @@ Apagar o binário, caso desejável:
 ## Estruturas de dados
 
 *  Tabela Hash
+   *  Encadeamento separado
 
 ***Em construção***
