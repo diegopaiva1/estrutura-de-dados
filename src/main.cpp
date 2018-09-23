@@ -1,6 +1,4 @@
-#include "data-structures/HashTableQuadraticProbing.hpp"
-#include "data-structures/HashTableLinearProbing.hpp"
-#include "data-structures/HashTableDoubleHashing.hpp"
+#include "data-structures/hash-table/HashTableOpenAddressing.hpp"
 
 int main(int argc, char const *argv[])
 {
