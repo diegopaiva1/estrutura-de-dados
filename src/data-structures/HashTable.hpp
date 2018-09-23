@@ -50,11 +50,14 @@ public:
   {
     // Encontramos a lista do elemento a ser buscado
     auto list = this->data.at(hash(data));
+    int comparisons = 0;
 
     for (auto i = list.begin(); i != list.end(); i++)
     {
-      if(*i == data)
+      comparisons++;
+      if (*i == data)
       {
+        std::cout << "Comparações: " << comparisons << std::endl;
         return *i;
       }
     }
