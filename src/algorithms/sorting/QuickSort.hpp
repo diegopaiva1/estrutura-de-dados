@@ -16,31 +16,30 @@ public:
   }
 
 private:
-
   template<typename T>
   void sort(std::vector<T> &unsorted, int firstIndex, int lastIndex, int k)
   {
-    //Determinação do pivô
+    // Determinação do pivô
     T pivot;
-    if(k==0){
+    if (k == 0){
       pivot = unsorted.at((firstIndex+lastIndex)/2);
     }
 
-    //Particionamento
+    // Particionamento
     int leftPointer = firstIndex;
     int rightPointer = lastIndex;
 
-    while(leftPointer < rightPointer)
+    while (leftPointer < rightPointer)
     {
-      while(unsorted.at(leftPointer) < pivot && leftPointer<lastIndex)
+      while (unsorted.at(leftPointer) < pivot && leftPointer < lastIndex)
       {
         leftPointer = leftPointer + 1;
       }
-      while (unsorted.at(rightPointer) > pivot && rightPointer>firstIndex)
+      while (unsorted.at(rightPointer) > pivot && rightPointer > firstIndex)
       {
         rightPointer = rightPointer - 1;
       }
-      if(leftPointer < rightPointer)
+      if (leftPointer < rightPointer)
       {
         std::swap(unsorted.at(leftPointer), unsorted.at(rightPointer));
         leftPointer = leftPointer + 1;
@@ -48,17 +47,16 @@ private:
       }
     }
 
-    //Ordenação das sublistas recursivamente
-    if(firstIndex < rightPointer)
+    // Ordenação das sublistas recursivamente
+    if (firstIndex < rightPointer)
     {
       sort(unsorted, firstIndex, rightPointer, k);
     }
-    if(leftPointer < lastIndex)
+    if (leftPointer < lastIndex)
     {
       sort(unsorted, leftPointer+1, lastIndex, k);
     }
   }
-
 };
 
 #endif // QUICKSORT_H_INCLUDED
