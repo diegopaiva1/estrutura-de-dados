@@ -1,6 +1,6 @@
 #include "data-structures/hash-table/HashTableSeparateChaining.hpp"
 #include "data-structures/hash-table/HashTableOpenAddressing.hpp"
-#include "components/HashTablePerfomanceMeasurer.hpp"
+#include "components/HashTableComparisonsMeasurer.hpp"
 
 void process_mem_usage(double &vm_usage, double& resident_set);
 
@@ -31,7 +31,7 @@ int main(int argc, char const *argv[])
   }
   else
   {
-    HashTablePerfomanceMeasurer *measurer = new HashTablePerfomanceMeasurer();
+    HashTableComparisonsMeasurer *measurer = new HashTableComparisonsMeasurer();
     measurer->storePerfomanceResults(inFile, new HashTableOpenAddressing("Double Hashing"));
   }
 

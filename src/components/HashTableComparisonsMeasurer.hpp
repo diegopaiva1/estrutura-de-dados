@@ -1,5 +1,5 @@
 /**
- * @file    HashTablePerfomanceMeasurer.hpp
+ * @file    HashTableComparisonsMeasurer.hpp
  * @author  Diego Paiva e Silva
  * @date    29/09/2018
  *
@@ -19,11 +19,11 @@
 #include <typeinfo> // typeid
 #include <unistd.h>
 
-class HashTablePerfomanceMeasurer
+class HashTableComparisonsMeasurer
 {
 public:
-  HashTablePerfomanceMeasurer() {};
-  ~HashTablePerfomanceMeasurer() {};
+  HashTableComparisonsMeasurer() {};
+  ~HashTableComparisonsMeasurer() {};
 
   template<typename T>
   void storePerfomanceResults(std::string inFileName, T* hashTable, std::string outFileName = "hash-out.txt")

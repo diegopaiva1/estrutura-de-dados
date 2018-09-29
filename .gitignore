@@ -2,3 +2,4 @@ bin/
 dataset/deputies.csv
 .vscode/
 saida.txt
+hash-out.txt
