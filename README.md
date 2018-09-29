@@ -30,8 +30,4 @@ Apagar o binário, caso desejável:
 *  Tabela Hash
    *  Encadeamento separado
 
-## Estruturas de dados
-
-*  Tabela Hash
-
 ***Em construção***
