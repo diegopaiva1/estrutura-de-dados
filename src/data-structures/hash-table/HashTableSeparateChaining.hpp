@@ -22,7 +22,7 @@ public:
   HashTableSeparateChaining() {};
   ~HashTableSeparateChaining() {};
 
-  HashTableSeparateChaining(int size, float loadFactor)
+  HashTableSeparateChaining(int size, float loadFactor = 0.75)
   {
     // Calculamos o tamanho da tabela
     this->size = (int) size/loadFactor;

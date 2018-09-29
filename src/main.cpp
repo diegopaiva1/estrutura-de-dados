@@ -1,17 +1,19 @@
-#include "components/SortingAlgorithmTimeMeasurer.hpp"
-#include "algorithms/sorting/MergeSort.hpp"
-#include "algorithms/sorting/HeapSort.hpp"
-#include "algorithms/sorting/QuickSort.hpp"
+#include "data-structures/hash-table/HashTableSeparateChaining.hpp"
 
 int main(int argc, char const *argv[])
 {
-  std::string fileName = argv[1];
+  std::vector<int> data = {10, 293, 219, 21, 38, 19, 155, 12, 94, 38, 70};
 
-  SortingAlgorithmTimeMeasurer *measurer = new SortingAlgorithmTimeMeasurer();
+  HashTableSeparateChaining *hashTable = new HashTableSeparateChaining(data, 0.75);
 
-  measurer->storeExecutionTimeResults(fileName, new MergeSort());
-  measurer->storeExecutionTimeResults(fileName, new HeapSort());
-  measurer->storeExecutionTimeResults(fileName, new QuickSort());
+  try
+  {
+    hashTable->get(70);
+  }
+  catch (const char* exception)
+  {
+    std::cerr << exception << std::endl;
+  }
 
   return 0;
 }
