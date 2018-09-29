@@ -1,0 +1,46 @@
+Resultados para P23HashTableOpenAddressing em Sat Sep 29 20:18:55 2018
+
+Comparações para N = 1000 - Conjunto 1: 7
+Comparações para N = 1000 - Conjunto 2: 1
+Comparações para N = 1000 - Conjunto 3: 1
+Comparações para N = 1000 - Conjunto 4: 1
+Comparações para N = 1000 - Conjunto 5: 1
+Número médio de comparações = 2.2
+
+Comparações para N = 5000 - Conjunto 1: 1
+Comparações para N = 5000 - Conjunto 2: 1
+Comparações para N = 5000 - Conjunto 3: 3
+Comparações para N = 5000 - Conjunto 4: 3
+Comparações para N = 5000 - Conjunto 5: 5
+Número médio de comparações = 2.6
+
+Comparações para N = 10000 - Conjunto 1: 1
+Comparações para N = 10000 - Conjunto 2: 1
+Comparações para N = 10000 - Conjunto 3: 1
+Comparações para N = 10000 - Conjunto 4: 1
+Comparações para N = 10000 - Conjunto 5: 1
+Número médio de comparações = 1
+
+Comparações para N = 50000 - Conjunto 1: 1
+Comparações para N = 50000 - Conjunto 2: 1
+Comparações para N = 50000 - Conjunto 3: 1
+Comparações para N = 50000 - Conjunto 4: 15
+Comparações para N = 50000 - Conjunto 5: 7
+Número médio de comparações = 5
+
+Comparações para N = 100000 - Conjunto 1: 1
+Comparações para N = 100000 - Conjunto 2: 8
+Comparações para N = 100000 - Conjunto 3: 1
+Comparações para N = 100000 - Conjunto 4: 3
+Comparações para N = 100000 - Conjunto 5: 1
+Número médio de comparações = 2.8
+
+Comparações para N = 500000 - Conjunto 1: 1
+Comparações para N = 500000 - Conjunto 2: 1
+Comparações para N = 500000 - Conjunto 3: 1
+Comparações para N = 500000 - Conjunto 4: 222
+Comparações para N = 500000 - Conjunto 5: 1
+Número médio de comparações = 45.2
+
+===================== Fim do processo =====================
+

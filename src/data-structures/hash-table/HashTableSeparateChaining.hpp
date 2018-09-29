@@ -19,10 +19,13 @@
 class HashTableSeparateChaining
 {
 public:
+  std::vector<std::list<int>> data;
+  int size;
+
   HashTableSeparateChaining() {};
   ~HashTableSeparateChaining() {};
 
-  HashTableSeparateChaining(int size, float loadFactor)
+  HashTableSeparateChaining(int size, float loadFactor = 0.75)
   {
     // Calculamos o tamanho da tabela
     this->size = (int) size/loadFactor;
@@ -31,7 +34,7 @@ public:
     this->data.resize(this->size);
   }
 
-  HashTableSeparateChaining(std::vector<int> data, float loadFactor)
+  HashTableSeparateChaining(std::vector<int> data, float loadFactor = 0.75)
   {
     // Calculamos o tamanho da tabela
     this->size = (int) data.size()/loadFactor;
@@ -50,6 +53,7 @@ public:
     this->data.at(hash(data)).push_back(data);
   }
 
+  // Retornando o número de comparações necessárias para obter o dado
   int get(int data)
   {
     // Encontramos a lista do elemento a ser buscado
@@ -61,12 +65,11 @@ public:
       comparisons++;
       if (*i == data)
       {
-        std::cout << "Comparações: " << comparisons << std::endl;
-        return *i;
+        break;
       }
     }
 
-    throw "Dado inexistente!";
+    return comparisons;
   }
 
   void remove(int data)
@@ -82,9 +85,6 @@ public:
   }
 
 private:
-  std::vector<std::list<int>> data;
-  int size;
-
   int hash(int data)
   {
     // Método da divisão
