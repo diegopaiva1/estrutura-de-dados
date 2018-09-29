@@ -29,5 +29,9 @@ Apagar o binário, caso desejável:
 
 *  Tabela Hash
    *  Encadeamento separado
+   *  Endereçamento aberto
+      * Sondagem linear
+      * Sondagem quadrática
+      * Hashing duplo
 
 ***Em construção***
