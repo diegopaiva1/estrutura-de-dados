@@ -22,22 +22,47 @@
 #include <iostream>
 #include <vector>
 #include <algorithm> // std::swap
+#include <chrono>
+#include <time.h>
+
+typedef std::chrono::high_resolution_clock Time;
 
 class HeapSort
 {
 public:
-  HeapSort() {};
+  int comparisons;
+  int copies;
+  double executionTime;
+
+  HeapSort()
+  {
+    this->comparisons = 0;
+    this->copies = 0;
+    this->executionTime = 0.0;
+  };
+
   ~HeapSort() {};
 
   template <typename T>
   void sort(std::vector<T> &unsorted)
   {
+    Time::time_point t1 = Time::now(); // Tempo inicial de execução
+
     buildMaxHeap(unsorted);
-    for(int i = unsorted.size() - 1; i >= 0; i--)
+    for (int i = unsorted.size() - 1; i >= 0; i--)
     {
       std::swap(unsorted.at(0), unsorted.at(i));
+      // Um swap conta como três copias
+      copies += 3;
       maxHeapify(unsorted, 0, unsorted.size() - i);
     }
+
+    Time::time_point t2 = Time::now(); // Tempo final de execução
+
+    // Aqui calcula-se o tempo total de execução para o algoritmo
+    this->executionTime = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count();
+    // Nanosegundos para segundos
+    this->executionTime = this->executionTime/1000000000;
   }
 
 private:
@@ -46,6 +71,7 @@ private:
   {
     // Selecionamos o indíce mais próximo ao meio do vetor
     int middleIndex = floor(unsorted.size()/2);
+    copies++;
 
     for (int i = middleIndex; i >= 0; i--)
     {
@@ -62,20 +88,27 @@ private:
     unsigned int leftChildIndex  = 2 * i + 1;
     unsigned int rightChildIndex = 2 * i + 2;
     unsigned int maxIndex = i;
+    copies += 3;
 
+    comparisons++;
     if(leftChildIndex < unsorted.size() - offset && unsorted.at(leftChildIndex) > unsorted.at(i))
     {
       maxIndex = leftChildIndex;
+      copies++;
     }
 
+    comparisons++;
     if(rightChildIndex < unsorted.size() - offset && unsorted.at(rightChildIndex) > unsorted.at(maxIndex))
     {
       maxIndex = rightChildIndex;
+      copies++;
     }
 
+    comparisons++;
     if(maxIndex != i)
     {
       std::swap(unsorted.at(i), unsorted.at(maxIndex));
+      copies += 3;
       maxHeapify(unsorted, maxIndex, offset);
     }
   }

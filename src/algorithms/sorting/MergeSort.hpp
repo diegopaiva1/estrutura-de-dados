@@ -18,13 +18,25 @@
 #define MERGESORT_H_INCLUDED
 
 #include <iostream>
+#include <chrono>
+#include <time.h>
 
-#include "../../utils/VectorUtils.hpp"
+typedef std::chrono::high_resolution_clock Time;
 
 class MergeSort
 {
 public:
-  MergeSort() {};
+  int comparisons;
+  int copies;
+  double executionTime;
+
+  MergeSort()
+  {
+    this->comparisons = 0;
+    this->copies = 0;
+    this->executionTime = 0.0;
+  };
+
   ~MergeSort() {};
 
   template <typename T>
@@ -39,18 +51,25 @@ private:
   template <typename T>
   void sort(std::vector<T> &unsorted, int firstIndex, int lastIndex, std::vector<T> &aux)
   {
+    Time::time_point t1 = Time::now(); // Tempo inicial de execução
+
+    comparisons++;
     if (firstIndex != lastIndex)
     {
       int midIndex;
+
+      comparisons++;
       if (hasEvenAmountOfPositions(firstIndex, lastIndex))
       {
         // Exatamente a posição do meio
         midIndex = (firstIndex + lastIndex + 1)/2;
+        copies++;
       }
       else
       {
         // Ex: Em um vector de tamanho 17, a posição do meio será igual a 8
         midIndex = (firstIndex + lastIndex)/2;
+        copies++;
       }
       sort(unsorted, firstIndex, midIndex - 1, aux);
       sort(unsorted, midIndex, lastIndex, aux);
@@ -61,6 +80,13 @@ private:
       // O vector já está naturalmente ordenado, pois só contem um único elemento
       return;
     }
+
+    Time::time_point t2 = Time::now(); // Tempo final de execução
+
+    // Aqui calcula-se o tempo total de execução para o algoritmo
+    this->executionTime = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count();
+    // Nanosegundos para segundos
+    this->executionTime = this->executionTime/1000000000;
   }
 
   bool hasEvenAmountOfPositions(int firstIndex, int lastIndex)
@@ -73,33 +99,40 @@ private:
   {
     int leftSliceIterator = firstIndex;
     int rightSliceIterator = midIndex;
+    copies += 2;
 
     for (int i = firstIndex; i <= lastIndex; i++)
     {
+      comparisons += 2;
       if (leftSliceIterator >= midIndex && rightSliceIterator <= lastIndex)
       {
         // Basta inserir os elementos na partição à direita
         aux.at(i) = v.at(rightSliceIterator);
         rightSliceIterator++;
+        copies++;
       }
       else if (rightSliceIterator > lastIndex && leftSliceIterator < midIndex)
       {
         // Basta inserir os elementos na partição à esquerda
         aux.at(i) = v.at(leftSliceIterator);
         leftSliceIterator++;
+        copies++;
       }
       else
       {
+        comparisons++;
         // Seguimos comparando os elementos de cada partição
         if (v.at(leftSliceIterator) < v.at(rightSliceIterator))
         {
           aux.at(i) = v.at(leftSliceIterator);
           leftSliceIterator++;
+          copies++;
         }
         else
         {
           aux.at(i) = v.at(rightSliceIterator);
           rightSliceIterator++;
+          copies++;
         }
       }
     }
@@ -108,6 +141,7 @@ private:
     for (int i = firstIndex; i <= lastIndex; i++)
     {
       v.at(i) = aux.at(i);
+      copies++;
     }
   }
 

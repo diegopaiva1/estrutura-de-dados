@@ -25,4 +25,13 @@ Apagar o binário, caso desejável:
 *  [Merge Sort](https://pt.wikipedia.org/wiki/Merge_sort)
 *  [Selection Sort](https://pt.wikipedia.org/wiki/Selection_sort)
 
+## Estruturas de dados
+
+*  Tabela Hash
+   *  Encadeamento separado
+   *  Endereçamento aberto
+      * Sondagem linear
+      * Sondagem quadrática
+      * Hashing duplo
+
 ***Em construção***
