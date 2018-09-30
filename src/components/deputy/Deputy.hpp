@@ -18,7 +18,7 @@ class Deputy
 {
 public:
   std::string buggedDate;
-  std::string id;
+  int id;
   std::string name;
   std::string party;
   std::string receiptDate;
@@ -33,7 +33,7 @@ public:
     // Cada indice corresponde à coluna em que o dado se encontra no arquivo de leitura
     this->buggedDate = data.at(0);
     this->receiptDate = data.at(1);
-    this->id = data.at(2);
+    this->id = std::stoi(data.at(2));
     this->party = data.at(3);
     this->stateCode = data.at(4);
     this->name = data.at(5);

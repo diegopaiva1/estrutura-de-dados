@@ -5,11 +5,21 @@
 #include <vector>
 #include <list>
 
+#define PRIME 997
+
 class HashTableOpenAddressing
 {
 public:
+  std::vector<int> data;
+  int size;
+
   HashTableOpenAddressing() {};
   ~HashTableOpenAddressing() {};
+
+  HashTableOpenAddressing(std::string algorithm)
+  {
+    this->algorithm = algorithm;
+  }
 
   HashTableOpenAddressing(std::vector<int> data, float loadFactor, std::string algorithm)
   {
@@ -48,18 +58,7 @@ public:
     while (this->data.at(position) != NULL && collisions != this->size)
     {
       collisions++;
-      if (this->algorithm == "Linear Probing")
-      {
-        position = hash(hash(data) + collisions);
-      }
-      else if (this->algorithm == "Quadratic Probing")
-      {
-        position = hash(hash(data) + (collisions * collisions));
-      }
-      else if (this->algorithm == "Double Hashing")
-      {
-        position = hash(hash(data) + (collisions * hash(data)));
-      }
+      position = calculatePositionFromAlgorithm(data, collisions);
     }
 
     if (this->data.at(position) == NULL)
@@ -80,19 +79,9 @@ public:
     while (this->data.at(position) != data && collisions != this->size)
     {
       collisions++;
-      if (this->algorithm == "Linear Probing")
-      {
-        position = hash(hash(data) + collisions);
-      }
-      else if (this->algorithm == "Quadratic Probing")
-      {
-        position = hash(hash(data) + (collisions * collisions));
-      }
-      else if (this->algorithm == "Double Hashing")
-      {
-        position = hash(hash(data) + (collisions * hash(data)));
-      }
+      position = calculatePositionFromAlgorithm(data, collisions);
     }
+
     if (this->data.at(position) == data)
     {
       this->data.at(position) = NULL;
@@ -111,37 +100,42 @@ public:
     while (this->data.at(position) != data && collisions != this->size)
     {
       collisions++;
-      if (this->algorithm == "Linear Probing")
-      {
-        position = hash(hash(data) + collisions);
-      }
-      else if (this->algorithm == "Quadratic Probing")
-      {
-        position = hash(hash(data) + (collisions * collisions));
-      }
-      else if (this->algorithm == "Double Hashing")
-      {
-        position = hash(hash(data) + (collisions * hash(data)));
-      }
+      position = calculatePositionFromAlgorithm(data, collisions);
     }
-
-    if (this->data.at(position) == data)
-    {
-      return this->data.at(position);
-    }
-
-    throw "Dado inexistente!";
+    // Total de comparações
+    return collisions + 1;
   }
 
 private:
-  std::vector<int> data;
   std::string algorithm;
-  int size;
+
+  int calculatePositionFromAlgorithm(int data, int collisions)
+  {
+    int position;
+    if (this->algorithm == "Linear Probing")
+    {
+      position = hash(hash(data) + collisions);
+    }
+    else if (this->algorithm == "Quadratic Probing")
+    {
+      position = hash(hash(data) + (collisions * collisions));
+    }
+    else if (this->algorithm == "Double Hashing")
+    {
+      position = hash(hash(data) + collisions * rehash(data));
+    }
+    return position;
+  }
 
   int hash(int data)
   {
     // Método da divisão
     return data % this->size;
+  }
+
+  int rehash(int data)
+  {
+    return PRIME - (data % PRIME);
   }
 };
 
