@@ -36,6 +36,7 @@ public:
     this->copies = 0;
     this->executionTime = 0.0;
   };
+
   ~MergeSort() {};
 
   template <typename T>
