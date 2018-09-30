@@ -19,6 +19,9 @@
 #include <typeinfo> // typeid
 #include <unistd.h>
 
+#include "./deputy/file/reader/DeputyFileReader.hpp"
+#include "./deputy/Deputy.hpp"
+
 class HashTableComparisonsMeasurer
 {
 public:
@@ -26,7 +29,7 @@ public:
   ~HashTableComparisonsMeasurer() {};
 
   template<typename T>
-  void storePerfomanceResults(std::string inFileName, T* hashTable, std::string outFileName = "hash-out.txt")
+  void storeComparisonsResults(std::string inFileName, T* hashTable, std::string outFileName = "hash-out.txt")
   {
     // Initialize random seed
     srand(time(NULL));
@@ -34,6 +37,9 @@ public:
     std::ifstream inFile(inFileName);
 
     std::ofstream outFile(outFileName, std::ifstream::app);
+
+    DeputyFileReader *deputyFileReader = new DeputyFileReader();
+    std::vector<Deputy> deputies = deputyFileReader->constructDeputies("dataset/deputies.csv");
 
     if (!inFile.is_open())
     {
@@ -49,7 +55,7 @@ public:
 
       while (inFile >> n)
       {
-        int randomValue;
+        int index;
 
         for (int execution = 0; execution < EXECUTIONS_AMOUNT; execution++)
         {
@@ -60,11 +66,11 @@ public:
 
           for (int i = 0; i < n; i++)
           {
-            // Preenchendo com números aleatórios
-            randomValue = rand() % n + 1;
             try
             {
-              hashTable->insert(randomValue);
+              // Preenchendo com números aleatórios
+              index = rand() % (deputies.size() - 1) + 0;
+              hashTable->insert(deputies.at(index).id);
             }
             catch (char const* exception)
             {
@@ -73,7 +79,7 @@ public:
           }
 
           // Obtendo o último dado inserido na tabela
-          int comparisons = hashTable->get(randomValue);
+          int comparisons = hashTable->get(deputies.at(index).id);
 
           this->comparisons[execution] = comparisons;
 

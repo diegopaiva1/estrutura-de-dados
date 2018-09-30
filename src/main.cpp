@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
   else
   {
     HashTableComparisonsMeasurer *measurer = new HashTableComparisonsMeasurer();
-    measurer->storePerfomanceResults(inFile, new HashTableOpenAddressing("Double Hashing"));
+    measurer->storeComparisonsResults(inFile, new HashTableOpenAddressing("Quadratic Probing"));
   }
 
   return 0;
