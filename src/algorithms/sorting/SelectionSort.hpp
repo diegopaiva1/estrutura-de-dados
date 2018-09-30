@@ -20,23 +20,56 @@
 #include <iostream>
 #include <vector>
 #include <algorithm> // std::swap
+#include <chrono>
+#include <time.h>
 
-#include "../../utils/VectorUtils.hpp"
+typedef std::chrono::high_resolution_clock Time;
 
 class SelectionSort
 {
 public:
-  SelectionSort() {};
+  int comparisons;
+  int swaps;
+  double executionTime;
+
+  SelectionSort()
+  {
+    this->comparisons = 0;
+    this->swaps = 0;
+    this->executionTime = 0.0;
+  };
+
   ~SelectionSort() {};
 
   template <typename T>
   void sort(std::vector<T> &unsorted)
   {
+    Time::time_point t1 = Time::now(); // Tempo inicial de execução
+
     for (int i = 0; i < unsorted.size(); i++)
     {
-      int minElementIndex = VectorUtils::getMinElementIndex(unsorted, i);
+      auto minElement = unsorted.at(i);
+      int minElementIndex = i;
+
+      for (int j = i; j < unsorted.size(); j++)
+      {
+        this->comparisons++;
+        if(unsorted.at(j) < minElement)
+        {
+          minElement = unsorted.at(j);
+          minElementIndex = j;
+        }
+      }
       std::swap(unsorted.at(i), unsorted.at(minElementIndex));
+      this->swaps++;
     }
+
+    Time::time_point t2 = Time::now(); // Tempo final de execução
+
+    // Aqui calcula-se o tempo total de execução para o algoritmo
+    this->executionTime = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count();
+    // Nanosegundos para segundos
+    this->executionTime = this->executionTime/1000000000;
   }
 };
 
