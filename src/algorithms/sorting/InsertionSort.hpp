@@ -26,27 +26,32 @@ public:
   ~InsertionSort() {};
 
   template<typename T>
-  void sort(std::vector<T> &unsorted)
+  void sort(std::vector<T> &unsorted){
+    sort(unsorted, 0, unsorted.size() - 1);
+  }
+
+  template<typename T>
+  void sort(std::vector<T> &unsorted, int firstIndex, int lastIndex)
   {
     // Consideramos que o primeiro número do array ja está ordenado
     int amountOfSortedNumbers = 1;
 
     // Portanto, começamos iterando pelo segundo número
-    for (unsigned int i = 1; i < unsorted.size(); i++)
+    for (int i = firstIndex+1; i <= lastIndex; i++)
     {
       auto elementToBeSorted = unsorted.at(i);
 
       // Indice para acessar elementos já ordenados
       int j = amountOfSortedNumbers - 1;
 
-      while(j >= 0 && unsorted.at(j) > elementToBeSorted)
+      while(j >= 0 && unsorted.at(firstIndex+j) > elementToBeSorted)
       {
         // Arredamos uma posição para a direita
-        unsorted.at(j+1) = unsorted.at(j);
+        unsorted.at(firstIndex+j+1) = unsorted.at(firstIndex+j);
         j--;
       }
       // Inserimos o número
-      unsorted.at(j+1) = elementToBeSorted;
+      unsorted.at(firstIndex+j+1) = elementToBeSorted;
 
       amountOfSortedNumbers++;
     }
