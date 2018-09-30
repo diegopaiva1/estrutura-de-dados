@@ -79,7 +79,7 @@ public:
         for (int execution = 0; execution < EXECUTIONS_AMOUNT; execution++)
         {
           algorithm->comparisons = 0;
-          algorithm->swaps = 0;
+          algorithm->copies = 0;
           algorithm->executionTime = 0.0;
 
           for (int i = 0; i < n; i++)
@@ -92,7 +92,7 @@ public:
           algorithm->sort(randomNumbers);
 
           this->comparisons[execution] = algorithm->comparisons;
-          this->swaps[execution] = algorithm->swaps;
+          this->copies[execution] = algorithm->copies;
           this->executionTimes[execution] = algorithm->executionTime;
 
           // Escrita das métricas colhidas no arquivo de saída
@@ -103,14 +103,14 @@ public:
                   << " - Conjunto " << execution + 1 << ": " << std::setprecision(4)
                   << this->comparisons[execution] << std::endl;
           outFile << "Número de cópias geradas para N = " << n << " - Conjunto " << execution + 1 << ": "
-                  << std::setprecision(4) << this->swaps[execution] << "\n\n";
+                  << std::setprecision(4) << this->copies[execution] << "\n\n";
         }
         outFile << "Tempo médio de execução = " << std::setprecision(4)
                 << calculateAverage(this->executionTimes) << "s\n";
         outFile << "Número médio de comparações = " << std::setprecision(4)
                 << calculateAverage(this->comparisons) << std::endl;
         outFile << "Número médio de cópias geradas = " << std::setprecision(4)
-                << calculateAverage(this->swaps) << "\n\n";
+                << calculateAverage(this->copies) << "\n\n";
         outFile << "===========================================================\n" << std::endl;
       }
     }
@@ -123,7 +123,7 @@ private:
   std::vector<int> randomNumbers;
   double executionTimes[EXECUTIONS_AMOUNT];
   int comparisons[EXECUTIONS_AMOUNT];
-  int swaps[EXECUTIONS_AMOUNT];
+  int copies[EXECUTIONS_AMOUNT];
 
   char* getCurrentTime()
   {
