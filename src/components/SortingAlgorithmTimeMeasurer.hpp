@@ -38,6 +38,9 @@
 #include <typeinfo> // typeid
 #include <time.h>
 
+#include "./deputy/file/reader/DeputyFileReader.hpp"
+#include "./deputy/Deputy.hpp"
+
 typedef std::chrono::high_resolution_clock Time;
 
 class SortingAlgorithmTimeMeasurer
@@ -55,6 +58,9 @@ public:
     std::ifstream inFile(inFileName);
 
     std::ofstream outFile(outFileName, std::ifstream::app);
+
+    DeputyFileReader *deputyFileReader = new DeputyFileReader();
+    std::vector<Deputy> deputies = deputyFileReader->constructDeputies("dataset/deputies.csv");
 
     if (!inFile.is_open())
     {
@@ -78,7 +84,7 @@ public:
           for (int i = 0; i < n; i++)
           {
             // Preenchendo com números aleatórios
-            randomNumbers.at(i) = rand() % n + 1;
+            randomNumbers.at(i) = rand() % (deputies.size() - 1) + 0;
           }
 
           // Colhe-se o tempo inicial e final para calcular o tempo total de execução posteriormente

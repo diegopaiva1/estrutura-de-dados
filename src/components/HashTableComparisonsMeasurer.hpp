@@ -6,8 +6,8 @@
  *  TODO - Description
  */
 
-#ifndef SORTINGALGORITHMTIMEMEASURER_H_INCLUDED
-#define SORTINGALGORITHMTIMEMEASURER_H_INCLUDED
+#ifndef HASHTABLECOMPARISONSMEASURER_H_INCLUDED
+#define HASHTABLECOMPARISONSMEASURER_H_INCLUDED
 
 #define EXECUTIONS_AMOUNT 5
 #define DEFAULT_LOAD_FACTOR 0.75
@@ -50,7 +50,7 @@ public:
     {
       int n;
 
-      // Nome do algoritmo de tratamento de colisão utilizado e data que foi compilado
+      // Nome do tipo de tabela hash utilizada e data que foi compilado
       outFile << "Resultados para " << typeid(hashTable).name() << " em " << getCurrentTime() << std::endl;
 
       while (inFile >> n)
@@ -116,4 +116,4 @@ private:
   }
 };
 
-#endif // SORTINGALGORITHMTIMEMEASURER_H_INCLUDED
+#endif // HASHTABLECOMPARISONSMEASURER_H_INCLUDED
