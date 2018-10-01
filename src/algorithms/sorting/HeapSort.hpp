@@ -34,18 +34,16 @@ public:
   long long int copies;
   double executionTime;
 
-  HeapSort()
-  {
-    this->comparisons = 0;
-    this->copies = 0;
-    this->executionTime = 0.0;
-  };
-
+  HeapSort() {};
   ~HeapSort() {};
 
   template <typename T>
   void sort(std::vector<T> &unsorted)
   {
+    this->comparisons = 0;
+    this->copies = 0;
+    this->executionTime = 0.0;
+
     Time::time_point t1 = Time::now(); // Tempo inicial de execução
 
     buildMaxHeap(unsorted);

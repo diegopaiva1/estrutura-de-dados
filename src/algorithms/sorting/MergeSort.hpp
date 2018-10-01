@@ -18,6 +18,7 @@
 #define MERGESORT_H_INCLUDED
 
 #include <iostream>
+#include <vector>
 #include <chrono>
 #include <time.h>
 
@@ -30,13 +31,7 @@ public:
   long long int copies;
   double executionTime;
 
-  MergeSort()
-  {
-    this->comparisons = 0;
-    this->copies = 0;
-    this->executionTime = 0.0;
-  };
-
+  MergeSort() {};
   ~MergeSort() {};
 
   template <typename T>
@@ -51,6 +46,10 @@ private:
   template <typename T>
   void sort(std::vector<T> &unsorted, int firstIndex, int lastIndex, std::vector<T> &aux)
   {
+    this->comparisons = 0;
+    this->copies = 0;
+    this->executionTime = 0.0;
+
     Time::time_point t1 = Time::now(); // Tempo inicial de execução
 
     comparisons++;

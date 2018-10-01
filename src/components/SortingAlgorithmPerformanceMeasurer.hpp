@@ -78,10 +78,6 @@ public:
 
         for (int execution = 0; execution < EXECUTIONS_AMOUNT; execution++)
         {
-          algorithm->comparisons = 0;
-          algorithm->copies = 0;
-          algorithm->executionTime = 0.0;
-
           for (int i = 0; i < n; i++)
           {
             // Preenchendo com ids aleatorios da base de deputados

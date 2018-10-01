@@ -32,18 +32,16 @@ public:
   long long int swaps;
   double executionTime;
 
-  SelectionSort()
-  {
-    this->comparisons = 0;
-    this->swaps = 0;
-    this->executionTime = 0.0;
-  };
-
+  SelectionSort() {};
   ~SelectionSort() {};
 
   template <typename T>
   void sort(std::vector<T> &unsorted)
   {
+    this->comparisons = 0;
+    this->copies = 0;
+    this->executionTime = 0.0;
+
     Time::time_point t1 = Time::now(); // Tempo inicial de execução
 
     for (int i = 0; i < unsorted.size(); i++)
