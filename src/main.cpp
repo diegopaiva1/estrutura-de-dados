@@ -1,12 +1,14 @@
-#include "data-structures/hash-table/HashTableOpenAddressing.hpp"
+#include "data-structures/hash-table/HashTableCoalesced.hpp"
 
 int main(int argc, char const *argv[])
 {
-  std::vector<int> data = {1, 2, 10, 3, 4, 687, 93, 11};
+  std::vector<int> data = {3, 18, 15, 92, 110, 12};
 
-  HashTableOpenAddressing *hashTableOpenAddressing = new HashTableOpenAddressing(10, "Linear Probing");
+  HashTableCoalesced *hashTableCoalesced = new HashTableCoalesced(data, 0.75);
 
-  hashTableOpenAddressing->insert(3);
+  hashTableCoalesced->insert(20);
+
+  hashTableCoalesced->print();
 
   return 0;
 }
