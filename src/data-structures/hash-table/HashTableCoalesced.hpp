@@ -69,38 +69,24 @@ public:
     }
   }
 
-  void print()
-  {
-    for(int i=0; i<this->size; i++)
-      {
-        std::cout << this->data.at(i) << "  ";
-      }
-  }
-
-  /*void remove(int data)
+  void remove(int data)
   {
     int position = hash(data);
+    int previousPosition;
     int collisions = 0;
 
-    while (this->data.at(position) != data && collisions != this->size)
-    {
+    while(this->data.at(position) != data && collisions != this->size){
       collisions++;
-      if (this->algorithm == "Linear Probing")
-      {
-        position = hash(hash(data) + collisions);
-      }
-      else if (this->algorithm == "Quadratic Probing")
-      {
-        position = hash(hash(data) + (collisions * collisions));
-      }
-      else if (this->algorithm == "Double Hashing")
-      {
-        position = hash(hash(data) + (collisions * hash(data)));
-      }
+      previousPosition = position;
+      position = this->pointer.at(position);
     }
     if (this->data.at(position) == data)
     {
+      if(collisions!=0){
+        this->pointer.at(previousPosition) = this->pointer.at(position);
+      }
       this->data.at(position) = NULL;
+      this->pointer.at(position) = NULL;
     }
     else
     {
@@ -113,30 +99,17 @@ public:
     int position = hash(data);
     int collisions = 0;
 
-    while (this->data.at(position) != data && collisions != this->size)
-    {
+    while(this->data.at(position) != data && collisions != this->size){
       collisions++;
-      if (this->algorithm == "Linear Probing")
-      {
-        position = hash(hash(data) + collisions);
-      }
-      else if (this->algorithm == "Quadratic Probing")
-      {
-        position = hash(hash(data) + (collisions * collisions));
-      }
-      else if (this->algorithm == "Double Hashing")
-      {
-        position = hash(hash(data) + (collisions * hash(data)));
-      }
+      position = this->pointer.at(position);
     }
-
     if (this->data.at(position) == data)
     {
       return this->data.at(position);
     }
 
     throw "Dado inexistente!";
-  }*/
+  }
 
 private:
   std::vector<int> data;

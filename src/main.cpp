@@ -10,5 +10,11 @@ int main(int argc, char const *argv[])
 
   hashTableCoalesced->print();
 
+  std::cout << std::endl;
+
+  hashTableCoalesced->remove(92);
+
+   hashTableCoalesced->print();
+
   return 0;
 }
