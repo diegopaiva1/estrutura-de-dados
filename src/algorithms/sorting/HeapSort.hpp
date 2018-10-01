@@ -30,8 +30,8 @@ typedef std::chrono::high_resolution_clock Time;
 class HeapSort
 {
 public:
-  int comparisons;
-  int copies;
+  long long int comparisons;
+  long long int copies;
   double executionTime;
 
   HeapSort()

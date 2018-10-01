@@ -98,19 +98,16 @@ public:
           // Escrita das métricas colhidas no arquivo de saída
           outFile << "Tempo de execução para " << std::setw(11) << "N = " << n
                   << " - Conjunto " << execution + 1 << ": " << std::setprecision(4)
-                  << executionTimes[execution] << "s" << std::endl;
+                  << this->executionTimes[execution] << "s" << std::endl;
           outFile << "Número de comparações para " << std::setw(7) << "N = " << n
-                  << " - Conjunto " << execution + 1 << ": " << std::setprecision(4)
-                  << this->comparisons[execution] << std::endl;
+                  << " - Conjunto " << execution + 1 << ": " << this->comparisons[execution] << std::endl;
           outFile << "Número de cópias geradas para N = " << n << " - Conjunto " << execution + 1 << ": "
-                  << std::setprecision(4) << this->copies[execution] << "\n\n";
+                  << this->copies[execution] << "\n\n";
         }
         outFile << "Tempo médio de execução = " << std::setprecision(4)
                 << calculateAverage(this->executionTimes) << "s\n";
-        outFile << "Número médio de comparações = " << std::setprecision(4)
-                << calculateAverage(this->comparisons) << std::endl;
-        outFile << "Número médio de cópias geradas = " << std::setprecision(4)
-                << calculateAverage(this->copies) << "\n\n";
+        outFile << "Número médio de comparações = " << calculateAverage(this->comparisons) << std::endl;
+        outFile << "Número médio de cópias geradas = " << calculateAverage(this->copies) << "\n\n";
         outFile << "===========================================================\n" << std::endl;
       }
     }
@@ -122,8 +119,8 @@ public:
 private:
   std::vector<int> randomNumbers;
   double executionTimes[EXECUTIONS_AMOUNT];
-  int comparisons[EXECUTIONS_AMOUNT];
-  int copies[EXECUTIONS_AMOUNT];
+  long long int comparisons[EXECUTIONS_AMOUNT];
+  long long int copies[EXECUTIONS_AMOUNT];
 
   char* getCurrentTime()
   {

@@ -26,8 +26,8 @@ typedef std::chrono::high_resolution_clock Time;
 class MergeSort
 {
 public:
-  int comparisons;
-  int copies;
+  long long int comparisons;
+  long long int copies;
   double executionTime;
 
   MergeSort()

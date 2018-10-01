@@ -28,8 +28,8 @@ typedef std::chrono::high_resolution_clock Time;
 class SelectionSort
 {
 public:
-  int comparisons;
-  int swaps;
+  long long int comparisons;
+  long long int swaps;
   double executionTime;
 
   SelectionSort()

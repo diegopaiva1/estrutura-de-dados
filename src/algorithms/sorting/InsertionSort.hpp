@@ -19,43 +19,71 @@
 
 #include <iostream>
 #include <vector>
+#include <chrono>
+#include <time.h>
+
+typedef std::chrono::high_resolution_clock Time;
 
 class InsertionSort
 {
 public:
-  InsertionSort() {};
+  long long int comparisons;
+  long long int copies;
+  double executionTime;
+
+  InsertionSort()
+  {
+    this->comparisons = 0;
+    this->copies = 0;
+    this->executionTime = 0.0;
+  };
+
   ~InsertionSort() {};
 
   template<typename T>
-  void sort(std::vector<T> &unsorted){
+  void sort(std::vector<T> &unsorted)
+  {
     sort(unsorted, 0, unsorted.size() - 1);
   }
 
   template<typename T>
   void sort(std::vector<T> &unsorted, int firstIndex, int lastIndex)
   {
-    // Consideramos que o primeiro número do array ja está ordenado
-    int amountOfSortedNumbers = 1;
+    Time::time_point t1 = Time::now(); // Tempo inicial de execução
 
-    // Portanto, começamos iterando pelo segundo número
-    for (int i = firstIndex+1; i <= lastIndex; i++)
+    /*
+     * Consideramos que o primeiro número do array ja está ordenado.
+     * Portanto, começamos iterando pelo segundo número
+     */
+    for (int i = firstIndex + 1; i <= lastIndex; i++)
     {
       auto elementToBeSorted = unsorted.at(i);
+      copies++;
 
       // Indice para acessar elementos já ordenados
-      int j = amountOfSortedNumbers - 1;
+      int j = i - 1;
+      copies++;
 
-      while(j >= 0 && unsorted.at(firstIndex+j) > elementToBeSorted)
+      comparisons++;
+      while (j >= 0 && unsorted.at(firstIndex + j) > elementToBeSorted)
       {
+        comparisons++;
         // Arredamos uma posição para a direita
-        unsorted.at(firstIndex+j+1) = unsorted.at(firstIndex+j);
+        unsorted.at(firstIndex + j + 1) = unsorted.at(firstIndex + j);
         j--;
+        copies += 2;
       }
       // Inserimos o número
-      unsorted.at(firstIndex+j+1) = elementToBeSorted;
-
-      amountOfSortedNumbers++;
+      unsorted.at(firstIndex + j + 1) = elementToBeSorted;
+      copies++;
     }
+
+    Time::time_point t2 = Time::now(); // Tempo final de execução
+
+    // Aqui calcula-se o tempo total de execução para o algoritmo
+    this->executionTime = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count();
+    // Nanosegundos para segundos
+    this->executionTime = this->executionTime/1000000000;
   }
 };
 
