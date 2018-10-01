@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <vector>
-#include <list>
 
 #define PRIME 997
 

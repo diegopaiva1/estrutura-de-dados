@@ -1,8 +1,6 @@
 #include "components/SortingAlgorithmPerformanceMeasurer.hpp"
 #include "algorithms/sorting/HeapSort.hpp"
 
-#include <iomanip>
-
 int main(int argc, char const *argv[])
 {
   std::string fileName = argv[1];
