@@ -29,7 +29,7 @@ class SelectionSort
 {
 public:
   long long int comparisons;
-  long long int swaps;
+  long long int copies;
   double executionTime;
 
   SelectionSort() {};
@@ -46,6 +46,7 @@ public:
 
     for (int i = 0; i < unsorted.size(); i++)
     {
+      this->copies += 2;
       auto minElement = unsorted.at(i);
       int minElementIndex = i;
 
@@ -54,12 +55,13 @@ public:
         this->comparisons++;
         if(unsorted.at(j) < minElement)
         {
+          this->copies += 2;
           minElement = unsorted.at(j);
           minElementIndex = j;
         }
       }
       std::swap(unsorted.at(i), unsorted.at(minElementIndex));
-      this->swaps++;
+      this->copies++;
     }
 
     Time::time_point t2 = Time::now(); // Tempo final de execução
