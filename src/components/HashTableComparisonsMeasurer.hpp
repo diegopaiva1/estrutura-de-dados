@@ -64,6 +64,10 @@ public:
           hashTable->size = (int) n/DEFAULT_LOAD_FACTOR;
           hashTable->data.resize(hashTable->size);
 
+          // Descomente as duas linhas abaixo caso o teste seja para o encadeamento coalescido
+          // hashTable->pointer.clear();
+          // hashTable->pointer.resize(hashTable->size);
+
           for (int i = 0; i < n; i++)
           {
             try
