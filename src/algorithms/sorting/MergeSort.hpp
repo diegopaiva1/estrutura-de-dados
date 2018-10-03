@@ -108,14 +108,14 @@ private:
         // Basta inserir os elementos na partição à direita
         aux.at(i) = v.at(rightSliceIterator);
         rightSliceIterator++;
-        copies++;
+        copies += 2;
       }
       else if (rightSliceIterator > lastIndex && leftSliceIterator < midIndex)
       {
         // Basta inserir os elementos na partição à esquerda
         aux.at(i) = v.at(leftSliceIterator);
         leftSliceIterator++;
-        copies++;
+        copies += 2;
       }
       else
       {
@@ -125,13 +125,13 @@ private:
         {
           aux.at(i) = v.at(leftSliceIterator);
           leftSliceIterator++;
-          copies++;
+          copies += 2;
         }
         else
         {
           aux.at(i) = v.at(rightSliceIterator);
           rightSliceIterator++;
-          copies++;
+          copies += 2;
         }
       }
     }
