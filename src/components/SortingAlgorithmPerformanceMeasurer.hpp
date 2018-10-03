@@ -37,8 +37,9 @@
 #include <iomanip> // std::setprecision, std::setw
 #include <typeinfo> // typeid
 
-#include "./deputy/file/reader/DeputyFileReader.hpp"
-#include "./deputy/Deputy.hpp"
+// Descomente as duas linhas abaixo se for testar para o Quicksort com deputados
+// #include "./deputy/file/reader/DeputyFileReader.hpp"
+// #include "./deputy/Deputy.hpp"
 
 class SortingAlgorithmPerformanceMeasurer
 {
@@ -56,8 +57,9 @@ public:
 
     std::ofstream outFile(outFileName, std::ifstream::app);
 
-    DeputyFileReader *deputyFileReader = new DeputyFileReader();
-    std::vector<Deputy> deputies = deputyFileReader->constructDeputies("dataset/deputies.csv");
+    // Descomente as duas linhas abaixo se for testar para o Quicksort com deputados
+    // DeputyFileReader *deputyFileReader = new DeputyFileReader();
+    // std::vector<Deputy> deputies = deputyFileReader->constructDeputies("dataset/deputies.csv");
 
     if (!inFile.is_open())
     {
@@ -80,9 +82,12 @@ public:
         {
           for (int i = 0; i < n; i++)
           {
-            // Preenchendo com ids aleatorios da base de deputados
-            int index = rand() % ((deputies.size() - 1) + 0);
-            randomNumbers.at(i) = deputies.at(index).id;
+            // Preenchendo com números aleatórios
+            randomNumbers.at(i) = rand() % n + 1;
+
+            // Descomente as duas linhas abaixos se for testar com ids aleatórios dos deputados
+            // int index = rand() % ((deputies.size() - 1) + 0);
+            // randomNumbers.at(i) = deputies.at(index).id;
           }
 
           algorithm->sort(randomNumbers);
