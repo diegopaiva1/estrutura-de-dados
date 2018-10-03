@@ -7,6 +7,10 @@
 class HashTableCoalescedChaining
 {
 public:
+  std::vector<int> data;
+  std::vector<int> pointer;
+  int size;
+
   HashTableCoalescedChaining() {};
   ~HashTableCoalescedChaining() {};
 
@@ -110,19 +114,11 @@ public:
       position = this->pointer.at(position);
     }
 
-    if (this->data.at(position) == data)
-    {
-      return this->data.at(position);
-    }
-
-    throw "Dado inexistente!";
+    // Total de comparações
+    return collisions + 1;
   }
 
 private:
-  std::vector<int> data;
-  std::vector<int> pointer;
-  int size;
-
   int hash(int data)
   {
     // Método da divisão
