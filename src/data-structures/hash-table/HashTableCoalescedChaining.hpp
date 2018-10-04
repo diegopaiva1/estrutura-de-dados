@@ -39,40 +39,51 @@ public:
     this->pointer.resize(this->size);
   }
 
-  void insert(int data)
+  int insert(int data)
   {
     int position = hash(data);
     int collisions = 0;
+    int comparisons = 0;
 
+    comparisons++;
     while (this->data.at(position) != NULL && collisions != this->size)
     {
+      comparisons++;
       position = (this->size - 1) - collisions;
       collisions++;
     }
 
+    comparisons++;
     if (this->data.at(position) == NULL)
     {
       this->data.at(position) = data;
 
+      comparisons++;
       if (collisions != 0)
       {
         int pointerPosition = hash(data);
 
+        comparisons++;
         while (this->pointer.at(pointerPosition) != NULL)
         {
+          comparisons++;
           pointerPosition = this->pointer.at(pointerPosition);
         }
 
+        comparisons++;
         if (this->pointer.at(pointerPosition) == NULL)
         {
           this->pointer.at(pointerPosition) = position;
         }
       }
     }
+
     else
     {
       throw "Tabela lotada!";
     }
+
+    return comparisons;
   }
 
   void remove(int data)

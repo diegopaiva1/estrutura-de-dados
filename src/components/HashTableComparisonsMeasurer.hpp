@@ -65,8 +65,8 @@ public:
           hashTable->data.resize(hashTable->size);
 
           // Descomente as duas linhas abaixo caso o teste seja para o encadeamento coalescido
-          // hashTable->pointer.clear();
-          // hashTable->pointer.resize(hashTable->size);
+          hashTable->pointer.clear();
+          hashTable->pointer.resize(hashTable->size);
 
           for (int i = 0; i < n; i++)
           {
@@ -74,18 +74,13 @@ public:
             {
               // Preenchendo com números aleatórios
               index = rand() % (deputies.size() - 1) + 0;
-              hashTable->insert(deputies.at(index).id);
+              this->comparisons[execution] += hashTable->insert(deputies.at(index).id);
             }
             catch (char const* exception)
             {
               std::cerr << exception << std::endl;
             }
           }
-
-          // Obtendo o último dado inserido na tabela
-          int comparisons = hashTable->get(deputies.at(index).id);
-
-          this->comparisons[execution] = comparisons;
 
           // Escrita do número de comparações no arquivo de saída
           outFile << "Comparações para N = " << n  << " - Conjunto " << execution + 1 << ": "

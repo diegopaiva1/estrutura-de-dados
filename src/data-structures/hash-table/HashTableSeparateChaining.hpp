@@ -48,28 +48,27 @@ public:
     }
   }
 
-  void insert(int data)
+  int insert(int data)
   {
     this->data.at(hash(data)).push_back(data);
+    // Retornando o total de comparações para fazer a inserção, neste caso é sempre 0
+    return 0;
   }
 
-  // Retornando o número de comparações necessárias para obter o dado
   int get(int data)
   {
     // Encontramos a lista do elemento a ser buscado
     auto list = this->data.at(hash(data));
-    int comparisons = 0;
 
     for (auto i = list.begin(); i != list.end(); i++)
     {
-      comparisons++;
       if (*i == data)
       {
-        break;
+        return *i;
       }
     }
 
-    return comparisons;
+    throw "Dado inexistente!";
   }
 
   void remove(int data)

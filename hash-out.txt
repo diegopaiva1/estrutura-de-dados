@@ -217,3 +217,84 @@ Comparações para N = 100000 - Conjunto 2: 1
 Comparações para N = 100000 - Conjunto 3: 13
 Comparações para N = 100000 - Conjunto 4: 5463
 Comparações para N = 100000 - Conjunto 5: 1
+Resultados para P25HashTableSeparateChaining em Thu Oct  4 11:05:35 2018
+
+Comparações para N = 1000 - Conjunto 1: 0
+Comparações para N = 1000 - Conjunto 2: 0
+Comparações para N = 1000 - Conjunto 3: 0
+Comparações para N = 1000 - Conjunto 4: 0
+Comparações para N = 1000 - Conjunto 5: 0
+Número médio de comparações = 0
+
+Comparações para N = 5000 - Conjunto 1: 0
+Comparações para N = 5000 - Conjunto 2: 0
+Comparações para N = 5000 - Conjunto 3: 0
+Comparações para N = 5000 - Conjunto 4: 0
+Comparações para N = 5000 - Conjunto 5: 0
+Número médio de comparações = 0
+
+Comparações para N = 10000 - Conjunto 1: 0
+Comparações para N = 10000 - Conjunto 2: 0
+Comparações para N = 10000 - Conjunto 3: 0
+Comparações para N = 10000 - Conjunto 4: 0
+Comparações para N = 10000 - Conjunto 5: 0
+Número médio de comparações = 0
+
+Comparações para N = 50000 - Conjunto 1: 0
+Comparações para N = 50000 - Conjunto 2: 0
+Comparações para N = 50000 - Conjunto 3: 0
+Comparações para N = 50000 - Conjunto 4: 0
+Comparações para N = 50000 - Conjunto 5: 0
+Número médio de comparações = 0
+
+Comparações para N = 100000 - Conjunto 1: 0
+Comparações para N = 100000 - Conjunto 2: 0
+Comparações para N = 100000 - Conjunto 3: 0
+Comparações para N = 100000 - Conjunto 4: 0
+Comparações para N = 100000 - Conjunto 5: 0
+Número médio de comparações = 0
+
+Comparações para N = 500000 - Conjunto 1: 0
+Comparações para N = 500000 - Conjunto 2: 0
+Comparações para N = 500000 - Conjunto 3: 0
+Comparações para N = 500000 - Conjunto 4: 0
+Comparações para N = 500000 - Conjunto 5: 0
+Número médio de comparações = 0
+
+===================== Fim do processo =====================
+
+Resultados para P26HashTableCoalescedChaining em Thu Oct  4 11:33:31 2018
+
+Comparações para N = 1000 - Conjunto 1: 209703
+Comparações para N = 1000 - Conjunto 2: 208040
+Comparações para N = 1000 - Conjunto 3: 218224
+Comparações para N = 1000 - Conjunto 4: 216313
+Comparações para N = 1000 - Conjunto 5: 213326
+Número médio de comparações = 213121
+
+Comparações para N = 5000 - Conjunto 1: 8619027
+Comparações para N = 5000 - Conjunto 2: 8630511
+Comparações para N = 5000 - Conjunto 3: 8573635
+Comparações para N = 5000 - Conjunto 4: 8649632
+Comparações para N = 5000 - Conjunto 5: 8590682
+Número médio de comparações = 8.6127e+06
+
+Comparações para N = 10000 - Conjunto 1: 48900133
+Comparações para N = 10000 - Conjunto 2: 48894364
+Comparações para N = 10000 - Conjunto 3: 48947898
+Comparações para N = 10000 - Conjunto 4: 48975355
+Comparações para N = 10000 - Conjunto 5: 48718526
+Número médio de comparações = 4.88873e+07
+
+Comparações para N = 50000 - Conjunto 1: 1245716146
+Comparações para N = 50000 - Conjunto 2: 1246007850
+Comparações para N = 50000 - Conjunto 3: 1245997077
+Comparações para N = 50000 - Conjunto 4: 1246182555
+Comparações para N = 50000 - Conjunto 5: 1245621088
+Número médio de comparações = 1.2459e+09
+
+Comparações para N = 100000 - Conjunto 1: 1846759799
+Comparações para N = 100000 - Conjunto 2: 1847387104
+Comparações para N = 100000 - Conjunto 3: 1846948643
+Comparações para N = 100000 - Conjunto 4: 1846302677
+Comparações para N = 100000 - Conjunto 5: 1846703906
