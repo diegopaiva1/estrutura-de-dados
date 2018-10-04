@@ -28,14 +28,14 @@ private:
     if (k == 0)
     {
       pivot = unsorted.at((firstIndex+lastIndex)/2);
-      std::cout<< pivot << " ";
     }
     else
     {
       std::vector<T> elementsMedian;
       for(int i = 0; i < k; i++){
-        int index = rand() % lastIndex + firstIndex;
-        //std::cout << firstIndex << "-" << lastIndex << "-" << index << std::endl;
+        //int index = rand() % lastIndex + firstIndex;
+        int index = rand()%(lastIndex-firstIndex + 1) + firstIndex;
+        std::cout << firstIndex << "-" << lastIndex << "-" << index << std::endl;
         elementsMedian.push_back(unsorted.at(index));
       }
       insertionSort->sort(elementsMedian);
@@ -67,6 +67,7 @@ private:
     {
       if((lastIndex - firstIndex) <= n)
       {
+        //std::cout << firstIndex << "-" << lastIndex << std::endl;
         insertionSort->sort(unsorted, firstIndex, rightPointer-1);
       }
       else
@@ -78,6 +79,7 @@ private:
     {
       if((lastIndex - firstIndex) <= n)
       {
+        //std::cout << firstIndex << "-" << lastIndex << std::endl;
         insertionSort->sort(unsorted, leftPointer+1, lastIndex);
       }
       else
