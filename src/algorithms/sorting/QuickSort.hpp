@@ -28,6 +28,7 @@ private:
     if (k == 0)
     {
       pivot = unsorted.at((firstIndex+lastIndex)/2);
+      std::cout<< pivot << " ";
     }
     else
     {
@@ -58,8 +59,6 @@ private:
       if (leftPointer < rightPointer)
       {
         std::swap(unsorted.at(leftPointer), unsorted.at(rightPointer));
-        leftPointer = leftPointer + 1;
-        rightPointer = rightPointer - 1;
       }
     }
 
@@ -68,11 +67,11 @@ private:
     {
       if((lastIndex - firstIndex) <= n)
       {
-        insertionSort->sort(unsorted, firstIndex, rightPointer);
+        insertionSort->sort(unsorted, firstIndex, rightPointer-1);
       }
       else
       {
-        sort(unsorted, firstIndex, rightPointer, k, n);
+        sort(unsorted, firstIndex, rightPointer-1, k, n);
       }
     }
     if (leftPointer < lastIndex)

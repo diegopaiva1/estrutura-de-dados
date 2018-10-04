@@ -16,21 +16,13 @@ int main(int argc, char const *argv[])
   //std::vector<Deputy> deputies = deputyFileReader->constructDeputies(fileName);
   std::vector<int> teste = {6, 8, 2, 32, 14, 70, 61, 55, 47, 150, 130, 111, 170, 134, 122, 200};
   QuickSort *quickSort = new QuickSort();
-  quickSort->sort(teste, 0, 4);
-
+  quickSort->sort(teste);
+  std::cout << std::endl;
   for(unsigned int i=0; i<teste.size();i++){
     std::cout<< teste.at(i) << " ";
   }
   std::cout << std::endl;
   //quickSort->sort(deputies, 0, 10);
-
-  InsertionSort *insertionSort = new InsertionSort();
-  insertionSort->sort(teste);
-
-  for(unsigned int i=0; i<teste.size();i++){
-    std::cout<< teste.at(i) << " ";
-  }
-  std::cout << std::endl;
 
   /*for (auto deputy : deputies)
   {
