@@ -27,21 +27,19 @@ private:
     T pivot;
     if (k == 0)
     {
-      pivot = unsorted.at((firstIndex+lastIndex)/2);
+      pivot = unsorted.at((firstIndex + lastIndex + 1) / 2);
     }
     else
     {
       std::vector<T> elementsMedian;
-      for(int i = 0; i < k; i++){
-        //int index = rand() % lastIndex + firstIndex;
-        int index = rand()%(lastIndex-firstIndex + 1) + firstIndex;
-        std::cout << firstIndex << "-" << lastIndex << "-" << index << std::endl;
+      for(int i = 0; i < k; i++)
+      {
+        int index = rand() % (lastIndex - firstIndex + 1) + firstIndex;
         elementsMedian.push_back(unsorted.at(index));
       }
       insertionSort->sort(elementsMedian);
-      pivot = elementsMedian.at(elementsMedian.size()/2);
+      pivot = elementsMedian.at((elementsMedian.size() - 1) / 2);
     }
-
     // Particionamento
     int leftPointer = firstIndex;
     int rightPointer = lastIndex;
@@ -50,15 +48,23 @@ private:
     {
       while (unsorted.at(leftPointer) < pivot && leftPointer < lastIndex)
       {
-        leftPointer = leftPointer + 1;
+        leftPointer++;
       }
       while (unsorted.at(rightPointer) > pivot && rightPointer > firstIndex)
       {
-        rightPointer = rightPointer - 1;
+        rightPointer--;
       }
       if (leftPointer < rightPointer)
       {
-        std::swap(unsorted.at(leftPointer), unsorted.at(rightPointer));
+        if(unsorted.at(leftPointer) != unsorted.at(rightPointer))
+        {
+          std::swap(unsorted.at(leftPointer), unsorted.at(rightPointer));
+        }
+        else
+        {
+          leftPointer++;
+          std::swap(unsorted.at(leftPointer), unsorted.at(rightPointer));
+        }
       }
     }
 
@@ -67,24 +73,22 @@ private:
     {
       if((lastIndex - firstIndex) <= n)
       {
-        //std::cout << firstIndex << "-" << lastIndex << std::endl;
-        insertionSort->sort(unsorted, firstIndex, rightPointer-1);
+        insertionSort->sort(unsorted, firstIndex, rightPointer - 1);
       }
       else
       {
-        sort(unsorted, firstIndex, rightPointer-1, k, n);
+        sort(unsorted, firstIndex, rightPointer - 1, k, n);
       }
     }
     if (leftPointer < lastIndex)
     {
       if((lastIndex - firstIndex) <= n)
       {
-        //std::cout << firstIndex << "-" << lastIndex << std::endl;
-        insertionSort->sort(unsorted, leftPointer+1, lastIndex);
+        insertionSort->sort(unsorted, leftPointer + 1, lastIndex);
       }
       else
       {
-        sort(unsorted, leftPointer+1, lastIndex, k, n);
+        sort(unsorted, leftPointer + 1, lastIndex, k, n);
       }
     }
   }
