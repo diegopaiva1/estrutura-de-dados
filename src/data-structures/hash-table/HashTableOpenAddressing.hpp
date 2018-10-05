@@ -49,17 +49,21 @@ public:
     this->data.resize(this->size);
   }
 
-  void insert(int data)
+  int insert(int data)
   {
     int position = hash(data);
     int collisions = 0;
+    int comparisons = 0;
 
+    comparisons++;
     while (this->data.at(position) != NULL && collisions != this->size)
     {
+      comparisons++;
       collisions++;
       position = calculatePositionFromAlgorithm(data, collisions);
     }
 
+    comparisons++;
     if (this->data.at(position) == NULL)
     {
       this->data.at(position) = data;
@@ -68,6 +72,8 @@ public:
     {
       throw "Tabela lotada!";
     }
+
+    return comparisons;
   }
 
   void remove(int data)

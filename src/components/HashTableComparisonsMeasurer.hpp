@@ -74,18 +74,13 @@ public:
             {
               // Preenchendo com números aleatórios
               index = rand() % (deputies.size() - 1) + 0;
-              hashTable->insert(deputies.at(index).id);
+              this->comparisons[execution] = hashTable->insert(deputies.at(index).id);
             }
             catch (char const* exception)
             {
               std::cerr << exception << std::endl;
             }
           }
-
-          // Obtendo o último dado inserido na tabela
-          int comparisons = hashTable->get(deputies.at(index).id);
-
-          this->comparisons[execution] = comparisons;
 
           // Escrita do número de comparações no arquivo de saída
           outFile << "Comparações para N = " << n  << " - Conjunto " << execution + 1 << ": "
