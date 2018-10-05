@@ -58,18 +58,16 @@ public:
   {
     // Encontramos a lista do elemento a ser buscado
     auto list = this->data.at(hash(data));
-    int comparisons = 0;
 
     for (auto i = list.begin(); i != list.end(); i++)
     {
-      comparisons++;
       if (*i == data)
       {
-        break;
+        return *i;
       }
     }
 
-    return comparisons;
+    throw "Dado inexistente";
   }
 
   void remove(int data)
