@@ -49,17 +49,16 @@ public:
 
     Time::time_point t1 = Time::now(); // Tempo inicial de execução
 
-    /*
-     * Consideramos que o primeiro número do array ja está ordenado.
-     * Portanto, começamos iterando pelo segundo número
-     */
+    // Consideramos que o primeiro número do array ja está ordenado
+    int amountOfSortedNumbers = 1;
+
     for (int i = firstIndex + 1; i <= lastIndex; i++)
     {
       auto elementToBeSorted = unsorted.at(i);
       copies++;
 
       // Indice para acessar elementos já ordenados
-      int j = i - 1;
+      int j = amountOfSortedNumbers - 1;
       copies++;
 
       comparisons++;
@@ -74,6 +73,8 @@ public:
       // Inserimos o número
       unsorted.at(firstIndex + j + 1) = elementToBeSorted;
       copies++;
+
+      amountOfSortedNumbers++;
     }
 
     Time::time_point t2 = Time::now(); // Tempo final de execução
