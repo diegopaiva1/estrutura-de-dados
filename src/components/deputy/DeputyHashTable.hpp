@@ -62,6 +62,18 @@ public:
     throw "Deputado não existe";
   }
 
+  int getGastoTotal(std::string deputyName)
+  {
+    // Encontramos a lista do elemento a ser buscado
+    auto list = this->deputies.at(hash(deputyName));
+    int sum = 0;
+
+    for (auto i = list.begin(); i != list.end(); i++)
+    {
+      Deputy d = *i;
+    }
+  }
+
 private:
   int hash(std::string s)
   {

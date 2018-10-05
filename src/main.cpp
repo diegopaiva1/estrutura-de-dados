@@ -112,7 +112,7 @@ int main(int argc, char const *argv[])
 
   try
   {
-    std::cout << ht->get("Abelardo Camarinha").id << std::endl;
+    std::cout << ht->get("Abelardo Camarinha").name << std::endl;
   }
   catch (const char* e)
   {
