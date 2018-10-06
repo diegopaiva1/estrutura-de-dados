@@ -7,6 +7,8 @@
 #include <string.h>
 
 #include "Deputy.hpp"
+#include "Spent.hpp"
+#include "../../algorithms/sorting/QuickSort.hpp"
 
 class DeputyHashTable
 {
@@ -45,36 +47,20 @@ public:
     this->deputies.at(hash(deputy.name)).push_back(deputy);
   }
 
-  Deputy get(std::string deputyName)
+  void highestsSpent(int n)
   {
-    // Encontramos a lista do elemento a ser buscado
-    auto list = this->deputies.at(hash(deputyName));
-
-    for (auto i = list.begin(); i != list.end(); i++)
+    this->calculateSpent();
+    QuickSort *quickSort = new QuickSort();
+    quickSort->sort(this->spent);
+    for(int i=0; i<n; i++)
     {
-      Deputy d = *i;
-      if (d.name == deputyName)
-      {
-        return d;
-      }
-    }
-
-    throw "Deputado não existe";
-  }
-
-  int getGastoTotal(std::string deputyName)
-  {
-    // Encontramos a lista do elemento a ser buscado
-    auto list = this->deputies.at(hash(deputyName));
-    int sum = 0;
-
-    for (auto i = list.begin(); i != list.end(); i++)
-    {
-      Deputy d = *i;
+      std::cout << this->spent.at(this->spent.size()-1-i).name << ": " << this->spent.at(this->spent.size()-1-i).spent << std::endl;
     }
   }
 
 private:
+  std::vector<Spent> spent;
+
   int hash(std::string s)
   {
     char ch[s.length()+1];
@@ -88,6 +74,26 @@ private:
       sum += ch[i];
 
     return sum % size;
+  }
+
+  void calculateSpent()
+  {
+    for(int i=0; i<deputies.size(); i++)
+    {
+      // Encontramos a lista de gastos do deputado ou partido
+      auto list = this->deputies.at(i);
+      int sum = 0;
+      Spent *s = new Spent();
+      Deputy dp = list.front();
+      s->name = dp.name;
+      for (auto j = list.begin(); j != list.end(); j++)
+      {
+        Deputy d = *j;
+        sum += d.receiptValue;
+      }
+      s->spent  = sum;
+      this->spent.push_back(*s);
+    }
   }
 };
 

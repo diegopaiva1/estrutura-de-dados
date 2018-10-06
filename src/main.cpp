@@ -110,14 +110,7 @@ int main(int argc, char const *argv[])
   std::vector<Deputy> deps = deputyFileReader->constructDeputies("dataset/teste.csv");
   DeputyHashTable *ht = new DeputyHashTable(deps, 0.75);
 
-  try
-  {
-    std::cout << ht->get("Abelardo Camarinha").name << std::endl;
-  }
-  catch (const char* e)
-  {
-    std::cerr << e << std::endl;
-  }
+  ht->highestsSpent(5);
 
   return 0;
 }
