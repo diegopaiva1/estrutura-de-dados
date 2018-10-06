@@ -107,10 +107,18 @@ int main(int argc, char const *argv[])
   // HashTableComparisonsMeasurer *htcm = new HashTableComparisonsMeasurer();
   // htcm->storeComparisonsResults(inFile, new HashTableSeparateChaining());
 
+  /* Tabela hash com encadeamento separado para armazenar os gastos dos deputados
+   * Após armazenados os gastos na HashTable usamos uma função para calcular a soma dos gastos e armazenar
+   * na classe Spent. A função highestsSpent ordena os gastos e retorna as n últimas posições, ou seja,
+   * os n maiores gastos. A função lowestsSpent ordena os gastos e retorna as n primeiras posições, ou seja,
+   * os n menores gastos.
+   */
   std::vector<Deputy> deps = deputyFileReader->constructDeputies("dataset/teste.csv");
-  DeputyHashTable *ht = new DeputyHashTable(deps, 0.75);
+  //DeputyHashTable *ht = new DeputyHashTable(deps, 0.75, "nome");
+  //DeputyHashTable *ht = new DeputyHashTable(deps, 0.75, "partido");
+  DeputyHashTable *ht = new DeputyHashTable(deps, 0.75, "nome");
 
-  ht->highestsSpent(5);
+  ht->lowestsSpent(5);
 
   return 0;
 }

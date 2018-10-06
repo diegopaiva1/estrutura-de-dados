@@ -19,8 +19,10 @@ public:
   DeputyHashTable() {};
   ~DeputyHashTable() {};
 
-  DeputyHashTable(int size, float loadFactor = 0.75)
+  DeputyHashTable(int size, float loadFactor = 0.75, std::string keyType = "nome")
   {
+    this->keyType = keyType;
+
     // Calculamos o tamanho da tabela
     this->size = (int) size/loadFactor;
 
@@ -28,8 +30,10 @@ public:
     this->deputies.resize(this->size);
   }
 
-  DeputyHashTable(std::vector<Deputy> deputies, float loadFactor = 0.75)
+  DeputyHashTable(std::vector<Deputy> deputies, float loadFactor = 0.75, std::string keyType = "nome")
   {
+    this->keyType = keyType;
+
     // Calculamos o tamanho da tabela
     this->size = (int) deputies.size()/loadFactor;
 
@@ -44,7 +48,14 @@ public:
 
   void insert(Deputy deputy)
   {
-    this->deputies.at(hash(deputy.name)).push_back(deputy);
+    if(this->keyType == "nome")
+    {
+      this->deputies.at(hash(deputy.name)).push_back(deputy);
+    }
+    else if(this->keyType == "partido")
+    {
+      this->deputies.at(hash(deputy.party)).push_back(deputy);
+    }
   }
 
   void highestsSpent(int n)
@@ -58,8 +69,20 @@ public:
     }
   }
 
+  void lowestsSpent(int n)
+  {
+    this->calculateSpent();
+    QuickSort *quickSort = new QuickSort();
+    quickSort->sort(this->spent);
+    for(int i=0; i<n; i++)
+    {
+      std::cout << this->spent.at(i).name << ": " << this->spent.at(i).spent << std::endl;
+    }
+  }
+
 private:
   std::vector<Spent> spent;
+  std::string keyType;
 
   int hash(std::string s)
   {
@@ -84,8 +107,19 @@ private:
       auto list = this->deputies.at(i);
       int sum = 0;
       Spent *s = new Spent();
-      Deputy dp = list.front();
-      s->name = dp.name;
+      for (auto k = list.begin(); k != list.end(); k++)
+      {
+        auto deputy = *k;
+        if(this->keyType == "nome")
+        {
+          s->name = deputy.name;
+        }
+        else if(this->keyType == "partido")
+        {
+          s->name = deputy.party;
+        }
+        break;
+      }
       for (auto j = list.begin(); j != list.end(); j++)
       {
         Deputy d = *j;
