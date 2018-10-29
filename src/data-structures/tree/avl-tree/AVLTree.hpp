@@ -20,59 +20,56 @@ public:
 
   ~AVLTree() {};
 
-  void insert(int value)
+  AVLNode* insert(int value)
   {
-    if (!hasRoot())
-    {
-      root = new AVLNode(value);
-    }
-    else
-    {
-      auto node = root;
-
-      while (node != nullptr)
-      {
-        if (value < node->value)
-        {
-          node = node->left;
-        }
-        else
-        {
-          node = node->right;
-        }
-      }
-
-      node = new AVLNode(value);
-    }
+    return insert(value, root);
   }
 
   AVLNode* get(int value)
   {
-    auto node = root;
-
-    while (node != nullptr)
-    {
-      if (value == node->value)
-      {
-        return node;
-      }
-      else if (value < node->value)
-      {
-        node = node->left;
-      }
-      else if (value > node->value)
-      {
-        node = node->right;
-      }
-    }
-
-    throw "Valor não existente na árvore AVL";
+    return get(value, root);
   }
 
 private:
-  bool hasRoot()
+  AVLNode* insert(int value, AVLNode* node)
   {
-    return root != nullptr;
+    if (node == nullptr)
+    {
+      return new AVLNode(value);
+    }
+    else
+    {
+      if (value < node->value)
+      {
+        node->left = insert(value, node->left);
+      }
+      else
+      {
+        node->right = insert(value, node->right);
+      }
+    }
+
+    return node;
+  }
+
+  AVLNode* get(int value, AVLNode* node)
+  {
+    if (node == nullptr)
+    {
+      throw "Nó não existe na árvore AVL";
+    }
+    else if (value < node->value)
+    {
+      return get(value, node->left);
+    }
+    else if (value > node->value)
+    {
+      return get(value, node->right);
+    }
+    else
+    {
+      return node;
+    }
   }
 };
 
