@@ -8,17 +8,17 @@ class AVLTree
 public:
   AVLNode *root;
 
-  AVLTree(AVLNode *root)
-  {
-    this->root = root;
-  };
-
   AVLTree()
   {
     root = nullptr;
   };
 
   ~AVLTree() {};
+
+  int height()
+  {
+    return root->height(root);
+  }
 
   AVLNode* insert(int value)
   {
@@ -50,6 +50,22 @@ private:
     }
 
     return node;
+  }
+
+  AVLNode* rotateRight(AVLNode *node)
+  {
+    AVLNode *rotated = node->right;
+    node->right = rotated->left;
+    rotated->left = node;
+    return rotated;
+  }
+
+  AVLNode* rotateLeft(AVLNode *node)
+  {
+    AVLNode *rotated = node->left;
+    node->left = rotated->right;
+    rotated->right = node;
+    return rotated;
   }
 
   AVLNode* get(int value, AVLNode* node)

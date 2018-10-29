@@ -12,7 +12,8 @@ int main(int argc, char const *argv[])
 
   try
   {
-    std::cout << avlTree->get(110)->value << std::endl;
+    std::cout << "Altura da árvore = " << avlTree->height() << std::endl;
+    std::cout << "Fator de balanceamento da raíz = " << avlTree->root->getBalanceFactor() << std::endl;
   }
   catch (const char* exception)
   {
