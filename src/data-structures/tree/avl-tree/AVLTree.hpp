@@ -20,32 +20,32 @@ public:
     return root->height(root);
   }
 
-  AVLNode* insert(int value)
+  AVLNode* insert(int key)
   {
-    return insert(value, root);
+    return insert(key, root);
   }
 
-  AVLNode* get(int value)
+  AVLNode* get(int key)
   {
-    return get(value, root);
+    return get(key, root);
   }
 
 private:
-  AVLNode* insert(int value, AVLNode* node)
+  AVLNode* insert(int key, AVLNode* node)
   {
     if (node == nullptr)
     {
-      return new AVLNode(value);
+      return new AVLNode(key);
     }
     else
     {
-      if (value < node->value)
+      if (key < node->key)
       {
-        node->left = insert(value, node->left);
+        node->left = insert(key, node->left);
       }
       else
       {
-        node->right = insert(value, node->right);
+        node->right = insert(key, node->right);
       }
     }
 
@@ -68,19 +68,19 @@ private:
     return rotated;
   }
 
-  AVLNode* get(int value, AVLNode* node)
+  AVLNode* get(int key, AVLNode* node)
   {
     if (node == nullptr)
     {
-      throw "Nó não existe na árvore AVL";
+      throw "Esta chave não existe na árvore AVL";
     }
-    else if (value < node->value)
+    else if (key < node->key)
     {
-      return get(value, node->left);
+      return get(key, node->left);
     }
-    else if (value > node->value)
+    else if (key > node->key)
     {
-      return get(value, node->right);
+      return get(key, node->right);
     }
     else
     {

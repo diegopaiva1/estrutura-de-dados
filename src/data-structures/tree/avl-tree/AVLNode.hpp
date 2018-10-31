@@ -4,13 +4,13 @@
 class AVLNode
 {
 public:
-  int value;
+  int key;
   AVLNode *left;
   AVLNode *right;
 
-  AVLNode(int value, AVLNode *left = nullptr, AVLNode *right = nullptr)
+  AVLNode(int key, AVLNode *left = nullptr, AVLNode *right = nullptr)
   {
-    this->value = value;
+    this->key = key;
     this->left = left;
     this->right = right;
   };
