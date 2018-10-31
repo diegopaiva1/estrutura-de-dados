@@ -1,6 +1,8 @@
 #ifndef AVLTREE_H_INCLUDED
 #define AVLTREE_H_INCLUDED
 
+#define BALANCE_FACTOR_LIMIT 1
+
 #include "AVLNode.hpp"
 
 class AVLTree
@@ -47,9 +49,31 @@ private:
       {
         node->right = insert(key, node->right);
       }
+
+      balance(node);
     }
 
     return node;
+  }
+
+  void balance(AVLNode *node)
+  {
+    if (node->balanceFactor() == 2)
+    {
+      if (node->left->balanceFactor() == -1)
+      {
+        node->left = rotateRight(node->left);
+      }
+      rotateLeft(node);
+    }
+    else if (node->balanceFactor() == -2)
+    {
+      if (node->right->balanceFactor() == 1)
+      {
+        node->right = rotateLeft(node->right);
+      }
+      rotateRight(node);
+    }
   }
 
   AVLNode* rotateRight(AVLNode *node)
@@ -57,6 +81,12 @@ private:
     AVLNode *rotated = node->right;
     node->right = rotated->left;
     rotated->left = node;
+
+    if (node == root)
+    {
+      root = rotated;
+    }
+
     return rotated;
   }
 
@@ -65,6 +95,12 @@ private:
     AVLNode *rotated = node->left;
     node->left = rotated->right;
     rotated->right = node;
+
+    if (node == root)
+    {
+      root = rotated;
+    }
+
     return rotated;
   }
 

@@ -17,7 +17,7 @@ public:
 
   ~AVLNode() {};
 
-  int getBalanceFactor()
+  int balanceFactor()
   {
     return height(left) - height(right);
   }
