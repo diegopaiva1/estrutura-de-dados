@@ -33,7 +33,7 @@ public:
   }
 
 private:
-  AVLNode* insert(int key, AVLNode* node)
+  AVLNode* insert(int key, AVLNode *&node)
   {
     if (node == nullptr)
     {
@@ -50,33 +50,37 @@ private:
         node->right = insert(key, node->right);
       }
 
-      balance(node);
+      node = balance(node);
     }
 
     return node;
   }
 
-  void balance(AVLNode *node)
+  AVLNode* balance(AVLNode *&node)
   {
-    if (node->balanceFactor() == 2)
+    if (node->balanceFactor() > BALANCE_FACTOR_LIMIT)
     {
-      if (node->left->balanceFactor() == -1)
+      if (node->left->balanceFactor() == -BALANCE_FACTOR_LIMIT)
       {
         node->left = rotateRight(node->left);
       }
-      rotateLeft(node);
+
+      return rotateLeft(node);
     }
-    else if (node->balanceFactor() == -2)
+    else if (node->balanceFactor() < -BALANCE_FACTOR_LIMIT)
     {
-      if (node->right->balanceFactor() == 1)
+      if (node->right->balanceFactor() == BALANCE_FACTOR_LIMIT)
       {
         node->right = rotateLeft(node->right);
       }
-      rotateRight(node);
+
+      return rotateRight(node);
     }
+
+    return node;
   }
 
-  AVLNode* rotateRight(AVLNode *node)
+  AVLNode* rotateRight(AVLNode *&node)
   {
     AVLNode *rotated = node->right;
     node->right = rotated->left;
@@ -90,7 +94,7 @@ private:
     return rotated;
   }
 
-  AVLNode* rotateLeft(AVLNode *node)
+  AVLNode* rotateLeft(AVLNode *&node)
   {
     AVLNode *rotated = node->left;
     node->left = rotated->right;
