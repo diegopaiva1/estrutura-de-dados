@@ -19,7 +19,14 @@ public:
 
   int height()
   {
-    return root->height;
+    if (root != nullptr)
+    {
+      return root->height;
+    }
+    else
+    {
+      return -1;
+    }
   }
 
   AVLNode* insert(int key)
@@ -50,19 +57,21 @@ private:
         node->right = insert(key, node->right);
       }
 
+      /* Atualiza os valores pós-inserção para retornar o nó balanceado
+       * posteriormente, caso seja necessário balanceá-lo
+       */
       node->updateHeight();
       node->updateBalanceFactor();
-
-      node = balance(node);
     }
 
-    return node;
+    return balance(node);
   }
 
   AVLNode* balance(AVLNode *&node)
   {
-    if (node->balanceFactor > BALANCE_FACTOR_LIMIT)
+    if (node->balanceFactor == BALANCE_FACTOR_LIMIT + 1)
     {
+      // Neste caso, temos um zig-zag (necessário rotação dupla)
       if (node->left->balanceFactor == -BALANCE_FACTOR_LIMIT)
       {
         node->left = rotateRight(node->left);
@@ -70,8 +79,9 @@ private:
 
       return rotateLeft(node);
     }
-    else if (node->balanceFactor < -BALANCE_FACTOR_LIMIT)
+    else if (node->balanceFactor == -BALANCE_FACTOR_LIMIT - 1)
     {
+      // Neste caso, temos um zig-zag (necessário rotação dupla)
       if (node->right->balanceFactor == BALANCE_FACTOR_LIMIT)
       {
         node->right = rotateLeft(node->right);
@@ -85,60 +95,47 @@ private:
 
   AVLNode* rotateRight(AVLNode *&node)
   {
-    AVLNode *rotated = node->right;
-    node->right = rotated->left;
-    rotated->left = node;
+    AVLNode *pivot = node->right;
+    node->right = pivot->left;
+    pivot->left = node;
 
-    if (rotated->left != nullptr)
-    {
-      rotated->left->updateHeight();
-      rotated->left->updateBalanceFactor();
-    }
+    updatePivot(pivot, node);
 
-    if (rotated->right != nullptr)
-    {
-      rotated->right->updateHeight();
-      rotated->right->updateBalanceFactor();
-    }
-
-    rotated->updateHeight();
-    rotated->updateBalanceFactor();
-
-    if (node == root)
-    {
-      root = rotated;
-    }
-
-    return rotated;
+    return pivot;
   }
 
   AVLNode* rotateLeft(AVLNode *&node)
   {
-    AVLNode *rotated = node->left;
-    node->left = rotated->right;
-    rotated->right = node;
+    AVLNode *pivot = node->left;
+    node->left = pivot->right;
+    pivot->right = node;
 
-    if (rotated->left != nullptr)
+    updatePivot(pivot, node);
+
+    return pivot;
+  }
+
+  void updatePivot(AVLNode *&pivot, AVLNode *&node)
+  {
+    if (pivot->left != nullptr)
     {
-      rotated->left->updateHeight();
-      rotated->left->updateBalanceFactor();
+      pivot->left->updateHeight();
+      pivot->left->updateBalanceFactor();
     }
 
-    if (rotated->right != nullptr)
+    if (pivot->right != nullptr)
     {
-      rotated->right->updateHeight();
-      rotated->right->updateBalanceFactor();
+      pivot->right->updateHeight();
+      pivot->right->updateBalanceFactor();
     }
 
-    rotated->updateHeight();
-    rotated->updateBalanceFactor();
+    pivot->updateHeight();
+    pivot->updateBalanceFactor();
 
     if (node == root)
     {
-      root = rotated;
+      root = pivot;
     }
-
-    return rotated;
   }
 
   AVLNode* get(int key, AVLNode* node)

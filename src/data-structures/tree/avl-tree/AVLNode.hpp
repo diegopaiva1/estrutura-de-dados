@@ -23,15 +23,15 @@ public:
 
   void updateBalanceFactor()
   {
-    if (right == nullptr && left == nullptr)
+    if (hasNoChildren())
     {
       balanceFactor = 0;
     }
-    else if (left != nullptr && right == nullptr)
+    else if (hasLeftChildOnly())
     {
       balanceFactor = left->height + 1;
     }
-    else if (right != nullptr && left == nullptr)
+    else if (hasRightChildOnly())
     {
       balanceFactor = -(right->height + 1);
     }
@@ -43,17 +43,17 @@ public:
 
   void updateHeight()
   {
-    if (left != nullptr && right == nullptr)
+    if (hasNoChildren())
+    {
+      height = 0;
+    }
+    else if (hasLeftChildOnly())
     {
       height = left->height + 1;
     }
-    else if (right != nullptr && left == nullptr)
+    else if (hasRightChildOnly())
     {
       height = right->height + 1;
-    }
-    else if (right == nullptr && left == nullptr)
-    {
-      height = 0;
     }
     else
     {
@@ -66,6 +66,22 @@ public:
         height = left->height + 1;
       }
     }
+  }
+
+private:
+  bool hasNoChildren()
+  {
+    return right == nullptr && left == nullptr;
+  }
+
+  bool hasLeftChildOnly()
+  {
+    return left != nullptr && right == nullptr;
+  }
+
+  bool hasRightChildOnly()
+  {
+    return right != nullptr && left == nullptr;
   }
 };
 
