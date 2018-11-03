@@ -19,7 +19,7 @@ public:
 
   int height()
   {
-    return root->height(root);
+    return root->height;
   }
 
   AVLNode* insert(int key)
@@ -50,6 +50,9 @@ private:
         node->right = insert(key, node->right);
       }
 
+      node->updateHeight();
+      node->updateBalanceFactor();
+
       node = balance(node);
     }
 
@@ -58,18 +61,18 @@ private:
 
   AVLNode* balance(AVLNode *&node)
   {
-    if (node->balanceFactor() > BALANCE_FACTOR_LIMIT)
+    if (node->balanceFactor > BALANCE_FACTOR_LIMIT)
     {
-      if (node->left->balanceFactor() == -BALANCE_FACTOR_LIMIT)
+      if (node->left->balanceFactor == -BALANCE_FACTOR_LIMIT)
       {
         node->left = rotateRight(node->left);
       }
 
       return rotateLeft(node);
     }
-    else if (node->balanceFactor() < -BALANCE_FACTOR_LIMIT)
+    else if (node->balanceFactor < -BALANCE_FACTOR_LIMIT)
     {
-      if (node->right->balanceFactor() == BALANCE_FACTOR_LIMIT)
+      if (node->right->balanceFactor == BALANCE_FACTOR_LIMIT)
       {
         node->right = rotateLeft(node->right);
       }
@@ -86,6 +89,21 @@ private:
     node->right = rotated->left;
     rotated->left = node;
 
+    if (rotated->left != nullptr)
+    {
+      rotated->left->updateHeight();
+      rotated->left->updateBalanceFactor();
+    }
+
+    if (rotated->right != nullptr)
+    {
+      rotated->right->updateHeight();
+      rotated->right->updateBalanceFactor();
+    }
+
+    rotated->updateHeight();
+    rotated->updateBalanceFactor();
+
     if (node == root)
     {
       root = rotated;
@@ -99,6 +117,21 @@ private:
     AVLNode *rotated = node->left;
     node->left = rotated->right;
     rotated->right = node;
+
+    if (rotated->left != nullptr)
+    {
+      rotated->left->updateHeight();
+      rotated->left->updateBalanceFactor();
+    }
+
+    if (rotated->right != nullptr)
+    {
+      rotated->right->updateHeight();
+      rotated->right->updateBalanceFactor();
+    }
+
+    rotated->updateHeight();
+    rotated->updateBalanceFactor();
 
     if (node == root)
     {

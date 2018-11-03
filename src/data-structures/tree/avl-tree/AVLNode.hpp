@@ -7,35 +7,64 @@ public:
   int key;
   AVLNode *left;
   AVLNode *right;
+  int height;
+  int balanceFactor;
 
-  AVLNode(int key, AVLNode *left = nullptr, AVLNode *right = nullptr)
+  AVLNode(int key)
   {
     this->key = key;
-    this->left = left;
-    this->right = right;
+    this->left = nullptr;
+    this->right = nullptr;
+    this->height = 0;
+    this->balanceFactor = 0;
   };
 
   ~AVLNode() {};
 
-  int balanceFactor()
+  void updateBalanceFactor()
   {
-    return height(left) - height(right);
-  }
-
-  int height(AVLNode *node)
-  {
-    if (node == nullptr)
+    if (right == nullptr && left == nullptr)
     {
-      return -1;
+      balanceFactor = 0;
     }
-
-    if (height(node->right) > height(node->left))
+    else if (left != nullptr && right == nullptr)
     {
-      return height(node->right) + 1;
+      balanceFactor = left->height + 1;
+    }
+    else if (right != nullptr && left == nullptr)
+    {
+      balanceFactor = -(right->height + 1);
     }
     else
     {
-      return height(node->left) + 1;
+      balanceFactor = left->height - right->height;
+    }
+  }
+
+  void updateHeight()
+  {
+    if (left != nullptr && right == nullptr)
+    {
+      height = left->height + 1;
+    }
+    else if (right != nullptr && left == nullptr)
+    {
+      height = right->height + 1;
+    }
+    else if (right == nullptr && left == nullptr)
+    {
+      height = 0;
+    }
+    else
+    {
+      if (right->height > left->height)
+      {
+        height = right->height + 1;
+      }
+      else
+      {
+        height = left->height + 1;
+      }
     }
   }
 };

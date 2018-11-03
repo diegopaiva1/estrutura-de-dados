@@ -1,22 +1,38 @@
 #include <iostream>
+#include <time.h>
 #include "data-structures/tree/avl-tree/AVLTree.hpp"
 
 int main(int argc, char const *argv[])
 {
+  srand(time(NULL));
+
   AVLTree *avlTree = new AVLTree();
 
-  avlTree->root = avlTree->insert(1);
-  avlTree->insert(2);
-  avlTree->insert(3);
-  avlTree->insert(4);
-  avlTree->insert(5);
-  avlTree->insert(6);
-  avlTree->insert(7);
-  avlTree->insert(15);
-  avlTree->insert(14);
-  avlTree->insert(13);
-  avlTree->insert(12);
-  avlTree->insert(11);
+  for (int i = 0; i < 10000; i++)
+  {
+    int number = rand() % 10000 + 1;
+    if (i == 0)
+    {
+      avlTree->root = avlTree->insert(number);
+    }
+    else
+    {
+      avlTree->insert(number);
+    }
+  }
+
+  // avlTree->root = avlTree->insert(1);
+  // avlTree->insert(2);
+  // avlTree->insert(3);
+  // avlTree->insert(4);
+  // avlTree->insert(5);
+  // avlTree->insert(6);
+  // avlTree->insert(7);
+  // avlTree->insert(15);
+  // avlTree->insert(14);
+  // avlTree->insert(13);
+  // avlTree->insert(12);
+  // avlTree->insert(11);
 
   try
   {
