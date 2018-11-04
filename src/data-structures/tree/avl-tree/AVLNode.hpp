@@ -68,7 +68,6 @@ public:
     }
   }
 
-private:
   bool hasNoChildren()
   {
     return right == nullptr && left == nullptr;
