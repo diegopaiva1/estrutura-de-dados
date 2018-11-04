@@ -1,3 +1,14 @@
+/**
+ * @file    AVLNode.hpp
+ * @author  Diego Paiva e Silva
+ * @date    29/10/2018
+ *
+ * Representação do nó da arvore AVL. O nó contem um chave do tipo inteiro, um filho à esquerda, um filho
+ * à direita, altura e seu fator de balanceamento. Um nó AVL é construido inicialmente sem nenhum filho
+ * e com altura e fator de balanceamento igual a 0. Estes valores podem ser atualizados nas rotinas a partir
+ * dos métodos de atualização updateHeight() e updateBalanceFactor().
+ */
+
 #ifndef AVLNODE_H_INCLUDED
 #define AVLNODE_H_INCLUDED
 
