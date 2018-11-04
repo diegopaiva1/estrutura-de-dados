@@ -1,6 +1,6 @@
 #include <iostream>
 #include <time.h>
-#include "data-structures/tree/avl-tree/AVLTree.hpp"
+#include "data-structures/tree/avl/AVLTree.hpp"
 
 int main(int argc, char const *argv[])
 {
