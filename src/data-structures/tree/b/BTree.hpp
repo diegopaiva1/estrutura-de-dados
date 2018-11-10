@@ -29,32 +29,21 @@ public:
     if (root == nullptr)
     {
       root = new BNode(order, true);
-      root->keys.push_back(key);
+      root->insert(key);
+    }
+    else if (root->hasMaxKeysAmount())
+    {
+      // Overflow ocorre nesta inserção
+      root->insert(key);
+
+      BNode *node = new BNode(order, false);
+      node->children.push_back(root);
+      root = node;
+      node->split(node->children.at(0));
     }
     else
     {
-      if (!root->hasOverflow())
-      {
-        root->insert(key);
-      }
-      else
-      {
-        BNode *node = new BNode(order, false);
-
-        // Raíz passa a ser filha do novo nó
-        node->children.push_back(root);
-
-        node->split(root);
-
-        int i = 0;
-        if (node->keys.at(0) < key)
-          i++;
-
-        node->children.at(i)->insert(key);
-
-        // Change root
-        root = node;
-      }
+      root->insert(key);
     }
   }
 };
