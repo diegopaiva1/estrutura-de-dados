@@ -13,12 +13,12 @@
 class BTree
 {
 public:
-  unsigned int order;
+  unsigned int maxDegree;
   BNode *root;
 
-  BTree(int order)
+  BTree(int maxDegree)
   {
-    this->order = order;
+    this->maxDegree = maxDegree;
     this->root = nullptr;
   };
 
@@ -28,22 +28,21 @@ public:
   {
     if (root == nullptr)
     {
-      root = new BNode(order, true);
+      root = new BNode(maxDegree, true);
       root->insert(key);
-    }
-    else if (root->hasMaxKeysAmount())
-    {
-      // Overflow ocorre nesta inserção
-      root->insert(key);
-
-      BNode *node = new BNode(order, false);
-      node->children.push_back(root);
-      root = node;
-      node->split(node->children.at(0));
     }
     else
     {
       root->insert(key);
+
+      if (root->hasOverflow())
+      {
+        // Crescimento bottom-up: atual raíz passa a ser filho de um novo nó
+        BNode *node = new BNode(maxDegree, false);
+        node->children.at(0) = root;
+        root = node;
+        node->split(node->children.at(0), 0);
+      }
     }
   }
 };

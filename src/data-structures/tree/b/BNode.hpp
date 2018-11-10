@@ -14,83 +14,103 @@
 class BNode
 {
 public:
-  unsigned int order;
+  unsigned int maxDegree;
   bool isLeaf;
   std::vector<int> keys;
   std::vector<BNode *> children;
   InsertionSort *sorter;
 
-  BNode(int order, bool isLeaf)
+  BNode(int maxDegree, bool isLeaf)
   {
-    this->order = order;
+    this->maxDegree = maxDegree;
     this->isLeaf = isLeaf;
-    this->children.reserve(order + 1);
+    this->children.resize(maxDegree + 1);
     this->sorter = new InsertionSort();
 
-    // Armazena até 'order' chaves (um espaço é reservado para overflow)
-    keys.reserve(order);
+    // Armazena até 'maxDegree' chaves (um espaço é reservado para overflow)
+    keys.reserve(maxDegree);
   };
 
   ~BNode() {};
 
   void insert(int key)
   {
+    // Se for folha, insere normalmente e ordena
     if (this->isLeaf)
     {
       keys.push_back(key);
       sorter->sort(keys);
-      return;
     }
-
-    BNode *child;
-
-    for (int i = 0; i < keys.size(); i++)
+    else
     {
-      if (key < keys.at(i))
-        child = children.at(i);
-      else
-        child = children.at(i + 1);
-    }
+      // Vamos decidir qual o filho irá armazenar esta nova chave e guardaremos o seu index
+      BNode *child;
+      int index;
 
-    if (child->hasMaxKeysAmount())
-    {
-      // Aqui rola o overflow
+      for (unsigned int i = 0; i < keys.size(); i++)
+      {
+       /* Se ele for menor que o nó que está sendo comparado, já podemos interromper a procura
+        * pois sabemos que ele certamente ficará à esquerda deste nó. Caso contrário, continua a
+        * busca
+        */
+        if (key < keys.at(i))
+        {
+          child = children.at(i);
+          index = i;
+          break;
+        }
+        else
+        {
+          child = children.at(i + 1);
+          index = i + 1;
+        }
+      }
+
       child->insert(key);
 
-      split(child);
-      return;
+      if (child->hasOverflow())
+        split(child, index);
     }
-
-    child->insert(key);
   }
 
-  bool hasMaxKeysAmount()
+  bool hasOverflow()
   {
-    return keys.size() == order - 1;
+    return keys.size() == maxDegree;
   }
 
-  void split(BNode *&splitted)
+  void split(BNode *&splitted, int splittedIndex)
   {
-    BNode *node = new BNode(splitted->order, splitted->isLeaf);
+    BNode *node = new BNode(splitted->maxDegree, splitted->isLeaf);
 
-    // Copy right half of the keys from splitted-node to the new node
-    for (int i = splitted->keys.capacity() - 1; i > splitted->keys.capacity()/2; i--)
+    // Copia metade à direita das chaves do nó a ser dividido para o novo nó
+    for (unsigned int i = splitted->keys.capacity() - 1; i > splitted->keys.capacity()/2; i--)
     {
-      node->insert(splitted->keys.at(i));
+      node->keys.push_back(splitted->keys.at(i));
       splitted->keys.erase(splitted->keys.begin() + i);
     }
 
     if (!splitted->isLeaf)
     {
-      // Copy right half of the child pointers from splitted-node to the new node
-      for (int i = splitted->children.size()/2; i < splitted->children.size(); i++)
-        node->children.push_back(splitted->children.at(i));
+      // Copia metade dos filhos à direita do nó a ser dividido para o novo nó
+      for (unsigned int i = maxDegree - 1; i < maxDegree + 1; i++)
+      {
+        node->children.at(i - (maxDegree - 1)) = splitted->children.at(i);
+        splitted->children.at(i) = nullptr;
+      }
     }
 
-    this->children.push_back(node);
+    // Arranja espaço para alocação do novo filho, caso seja necessário
+    for (int i = keys.size(); i >= splittedIndex + 1; i--)
+      children.at(i + 1) = children.at(i);
 
-    this->keys.push_back(splitted->keys.at(order/2));
-    splitted->keys.erase(splitted->keys.begin() + order/2);
+    // Linka o novo nó como filho
+    children.at(splittedIndex + 1) = node;
+
+    // Promove a chave do meio e a apaga do nó a qual ela pertencia anteriormente
+    keys.push_back(splitted->keys.at(maxDegree/2));
+    splitted->keys.erase(splitted->keys.begin() + maxDegree/2);
+
+    sorter->sort(keys);
   }
 };
 
