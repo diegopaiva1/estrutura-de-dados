@@ -8,13 +8,16 @@ int main(int argc, char const *argv[])
 
   BTree *b = new BTree(5);
 
-  b->root = b->insert(5);
+  b->insert(5);
   b->insert(71);
   b->insert(9);
   b->insert(18);
+  b->insert(4);
 
-  std::cout << b->root->hasOverflow() << '\n';
-  std::cout << b->root->keys.size() << '\n';
+  for (auto key : b->root->keys)
+  {
+    std::cout << key << '\n';
+  }
 
   return 0;
 }

@@ -8,45 +8,57 @@
 #ifndef BNODE_H_INCLUDED
 #define BNODE_H_INCLUDED
 
-#include <iostream>
 #include <vector>
+#include "../../../algorithms/sorting/InsertionSort.hpp"
 
 class BNode
 {
 public:
-  int order;
+  unsigned int order;
+  bool isLeaf;
   std::vector<int> keys;
   std::vector<BNode *> children;
+  InsertionSort *sorter;
 
-  BNode(int order, int key)
+  BNode(int order, bool isLeaf)
   {
     this->order = order;
-    this->children.resize(order + 1);
+    this->isLeaf = isLeaf;
+    this->children.reserve(order + 1);
+    this->sorter = new InsertionSort();
 
     // Armazena até 'order' chaves (um espaço é reservado para overflow)
     keys.reserve(order);
-    keys.push_back(key);
   };
 
   ~BNode() {};
 
-  bool hasMaxKeysAmount()
+  void insert(int key)
   {
-    int keysAmount = 0;
-    for (auto key : keys)
-    {
-      if (key != NULL)
-      {
-        keysAmount++;
-      }
-    }
-
-    return keysAmount == order;
+    keys.push_back(key);
+    sorter->sort(keys);
   }
 
   bool hasOverflow()
   {
     return keys.size() == order;
+  }
+
+  void split(BNode *&splitted)
+  {
+    BNode *node = new BNode(splitted->order, splitted->isLeaf);
+
+    for (int i = splitted->keys.size()/2; i < splitted->keys.size(); i++)
+      node->insert(splitted->keys.at(i));
+
+    if (!splitted->isLeaf)
+    {
+      for (int i = 0; i < order; i++)
+        node->children.push_back(splitted->children.at(i + order));
+    }
+
+    this->children.push_back(node);
+
   }
 };
 

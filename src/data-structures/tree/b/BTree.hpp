@@ -9,50 +9,54 @@
 #define BTREE_H_INCLUDED
 
 #include "BNode.hpp"
-#include "../../../algorithms/sorting/InsertionSort.hpp"
 
 class BTree
 {
 public:
-  int order;
+  unsigned int order;
   BNode *root;
-  InsertionSort *sorter;
 
   BTree(int order)
   {
     this->order = order;
     this->root = nullptr;
-    this->sorter = new InsertionSort();
   };
 
   ~BTree() {};
 
-  BNode* insert(int key)
+  void insert(int key)
   {
-    return insert(key, root);
-  }
-
-private:
-  BNode* insert(int key, BNode *&node)
-  {
-    if (node == nullptr)
+    if (root == nullptr)
     {
-      return new BNode(order, key);
+      root = new BNode(order, true);
+      root->keys.push_back(key);
     }
-    else if (!node->hasMaxKeysAmount())
+    else
     {
-      node->keys.push_back(key);
-      sorter->sort(node->keys);
-
-      if (node->hasOverflow())
+      if (!root->hasOverflow())
       {
+        root->insert(key);
+      }
+      else
+      {
+        BNode *node = new BNode(order, false);
 
+        // Raíz passa a ser filha do novo nó
+        node->children.push_back(root);
+
+        node->split(root);
+
+        int i = 0;
+        if (node->keys.at(0) < key)
+          i++;
+
+        node->children.at(i)->insert(key);
+
+        // Change root
+        root = node;
       }
     }
-
-    return node;
   }
-
 };
 
 #endif // BTREE_H_INCLUDED
