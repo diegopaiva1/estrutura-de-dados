@@ -52,7 +52,7 @@ public:
 
     while (node != nullptr)
     {
-      int index = 0;
+      unsigned int index = 0;
 
       while (index < node->keys.size() && key > node->keys.at(index))
         index++;
