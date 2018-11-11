@@ -6,29 +6,20 @@ int main(int argc, char const *argv[])
 {
   srand(time(NULL));
 
-  BTree *b = new BTree(3);
+  BTree *b = new BTree(4);
 
-  b->insert(2);
-  b->insert(20);
-  b->insert(21);
-  b->insert(1);
-  b->insert(3);
-  b->insert(49);
-  b->insert(52);
+  for (int i = 0; i < 500000; i++)
+  {
+    b->insert(rand() % 500000 + 1);
+  }
 
-  for (auto key : b->root->keys)
+  try
   {
-    std::cout << key << '\n';
+    std::cout << b->get(11000) << '\n';
   }
-  printf("\n");
-  for (auto key : b->root->children.at(0)->keys)
+  catch (const char* exception)
   {
-    std::cout << key << '\n';
-  }
-  printf("\n");
-  for (auto key : b->root->children.at(1)->keys)
-  {
-    std::cout << key << '\n';
+    std::cerr << exception << std::endl;
   }
 
   return 0;

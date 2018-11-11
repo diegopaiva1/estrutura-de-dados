@@ -45,6 +45,27 @@ public:
       }
     }
   }
+
+  int get(int key)
+  {
+    BNode *node = root;
+
+    while (node != nullptr)
+    {
+      int index = 0;
+
+      while (index < node->keys.size() && key > node->keys.at(index))
+        index++;
+
+      if (index < node->keys.size() && key == node->keys.at(index))
+        return node->keys.at(index);
+
+      node = node->children.at(index);
+    }
+
+    // Se chegou até aqui, todas as possibilidades foram exploradas
+    throw "Chave inexistente na árvore B";
+  }
 };
 
 #endif // BTREE_H_INCLUDED

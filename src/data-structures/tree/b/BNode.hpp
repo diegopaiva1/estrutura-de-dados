@@ -92,9 +92,9 @@ public:
     if (!splitted->isLeaf)
     {
       // Copia metade dos filhos à direita do nó a ser dividido para o novo nó
-      for (unsigned int i = maxDegree - 1; i < maxDegree + 1; i++)
+      for (unsigned int i = maxDegree/2 + 1; i < maxDegree + 1; i++)
       {
-        node->children.at(i - (maxDegree - 1)) = splitted->children.at(i);
+        node->children.at(i - (maxDegree/2 + 1)) = splitted->children.at(i);
         splitted->children.at(i) = nullptr;
       }
     }
