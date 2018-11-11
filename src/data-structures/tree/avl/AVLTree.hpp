@@ -20,10 +20,14 @@ class AVLTree
 {
 public:
   AVLNode *root;
+  long long int comparisons;
+  long long int copies;
 
   AVLTree()
   {
     root = nullptr;
+    comparisons = 0;
+    copies = 0;
   };
 
   ~AVLTree() {};
@@ -58,18 +62,22 @@ public:
 private:
   AVLNode* insert(int key, AVLNode *&node)
   {
+    comparisons++;
     if (node == nullptr)
     {
       return new AVLNode(key);
     }
     else
     {
+      comparisons++;
       if (key < node->key)
       {
+        copies++;
         node->left = insert(key, node->left);
       }
       else
       {
+        copies++;
         node->right = insert(key, node->right);
       }
 
@@ -85,11 +93,14 @@ private:
 
   AVLNode* balance(AVLNode *&node)
   {
+    comparisons++;
     if (node->balanceFactor == BALANCE_FACTOR_LIMIT + 1)
     {
+      comparisons++;
       // Neste caso temos um zig-zag (necessário rotação dupla)
       if (node->left->balanceFactor == -BALANCE_FACTOR_LIMIT)
       {
+        copies++;
         node->left = rotateRight(node->left);
       }
 
@@ -97,9 +108,11 @@ private:
     }
     else if (node->balanceFactor == -BALANCE_FACTOR_LIMIT - 1)
     {
+      comparisons++;
       // Neste caso temos um zig-zag (necessário rotação dupla)
       if (node->right->balanceFactor == BALANCE_FACTOR_LIMIT)
       {
+        copies++;
         node->right = rotateLeft(node->right);
       }
 
@@ -111,6 +124,7 @@ private:
 
   AVLNode* rotateRight(AVLNode *&node)
   {
+    copies += 3;
     AVLNode *pivot = node->right;
     node->right = pivot->left;
     pivot->left = node;
@@ -122,6 +136,7 @@ private:
 
   AVLNode* rotateLeft(AVLNode *&node)
   {
+    copies += 3;
     AVLNode *pivot = node->left;
     node->left = pivot->right;
     pivot->right = node;
@@ -133,12 +148,14 @@ private:
 
   void updatePivot(AVLNode *&pivot, AVLNode *&node)
   {
+    comparisons++;
     if (pivot->left != nullptr)
     {
       pivot->left->updateHeight();
       pivot->left->updateBalanceFactor();
     }
 
+    comparisons++;
     if (pivot->right != nullptr)
     {
       pivot->right->updateHeight();
@@ -148,8 +165,10 @@ private:
     pivot->updateHeight();
     pivot->updateBalanceFactor();
 
+    comparisons++;
     if (node == root)
     {
+      copies++;
       root = pivot;
     }
   }

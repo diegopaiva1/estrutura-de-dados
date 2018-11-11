@@ -27,6 +27,7 @@ public:
   std::string stateCode;
   std::string establishmentName;
   int receiptValue;
+  int gasto_id;
 
   Deputy(std::vector<std::string> data)
   {
