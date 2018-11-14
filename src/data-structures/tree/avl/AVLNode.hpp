@@ -32,48 +32,65 @@ public:
 
   ~AVLNode() {};
 
-  void updateBalanceFactor()
+  void updateBalanceFactor(long long int &comparisons, long long int &copies)
   {
     if (hasNoChildren())
     {
+      comparisons++;
+      copies++;
       balanceFactor = 0;
     }
     else if (hasLeftChildOnly())
     {
+      comparisons++;
+      copies++;
       balanceFactor = left->height + 1;
     }
     else if (hasRightChildOnly())
     {
+      comparisons++;
+      copies++;
       balanceFactor = -(right->height + 1);
     }
     else
     {
+      comparisons += 3;
+      copies++;
       balanceFactor = left->height - right->height;
     }
   }
 
-  void updateHeight()
+  void updateHeight(long long int &comparisons, long long int &copies)
   {
     if (hasNoChildren())
     {
+      comparisons++;
+      copies++;
       height = 0;
     }
     else if (hasLeftChildOnly())
     {
+      comparisons++;
+      copies++;
       height = left->height + 1;
     }
     else if (hasRightChildOnly())
     {
+      comparisons++;
+      copies++;
       height = right->height + 1;
     }
     else
     {
+      comparisons += 4;
       if (right->height > left->height)
       {
+        copies++;
         height = right->height + 1;
       }
       else
       {
+        copies++;
         height = left->height + 1;
       }
     }

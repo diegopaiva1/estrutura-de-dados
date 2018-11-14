@@ -84,8 +84,8 @@ private:
       /* Atualiza os valores pós-inserção para retornar o nó balanceado
        * posteriormente (caso seja necessário balanceá-lo)
        */
-      node->updateHeight();
-      node->updateBalanceFactor();
+      node->updateHeight(comparisons, copies);
+      node->updateBalanceFactor(comparisons, copies);
     }
 
     return balance(node);
@@ -151,19 +151,19 @@ private:
     comparisons++;
     if (pivot->left != nullptr)
     {
-      pivot->left->updateHeight();
-      pivot->left->updateBalanceFactor();
+      pivot->left->updateHeight(comparisons, copies);
+      pivot->left->updateBalanceFactor(comparisons, copies);
     }
 
     comparisons++;
     if (pivot->right != nullptr)
     {
-      pivot->right->updateHeight();
-      pivot->right->updateBalanceFactor();
+      pivot->right->updateHeight(comparisons, copies);
+      pivot->right->updateBalanceFactor(comparisons, copies);
     }
 
-    pivot->updateHeight();
-    pivot->updateBalanceFactor();
+    pivot->updateHeight(comparisons, copies);
+    pivot->updateBalanceFactor(comparisons, copies);
 
     comparisons++;
     if (node == root)
@@ -255,8 +255,8 @@ private:
     /* Após a remoção, atualizamos altura e fator de balanceamento do nó
      * pai do nó que foi removido para balanceá-lo caso seja necessário
      */
-    node->updateHeight();
-    node->updateBalanceFactor();
+    node->updateHeight(comparisons, copies);
+    node->updateBalanceFactor(comparisons, copies);
 
     return balance(node);
   }

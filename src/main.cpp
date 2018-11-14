@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
 
   AVLTree *avlTree = new AVLTree();
 
-  tpm.storePerformanceResults("dataset/entrada.txt", avlTree);
+  tpm.storePerformanceResults("dataset/entrada.txt", avlTree, "saidaInsercao.txt");
 
 
   return 0;
