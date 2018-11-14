@@ -1,19 +1,33 @@
 #include <iostream>
 #include <time.h>
-#include "components/deputy/file/reader/DeputyFileReader.hpp"
-#include "components/TreePerformanceMeasurer.hpp"
-#include "data-structures/tree/avl/AVLTree.hpp"
+#include "data-structures/tree/red-black/RedBlackTree.hpp"
 
 int main(int argc, char const *argv[])
 {
   srand(time(NULL));
 
-  TreePerformanceMeasurer tpm;
+  RedBlackTree *redBlackTree = new RedBlackTree();
 
-  AVLTree *avlTree = new AVLTree();
+  redBlackTree->insert(10);
+  redBlackTree->insert(6);
+  redBlackTree->insert(15);
+  redBlackTree->insert(19);
 
-  tpm.storePerformanceResults("dataset/entrada.txt", avlTree, "saidaInsercao.txt");
+  std::cout << redBlackTree->root->key << '\n';
+  redBlackTree->root->color == RED ? std::cout << "Red" << '\n'
+                                   : std::cout << "Black" << '\n';
 
+  std::cout << redBlackTree->root->left->key << '\n';
+  redBlackTree->root->left->color == RED ? std::cout << "Red" << '\n'
+                                         : std::cout << "Black" << '\n';
+
+  std::cout << redBlackTree->root->right->key << '\n';
+  redBlackTree->root->right->color == RED ? std::cout << "Red" << '\n'
+                                          : std::cout << "Black" << '\n';
+
+  std::cout << redBlackTree->root->right->right->key << '\n';
+  redBlackTree->root->right->right->color == RED ? std::cout << "Red" << '\n'
+                                          : std::cout << "Black" << '\n';
 
   return 0;
 }
