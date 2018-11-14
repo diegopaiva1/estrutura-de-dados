@@ -72,6 +72,16 @@ public:
       color = BLACK;
   }
 
+  bool isRed()
+  {
+    return color == RED;
+  }
+
+  bool isBlack()
+  {
+    return color == BLACK;
+  }
+
   bool hasNoChildren()
   {
     return right == nullptr && left == nullptr;

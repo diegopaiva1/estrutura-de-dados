@@ -10,8 +10,6 @@ int main(int argc, char const *argv[])
 
   redBlackTree->insert(10);
   redBlackTree->insert(6);
-  redBlackTree->insert(15);
-  redBlackTree->insert(19);
 
   std::cout << redBlackTree->root->key << '\n';
   redBlackTree->root->color == RED ? std::cout << "Red" << '\n'
@@ -25,9 +23,9 @@ int main(int argc, char const *argv[])
   redBlackTree->root->right->color == RED ? std::cout << "Red" << '\n'
                                           : std::cout << "Black" << '\n';
 
-  std::cout << redBlackTree->root->right->right->key << '\n';
-  redBlackTree->root->right->right->color == RED ? std::cout << "Red" << '\n'
-                                          : std::cout << "Black" << '\n';
+  // std::cout << redBlackTree->root->right->right->key << '\n';
+  // redBlackTree->root->right->right->color == RED ? std::cout << "Red" << '\n'
+  //                                         : std::cout << "Black" << '\n';
 
   return 0;
 }

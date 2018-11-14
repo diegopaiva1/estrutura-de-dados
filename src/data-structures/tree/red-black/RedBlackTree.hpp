@@ -34,9 +34,9 @@ private:
     {
       RedBlackNode *insertedNode = new RedBlackNode(key);
 
-      // Por definição, a raíz é sempre preta
       if (node == root)
       {
+        // Por definição, a raíz é sempre preta
         insertedNode->color = BLACK;
         root = insertedNode;
       }
@@ -50,7 +50,8 @@ private:
         node->left = insert(key, node->left);
         node->left->father = node;
 
-        if (node->left->hasUncle() && node->left->uncle()->color == RED)
+        // Se o tio do nó recém-inserido for vermelho, basta realizar as recolorações
+        if (node->left->hasUncle() && node->left->uncle()->isRed())
         {
           node->left->father->recolor(root);
           node->left->uncle()->recolor(root);
@@ -58,13 +59,24 @@ private:
           if (node->left->hasGrandfather())
             node->grandfather()->recolor(root);
         }
+        // Caso contrário, é necessário aplicar as rotações necessárias & recolorir
+        else
+        {
+          if (node->left->father->isRed() && (!node->left->hasUncle() || node->left->uncle()->isBlack()))
+          {
+            rotateRight(node->father);
+            node->left->father->recolor(root);
+            node->left->grandfather()->recolor(root);
+          }
+        }
       }
       else
       {
         node->right = insert(key, node->right);
         node->right->father = node;
 
-        if (node->right->hasUncle() && node->right->uncle()->color == RED)
+        // Se o tio do nó recém-inserido for vermelho, basta realizar as recolorações
+        if (node->right->hasUncle() && node->right->uncle()->isRed())
         {
           node->right->uncle()->recolor(root);
 
@@ -74,10 +86,31 @@ private:
           if (node->right->hasGrandfather())
             node->right->grandfather()->recolor(root);
         }
+        // Caso contrário, é necessário aplicar as rotações necessárias & recolorir
+        else
+        {
+          if (node->right->father->isRed() && (!node->right->hasUncle() || node->right->uncle()->isBlack()))
+          {
+            node->father->left = rotateRight(node->father->left);
+          }
+        }
       }
     }
 
     return node;
+  }
+
+private:
+  RedBlackNode* rotateRight(RedBlackNode *&node)
+  {
+    RedBlackNode *pivot = node->left;
+    node->left = pivot->right;
+    pivot->right = node;
+
+    if (node == root)
+      root = pivot;
+
+    return pivot;
   }
 };
 
