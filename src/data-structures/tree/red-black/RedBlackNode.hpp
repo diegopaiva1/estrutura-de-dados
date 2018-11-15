@@ -14,7 +14,7 @@ class RedBlackNode
 {
 public:
   int key;
-  RedBlackNode *father;
+  RedBlackNode *parent;
   RedBlackNode *left;
   RedBlackNode *right;
   Color color;
@@ -22,7 +22,7 @@ public:
   RedBlackNode(int key)
   {
     this->key = key;
-    this->father = nullptr;
+    this->parent = nullptr;
     this->left = nullptr;
     this->right = nullptr;
     this->color = RED;
@@ -37,39 +37,35 @@ public:
 
   RedBlackNode* uncle()
   {
-    if (hasGrandfather())
+    if (hasGrandparent())
     {
-      if (grandfather()->left == father)
-        return grandfather()->right;
+      if (grandparent()->left == parent)
+        return grandparent()->right;
       else
-        return grandfather()->left;
+        return grandparent()->left;
     }
 
     return nullptr;
   }
 
-  bool hasGrandfather()
+  bool hasGrandparent()
   {
-    return grandfather() != nullptr;
+    return grandparent() != nullptr;
   }
 
-  RedBlackNode* grandfather()
+  RedBlackNode* grandparent()
   {
-    return father->father;
+    return parent->parent;
   }
 
   bool hasFather()
   {
-    return father != nullptr;
+    return parent != nullptr;
   }
 
-  void recolor(RedBlackNode *root)
+  void recolor()
   {
     color == RED ? color = BLACK : color = RED;
-
-    // A raíz é sempre preta!
-    if (this == root)
-      color = BLACK;
   }
 
   bool isRed()

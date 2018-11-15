@@ -9,6 +9,7 @@
 #define REDBLACKTREE_H_INCLUDED
 
 #include "RedBlackNode.hpp"
+#include <queue>
 
 class RedBlackTree
 {
@@ -22,78 +23,66 @@ public:
 
   ~RedBlackTree() {};
 
-  RedBlackNode* insert(int key)
+  void insert(int key)
   {
-    return insert(key, root);
+    RedBlackNode *toBeInserted = new RedBlackNode(key);
+
+    // A inserção atualiza a raíz, caso seja necessário
+    root = insert(toBeInserted, root);
+
+    fixTreeProperties(toBeInserted);
   }
 
-private:
-  RedBlackNode* insert(int key, RedBlackNode *&node)
+  void printKeysByLevel()
   {
-    if (node == nullptr)
+    if (root == nullptr)
     {
-      RedBlackNode *insertedNode = new RedBlackNode(key);
-
-      if (node == root)
-      {
-        // Por definição, a raíz é sempre preta
-        insertedNode->color = BLACK;
-        root = insertedNode;
-      }
-
-      return insertedNode;
+      return;
     }
     else
     {
-      if (key < node->key)
+      std::queue<RedBlackNode *> queue;
+      queue.push(root);
+
+      while (!queue.empty())
       {
-        node->left = insert(key, node->left);
-        node->left->father = node;
+        RedBlackNode *node = queue.front();
 
-        // Se o tio do nó recém-inserido for vermelho, basta realizar as recolorações
-        if (node->left->hasUncle() && node->left->uncle()->isRed())
-        {
-          node->left->father->recolor(root);
-          node->left->uncle()->recolor(root);
+        std::cout << node->key << " ";
 
-          if (node->left->hasGrandfather())
-            node->grandfather()->recolor(root);
-        }
-        // Caso contrário, é necessário aplicar as rotações necessárias & recolorir
-        else
-        {
-          if (node->left->father->isRed() && (!node->left->hasUncle() || node->left->uncle()->isBlack()))
-          {
-            rotateRight(node->father);
-            node->left->father->recolor(root);
-            node->left->grandfather()->recolor(root);
-          }
-        }
+        node->color == RED ? std::cout << "(RED)" << " "
+                          : std::cout << "(BLACK)" << " ";
+
+        queue.pop();
+
+        if (node->left != nullptr)
+          queue.push(node->left);
+
+        if (node->right != nullptr)
+          queue.push(node->right);
+      }
+      printf("\n");
+    }
+  }
+
+private:
+  RedBlackNode* insert(RedBlackNode *&toBeInserted, RedBlackNode *&node)
+  {
+    if (node == nullptr)
+    {
+      return toBeInserted;
+    }
+    else
+    {
+      if (toBeInserted->key < node->key)
+      {
+        node->left = insert(toBeInserted, node->left);
+        node->left->parent = node;
       }
       else
       {
-        node->right = insert(key, node->right);
-        node->right->father = node;
-
-        // Se o tio do nó recém-inserido for vermelho, basta realizar as recolorações
-        if (node->right->hasUncle() && node->right->uncle()->isRed())
-        {
-          node->right->uncle()->recolor(root);
-
-          if (node->right->hasFather())
-            node->right->father->recolor(root);
-
-          if (node->right->hasGrandfather())
-            node->right->grandfather()->recolor(root);
-        }
-        // Caso contrário, é necessário aplicar as rotações necessárias & recolorir
-        else
-        {
-          if (node->right->father->isRed() && (!node->right->hasUncle() || node->right->uncle()->isBlack()))
-          {
-            node->father->left = rotateRight(node->father->left);
-          }
-        }
+        node->right = insert(toBeInserted, node->right);
+        node->right->parent = node;
       }
     }
 
@@ -101,16 +90,94 @@ private:
   }
 
 private:
-  RedBlackNode* rotateRight(RedBlackNode *&node)
+ /* Verifica se o nó passado como argumento viola alguma propriedade da AVP e, caso isso ocorra,
+  * o ajuste é realizado sequencialmente até que não haja mais violações
+  */
+  void fixTreeProperties(RedBlackNode *&ptr)
   {
-    RedBlackNode *pivot = node->left;
-    node->left = pivot->right;
-    pivot->right = node;
+RedBlackNode *parent = nullptr;
+    RedBlackNode *grandparent = nullptr;
+    while (ptr != root && ptr->isRed() && parent->isRed()) {
+        parent = ptr->parent;
+        grandparent = parent->parent;
+        if (parent == grandparent->left) {
+            RedBlackNode *uncle = grandparent->right;
+            if (getColor(uncle) == RED) {
+                setColor(uncle, BLACK);
+                setColor(parent, BLACK);
+                setColor(grandparent, RED);
+                ptr = grandparent;
+            } else {
+                if (ptr == parent->right) {
+                    rotateLeft(parent);
+                    ptr = parent;
+                    parent = ptr->parent;
+                }
+                rotateRight(grandparent);
+                swap(parent->color, grandparent->color);
+                ptr = parent;
+            }
+        } else {
+            Node *uncle = grandparent->left;
+            if (getColor(uncle) == RED) {
+                setColor(uncle, BLACK);
+                setColor(parent, BLACK);
+                setColor(grandparent, RED);
+                ptr = grandparent;
+            } else {
+                if (ptr == parent->left) {
+                    rotateRight(parent);
+                    ptr = parent;
+                    parent = ptr->parent;
+                }
+                rotateLeft(grandparent);
+                swap(parent->color, grandparent->color);
+                ptr = parent;
+            }
+        }
+    }
+  }
 
-    if (node == root)
-      root = pivot;
+  void rotateLeft(RedBlackNode *&node)
+  {
+    RedBlackNode *right = node->right;
+    node->right = right->left;
 
-    return pivot;
+    if (node->right != nullptr)
+      node->right->parent = node;
+
+    right->parent = node->parent;
+
+    if (node->parent == nullptr)
+      root = right;
+    else if (node == node->parent->left)
+      node->parent->left = right;
+    else
+      node->parent->right = right;
+
+    right->left = node;
+    node->parent = right;
+  }
+
+  void rotateRight(RedBlackNode *&node)
+  {
+    RedBlackNode *left = node->left;
+    node->left = left->right;
+
+    if (node->left != nullptr)
+      node->left->parent = node;
+
+    left->parent = node->parent;
+
+    if (node->parent == nullptr)
+      root = left;
+    else if (node == node->parent->left)
+      node->parent->left = left;
+    else
+      node->parent->right = left;
+
+    left->right = node;
+    node->parent = left;
   }
 };
 

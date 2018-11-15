@@ -9,23 +9,19 @@ int main(int argc, char const *argv[])
   RedBlackTree *redBlackTree = new RedBlackTree();
 
   redBlackTree->insert(10);
+  redBlackTree->insert(9);
+  redBlackTree->insert(8);
+  redBlackTree->insert(7);
   redBlackTree->insert(6);
+  redBlackTree->insert(5);
+  redBlackTree->insert(4);
+  redBlackTree->insert(3);
+  redBlackTree->insert(2);
+  redBlackTree->insert(1);
 
-  std::cout << redBlackTree->root->key << '\n';
-  redBlackTree->root->color == RED ? std::cout << "Red" << '\n'
-                                   : std::cout << "Black" << '\n';
+  std::cout << "Raíz = " << redBlackTree->root->key << '\n';
 
-  std::cout << redBlackTree->root->left->key << '\n';
-  redBlackTree->root->left->color == RED ? std::cout << "Red" << '\n'
-                                         : std::cout << "Black" << '\n';
-
-  std::cout << redBlackTree->root->right->key << '\n';
-  redBlackTree->root->right->color == RED ? std::cout << "Red" << '\n'
-                                          : std::cout << "Black" << '\n';
-
-  // std::cout << redBlackTree->root->right->right->key << '\n';
-  // redBlackTree->root->right->right->color == RED ? std::cout << "Red" << '\n'
-  //                                         : std::cout << "Black" << '\n';
+  redBlackTree->printKeysByLevel();
 
   return 0;
 }

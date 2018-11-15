@@ -15,6 +15,7 @@
 #define BALANCE_FACTOR_LIMIT 1
 
 #include "AVLNode.hpp"
+#include <queue>
 
 class AVLTree
 {
@@ -57,6 +58,28 @@ public:
   AVLNode* remove(int key)
   {
     return remove(key, root);
+  }
+
+  void printNodesByLevel()
+  {
+    if (root == nullptr)
+      return;
+
+    std::queue<AVLNode *> q;
+    q.push(root);
+
+    while (!q.empty())
+    {
+      AVLNode *temp = q.front();
+      std::cout << temp->key << " ";
+      q.pop();
+
+      if (temp->left != nullptr)
+        q.push(temp->left);
+
+      if (temp->right != nullptr)
+        q.push(temp->right);
+    }
   }
 
 private:
