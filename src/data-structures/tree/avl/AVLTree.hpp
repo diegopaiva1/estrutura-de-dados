@@ -5,8 +5,8 @@
  *
  * Implementação da árvore balanceada AVL com métodos de inserção, busca e remoção.
  * O fator de balanceamento limite default é estipulado na constante BALANCE_FACTOR_LIMIT.
- * Isto é, qualquer nó que apresentar fator de balanceamento maior que BALANCE_FATOR_LIMIT e menor
- * que -BALANCE_FACTOR_LIMIT é considerado desbalanceado e a operação de balanceamento é aplicada.
+ * Isto siginifica que qualquer nó que apresentar fator de balanceamento maior que BALANCE_FATOR_LIMIT
+ * e menor que -BALANCE_FACTOR_LIMIT é considerado desbalanceado e a operação de balanceamento é aplicada.
  */
 
 #ifndef AVLTREE_H_INCLUDED
@@ -14,6 +14,7 @@
 
 #define BALANCE_FACTOR_LIMIT 1
 
+#include <queue>
 #include "AVLNode.hpp"
 
 class AVLTree
@@ -59,13 +60,48 @@ public:
     return remove(key, root);
   }
 
+  void printKeysByLevel()
+  {
+    if (root == nullptr)
+    {
+      return;
+    }
+    else
+    {
+      std::queue<AVLNode *> queue;
+      queue.push(root);
+
+      while (!queue.empty())
+      {
+        AVLNode *node = queue.front();
+
+        std::cout << node->key << " ";
+
+        queue.pop();
+
+        if (node->left != nullptr)
+          queue.push(node->left);
+
+        if (node->right != nullptr)
+          queue.push(node->right);
+      }
+      printf("\n");
+    }
+  }
+
 private:
   AVLNode* insert(int key, AVLNode *&node)
   {
     comparisons++;
     if (node == nullptr)
     {
-      return new AVLNode(key);
+      AVLNode* newNode = new AVLNode(key);
+
+      comparisons++;
+      if (node == root)
+        root = newNode;
+
+      return newNode;
     }
     else
     {
@@ -81,9 +117,9 @@ private:
         node->right = insert(key, node->right);
       }
 
-      /* Atualiza os valores pós-inserção para retornar o nó balanceado
-       * posteriormente (caso seja necessário balanceá-lo)
-       */
+     /* Atualiza os valores pós-inserção para retornar o nó balanceado
+      * posteriormente (caso seja necessário balanceá-lo)
+      */
       node->updateHeight();
       node->updateBalanceFactor();
     }
@@ -177,7 +213,7 @@ private:
   {
     if (node == nullptr)
     {
-      throw "Esta chave não existe na árvore AVL";
+      throw "Esta chave não existe na árvore";
     }
     else if (key < node->key)
     {
@@ -197,7 +233,7 @@ private:
   {
     if (node == nullptr)
     {
-      throw "Esta chave não pode ser removida pois não está contida na árvore AVL";
+      throw "Esta chave não pode ser removida pois não está contida na árvore";
     }
     else if (key < node->key)
     {
@@ -230,11 +266,11 @@ private:
         node = nullptr;
         return sucessor;
       }
-      /* No caso seguinte, o nó tem ambos os filhos. De modo a facilitar o balanceamento posteriormente,
-       * o sucessor é escolhido ná arvore que possui maior número de nós (maior altura).
-       * Se for escolhida a subárvore à esquerda então procuramos o nó com a maior chave,
-       * senão escolhemos a subárvore à direita e procuramos o nó com a menor chave
-       */
+     /* No caso seguinte, o nó tem ambos os filhos. De modo a facilitar o balanceamento posteriormente,
+      * o sucessor é escolhido ná arvore que possui maior número de nós (maior altura).
+      * Se for escolhida a subárvore à esquerda então procuramos o nó com a maior chave,
+      * senão escolhemos a subárvore à direita e procuramos o nó com a menor chave
+      */
       else
       {
         if (node->left->height > node->right->height)
@@ -252,9 +288,9 @@ private:
       }
     }
 
-    /* Após a remoção, atualizamos altura e fator de balanceamento do nó
-     * pai do nó que foi removido para balanceá-lo caso seja necessário
-     */
+   /* Após a remoção, atualizamos altura e fator de balanceamento do nó
+    * pai do nó que foi removido para balanceá-lo caso seja necessário
+    */
     node->updateHeight();
     node->updateBalanceFactor();
 
@@ -264,22 +300,26 @@ private:
   int getMinKey(AVLNode *node)
   {
     AVLNode* min;
+
     while (node != nullptr)
     {
       min = node;
       node = node->left;
     }
+
     return min->key;
   }
 
   int getMaxKey(AVLNode *node)
   {
     AVLNode* max;
+
     while (node != nullptr)
     {
       max = node;
       node = node->right;
     }
+
     return max->key;
   }
 };
