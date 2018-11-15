@@ -93,49 +93,66 @@ private:
  /* Verifica se o nó passado como argumento viola alguma propriedade da AVP e, caso isso ocorra,
   * o ajuste é realizado sequencialmente até que não haja mais violações
   */
-  void fixTreeProperties(RedBlackNode *&ptr)
+  void fixTreeProperties(RedBlackNode *&node)
   {
-RedBlackNode *parent = nullptr;
-    RedBlackNode *grandparent = nullptr;
-    while (ptr != root && ptr->isRed() && parent->isRed()) {
-        parent = ptr->parent;
-        grandparent = parent->parent;
-        if (parent == grandparent->left) {
-            RedBlackNode *uncle = grandparent->right;
-            if (getColor(uncle) == RED) {
-                setColor(uncle, BLACK);
-                setColor(parent, BLACK);
-                setColor(grandparent, RED);
-                ptr = grandparent;
-            } else {
-                if (ptr == parent->right) {
-                    rotateLeft(parent);
-                    ptr = parent;
-                    parent = ptr->parent;
-                }
-                rotateRight(grandparent);
-                swap(parent->color, grandparent->color);
-                ptr = parent;
-            }
-        } else {
-            Node *uncle = grandparent->left;
-            if (getColor(uncle) == RED) {
-                setColor(uncle, BLACK);
-                setColor(parent, BLACK);
-                setColor(grandparent, RED);
-                ptr = grandparent;
-            } else {
-                if (ptr == parent->left) {
-                    rotateRight(parent);
-                    ptr = parent;
-                    parent = ptr->parent;
-                }
-                rotateLeft(grandparent);
-                swap(parent->color, grandparent->color);
-                ptr = parent;
-            }
+    while (node != root && node->isRed() && node->parent->isRed())
+    {
+      RedBlackNode *parent = node->parent;
+      RedBlackNode *grandparent = node->grandparent();
+
+      if (parent == grandparent->left)
+      {
+        if (node->hasUncle() && node->uncle()->isRed())
+        {
+          node->uncle()->recolor();
+          parent->recolor();
+
+          if (node->hasGrandparent())
+            grandparent->recolor();
+
+          node = grandparent;
         }
+        else
+        {
+          if (node == parent->right)
+          {
+            rotateLeft(parent);
+            node = parent;
+            parent = node->parent;
+          }
+          rotateRight(grandparent);
+          std::swap(parent->color, grandparent->color);
+          node = parent;
+        }
+      }
+      else
+      {
+        if (node->hasUncle() && node->uncle()->isRed())
+        {
+          node->uncle()->recolor();
+          parent->recolor();
+
+          if (node->hasGrandparent())
+            grandparent->recolor();
+
+          node = grandparent;
+        }
+        else
+        {
+          if (node == parent->left)
+          {
+            rotateRight(parent);
+            node = parent;
+            parent = node->parent;
+          }
+          rotateLeft(grandparent);
+          std::swap(parent->color, grandparent->color);
+          node = parent;
+        }
+      }
     }
+
+    root->color = BLACK;
   }
 
   void rotateLeft(RedBlackNode *&node)
