@@ -60,28 +60,6 @@ public:
     return remove(key, root);
   }
 
-  void printNodesByLevel()
-  {
-    if (root == nullptr)
-      return;
-
-    std::queue<AVLNode *> q;
-    q.push(root);
-
-    while (!q.empty())
-    {
-      AVLNode *temp = q.front();
-      std::cout << temp->key << " ";
-      q.pop();
-
-      if (temp->left != nullptr)
-        q.push(temp->left);
-
-      if (temp->right != nullptr)
-        q.push(temp->right);
-    }
-  }
-
 private:
   AVLNode* insert(int key, AVLNode *&node)
   {
@@ -200,7 +178,7 @@ private:
   {
     if (node == nullptr)
     {
-      throw "Esta chave não existe na árvore AVL";
+      throw "Esta chave não existe na árvore";
     }
     else if (key < node->key)
     {
@@ -220,7 +198,7 @@ private:
   {
     if (node == nullptr)
     {
-      throw "Esta chave não pode ser removida pois não está contida na árvore AVL";
+      throw "Esta chave não pode ser removida pois não está contida na árvore";
     }
     else if (key < node->key)
     {

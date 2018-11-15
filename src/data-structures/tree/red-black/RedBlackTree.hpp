@@ -33,6 +33,11 @@ public:
     fixTreeProperties(toBeInserted);
   }
 
+  RedBlackNode* get(int key)
+  {
+    return get(key, root);
+  }
+
   void printKeysByLevel()
   {
     if (root == nullptr)
@@ -89,7 +94,26 @@ private:
     return node;
   }
 
-private:
+  RedBlackNode* get(int key, RedBlackNode* node)
+  {
+    if (node == nullptr)
+    {
+      throw "Esta chave não existe na árvore";
+    }
+    else if (key < node->key)
+    {
+      return get(key, node->left);
+    }
+    else if (key > node->key)
+    {
+      return get(key, node->right);
+    }
+    else
+    {
+      return node;
+    }
+  }
+
  /* Verifica se o nó passado como argumento viola alguma propriedade da AVP e, caso isso ocorra,
   * o ajuste é realizado sequencialmente até que não haja mais violações
   */
