@@ -100,58 +100,55 @@ private:
       RedBlackNode *parent = node->parent;
       RedBlackNode *grandparent = node->grandparent();
 
-      if (parent == grandparent->left)
+      // Se o tio do nó é vermelho, basta apenas realizar as recolorações
+      if (node->hasUncle() && node->uncle()->isRed())
       {
-        if (node->hasUncle() && node->uncle()->isRed())
-        {
-          node->uncle()->recolor();
-          parent->recolor();
+        node->uncle()->recolor();
+        parent->recolor();
 
-          if (node->hasGrandparent())
-            grandparent->recolor();
+        if (node->hasGrandparent())
+          grandparent->recolor();
 
-          node = grandparent;
-        }
-        else
+        node = grandparent;
+      }
+      // Caso contrário, é necessário aplicar as rotações & recolorações necessárias
+      else
+      {
+        // Árvore está desbalanceada à esquerda
+        if (parent == grandparent->left)
         {
+          // Se a condição abaixo é verdadeira, temos um zig-zag (necessário rotação dupla)
           if (node == parent->right)
           {
             rotateLeft(parent);
             node = parent;
             parent = node->parent;
           }
+
           rotateRight(grandparent);
-          std::swap(parent->color, grandparent->color);
-          node = parent;
         }
-      }
-      else
-      {
-        if (node->hasUncle() && node->uncle()->isRed())
+        // Árvore está desbalanceada à direita
+        else if (parent == grandparent->right)
         {
-          node->uncle()->recolor();
-          parent->recolor();
-
-          if (node->hasGrandparent())
-            grandparent->recolor();
-
-          node = grandparent;
-        }
-        else
-        {
+          // Se a condição abaixo é verdadeira, temos um zig-zag (necessário rotação dupla)
           if (node == parent->left)
           {
             rotateRight(parent);
             node = parent;
             parent = node->parent;
           }
+
           rotateLeft(grandparent);
-          std::swap(parent->color, grandparent->color);
-          node = parent;
         }
+
+        // Recoloração pós-rotação
+        std::swap(parent->color, grandparent->color);
+
+        node = parent;
       }
     }
 
+    // A raíz é sempre preta!
     root->color = BLACK;
   }
 
