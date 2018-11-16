@@ -58,9 +58,27 @@ public:
     return parent->parent;
   }
 
-  bool hasFather()
+  bool hasParent()
   {
     return parent != nullptr;
+  }
+
+  RedBlackNode* sibling()
+  {
+    if (this->isLeftChild())
+      return parent->right;
+    else
+      return parent->left;
+  }
+
+  bool isLeftChild()
+  {
+    return this == parent->left;
+  }
+
+  bool hasSibling()
+  {
+    return sibling() != nullptr;
   }
 
   void recolor()

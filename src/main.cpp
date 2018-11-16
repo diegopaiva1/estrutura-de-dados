@@ -8,19 +8,14 @@ int main(int argc, char const *argv[])
 
   RedBlackTree *redBlackTree = new RedBlackTree();
 
-  for (int i = 1; i < 50; i++)
-    redBlackTree->insert(rand() % 50 + 1);
+  redBlackTree->insert(30);
+  redBlackTree->insert(20);
+  redBlackTree->insert(40);
+  redBlackTree->insert(10);
 
-  try
-  {
-    std::cout << redBlackTree->get(11)->key << '\n';
-  }
-  catch (const char* exception)
-  {
-    std::cerr << exception << '\n';
-  }
+  // redBlackTree->remove(20);
 
-  // redBlackTree->printKeysByLevel();
+  redBlackTree->printKeysByLevel();
 
   return 0;
 }

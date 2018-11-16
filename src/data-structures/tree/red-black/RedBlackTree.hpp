@@ -38,6 +38,11 @@ public:
     return get(key, root);
   }
 
+  RedBlackNode* remove(int key)
+  {
+    return remove(key, root);
+  }
+
   void printKeysByLevel()
   {
     if (root == nullptr)
@@ -186,9 +191,9 @@ private:
 
     right->parent = node->parent;
 
-    if (node->parent == nullptr)
+    if (!node->hasParent())
       root = right;
-    else if (node == node->parent->left)
+    else if (node->isLeftChild())
       node->parent->left = right;
     else
       node->parent->right = right;
@@ -207,15 +212,109 @@ private:
 
     left->parent = node->parent;
 
-    if (node->parent == nullptr)
+    if (!node->hasParent())
       root = left;
-    else if (node == node->parent->left)
+    else if (node->isLeftChild())
       node->parent->left = left;
     else
       node->parent->right = left;
 
     left->right = node;
     node->parent = left;
+  }
+
+  RedBlackNode* remove(int key, RedBlackNode *&node)
+  {
+    if (node == nullptr)
+    {
+      throw "Esta chave não pode ser removida pois não está contida na árvore";
+    }
+    else if (key < node->key)
+    {
+      node->left = remove(key, node->left);
+    }
+    else if (key > node->key)
+    {
+      node->right = remove(key, node->right);
+    }
+    // A chave de remoção foi encontrada. Os 4 casos possíveis de remoção são tratados.
+    else
+    {
+      if (node->hasNoChildren())
+      {
+        delete node;
+        node = nullptr;
+
+        while (node != root)
+        {
+          if ((node->hasSibling() && node->sibling()->isBlack()) && (node->sibling()->left->isRed() || node->sibling()->right->isRed()))
+          {
+            RedBlackNode* redChild = node->sibling()->left->isRed() ? node->sibling()->left : node->sibling()->right;
+
+            // Caso 3.2a (III)
+            if ((!node->sibling()->isLeftChild() && !redChild->isLeftChild()) || (node->sibling()->left->isRed() && node->sibling()->right->isRed()))
+            {
+
+            }
+          }
+        }
+
+        return node;
+      }
+      else if (node->hasLeftChildOnly())
+      {
+        RedBlackNode *sucessor = node->left;
+
+        if (node->isRed() || sucessor->isRed())
+          sucessor->recolor();
+
+        delete node;
+        node = nullptr;
+        return sucessor;
+      }
+      else if (node->hasRightChildOnly())
+      {
+        RedBlackNode *sucessor = node->right;
+        delete node;
+        node = nullptr;
+        return sucessor;
+      }
+      // No caso seguinte, o nó tem ambos os filhos. Vamos optar pela subárvore à esquerda
+      else
+      {
+        int sucessorKey = getMaxKey(node->left);
+        node->key = sucessorKey;
+        node->left = remove(sucessorKey, node->left);
+      }
+    }
+
+    /* Após a remoção, atualizamos altura e fator de balanceamento do nó
+     * pai do nó que foi removido para balanceá-lo caso seja necessário
+     */
+
+    return node;
+  }
+
+  int getMinKey(RedBlackNode *node)
+  {
+    RedBlackNode* min;
+    while (node != nullptr)
+    {
+      min = node;
+      node = node->left;
+    }
+    return min->key;
+  }
+
+  int getMaxKey(RedBlackNode *node)
+  {
+    RedBlackNode* max;
+    while (node != nullptr)
+    {
+      max = node;
+      node = node->right;
+    }
+    return max->key;
   }
 };
 
