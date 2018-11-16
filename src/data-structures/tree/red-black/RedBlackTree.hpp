@@ -242,6 +242,7 @@ private:
     {
       if (node->hasNoChildren())
       {
+        auto f = node->parent;
         delete node;
         node = nullptr;
 
@@ -249,12 +250,14 @@ private:
         {
           if ((node->hasSibling() && node->sibling()->isBlack()) && (node->sibling()->left->isRed() || node->sibling()->right->isRed()))
           {
-            RedBlackNode* redChild = node->sibling()->left->isRed() ? node->sibling()->left : node->sibling()->right;
+            RedBlackNode* redChild = node->sibling()->left->isRed() ? node->sibling()->left
+                                                                    : node->sibling()->right;
 
             // Caso 3.2a (III)
-            if ((!node->sibling()->isLeftChild() && !redChild->isLeftChild()) || (node->sibling()->left->isRed() && node->sibling()->right->isRed()))
+            if ((node->sibling()->isRightChild() && redChild->isRightChild()) || (node->sibling()->left->isRed() && node->sibling()->right->isRed()))
             {
-
+              rotateRight(f);
+              rotateLeft(f->right);
             }
           }
         }
@@ -287,10 +290,6 @@ private:
         node->left = remove(sucessorKey, node->left);
       }
     }
-
-    /* Após a remoção, atualizamos altura e fator de balanceamento do nó
-     * pai do nó que foi removido para balanceá-lo caso seja necessário
-     */
 
     return node;
   }

@@ -11,9 +11,10 @@ int main(int argc, char const *argv[])
   redBlackTree->insert(30);
   redBlackTree->insert(20);
   redBlackTree->insert(40);
-  redBlackTree->insert(10);
+  redBlackTree->insert(35);
+  redBlackTree->insert(50);
 
-  // redBlackTree->remove(20);
+  redBlackTree->remove(20);
 
   redBlackTree->printKeysByLevel();
 

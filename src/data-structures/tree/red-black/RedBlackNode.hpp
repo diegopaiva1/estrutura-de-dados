@@ -43,11 +43,6 @@ public:
     return nullptr;
   }
 
-  RedBlackNode* grandparent()
-  {
-    return parent->parent;
-  }
-
   RedBlackNode* sibling()
   {
     if (this->isLeftChild())
@@ -56,15 +51,19 @@ public:
       return parent->left;
   }
 
+  RedBlackNode* grandparent() { return parent->parent; }
+
   bool hasUncle() { return uncle() != nullptr; }
 
   bool hasGrandparent() { return grandparent() != nullptr; }
+
+  bool hasSibling() { return sibling() != nullptr; }
 
   bool hasParent() { return parent != nullptr; }
 
   bool isLeftChild() { return this == parent->left; }
 
-  bool hasSibling() { return sibling() != nullptr; }
+  bool isRightChild() { return this == parent->right; }
 
   void recolor() { color == RED ? color = BLACK : color = RED; }
 
