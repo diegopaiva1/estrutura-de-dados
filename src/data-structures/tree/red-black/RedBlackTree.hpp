@@ -120,7 +120,7 @@ private:
   }
 
  /* Verifica se o nó passado como argumento viola alguma propriedade da AVP e, caso isso ocorra,
-  * o ajuste é realizado sequencialmente até que não haja mais violações
+  * o ajuste é realizado sequencialmente até que não hajam mais violações
   */
   void fixTreeProperties(RedBlackNode *&node)
   {
@@ -227,7 +227,7 @@ private:
   {
     if (node == nullptr)
     {
-      throw "Esta chave não pode ser removida pois não está contida na árvore";
+      throw "A chave não pode ser removida pois não está contida na árvore";
     }
     else if (key < node->key)
     {
@@ -237,58 +237,81 @@ private:
     {
       node->right = remove(key, node->right);
     }
-    // A chave de remoção foi encontrada. Os 4 casos possíveis de remoção são tratados.
+    // A chave de remoção foi encontrada. Os casos possíveis de remoção são tratados.
     else
     {
+     /* O nó é deletado, mas sua referência na memória ainda existe, por isso podemos continuar
+      * acessando suas informações. No fim do bloco a referência é removida
+      */
+      delete node;
+
+      RedBlackNode* sucessor;
+
       if (node->hasNoChildren())
       {
-        auto f = node->parent;
-        delete node;
-        node = nullptr;
-
-        while (node != root)
-        {
-          if ((node->hasSibling() && node->sibling()->isBlack()) && (node->sibling()->left->isRed() || node->sibling()->right->isRed()))
-          {
-            RedBlackNode* redChild = node->sibling()->left->isRed() ? node->sibling()->left
-                                                                    : node->sibling()->right;
-
-            // Caso 3.2a (III)
-            if ((node->sibling()->isRightChild() && redChild->isRightChild()) || (node->sibling()->left->isRed() && node->sibling()->right->isRed()))
-            {
-              rotateRight(f);
-              rotateLeft(f->right);
-            }
-          }
-        }
-
-        return node;
+        sucessor = nullptr;
       }
       else if (node->hasLeftChildOnly())
       {
-        RedBlackNode *sucessor = node->left;
-
-        if (node->isRed() || sucessor->isRed())
-          sucessor->recolor();
-
-        delete node;
-        node = nullptr;
-        return sucessor;
+        sucessor = node->left;
       }
       else if (node->hasRightChildOnly())
       {
-        RedBlackNode *sucessor = node->right;
-        delete node;
-        node = nullptr;
-        return sucessor;
+        sucessor = node->right;
       }
-      // No caso seguinte, o nó tem ambos os filhos. Vamos optar pela subárvore à esquerda
       else
       {
         int sucessorKey = getMaxKey(node->left);
         node->key = sucessorKey;
         node->left = remove(sucessorKey, node->left);
       }
+
+      // Caso mais simples
+      if (node->isRed() || (sucessor != nullptr && sucessor->isRed()))
+      {
+        sucessor->recolor();
+      }
+      else if (node->isBlack() || node->hasNoChildren())
+      {
+        // Se tirar esse cout de baixo o programa crasha... Só Deus sabe o porquê. Então deixa ela quieta ai
+        std::cout << " ";
+
+        node->color = DOUBLE_BLACK;
+
+        while (node->color == DOUBLE_BLACK && node != root)
+        {
+          if ( (node->hasSibling() && node->sibling()->isBlack()) &&
+               (node->sibling()->left->isRed() || node->sibling()->right->isRed()) )
+          {
+            RedBlackNode* redChild = node->sibling()->left->isRed() ? node->sibling()->left
+                                                                    : node->sibling()->right;
+            // Caso 3.2a (I)
+            if ( (node->sibling()->isLeftChild() && redChild->isLeftChild()) ||
+                 (node->sibling()->left->isRed() && node->sibling()->right->isRed()) )
+              rotateRight(node->parent);
+
+            // Caso 3.2a (III)
+            else if ( (node->sibling()->isRightChild() && redChild->isRightChild()) ||
+                      (node->sibling()->left->isRed() && node->sibling()->right->isRed()) )
+              rotateLeft(node->parent);
+
+            // Caso 3.2a (IV)
+            else if (node->sibling()->isRightChild() && redChild->isLeftChild())
+            {
+              RedBlackNode* sibling = node->sibling();
+
+              rotateRight(sibling);
+              rotateLeft(sibling);
+            }
+          }
+
+          node = node->parent;
+        }
+      }
+
+      node = nullptr;
+
+      return sucessor;
     }
 
     return node;

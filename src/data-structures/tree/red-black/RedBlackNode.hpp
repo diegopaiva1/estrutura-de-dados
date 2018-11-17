@@ -8,7 +8,7 @@
 #ifndef REDBLACKNODE_H_INCLUDED
 #define REDBLACKNODE_H_INCLUDED
 
-enum Color {RED, BLACK};
+enum Color {RED, BLACK, DOUBLE_BLACK};
 
 class RedBlackNode
 {
