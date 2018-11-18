@@ -1,6 +1,7 @@
 #include <iostream>
 #include <time.h>
 #include "data-structures/tree/red-black/RedBlackTree.hpp"
+#include "data-structures/tree/avl/AVLTree.hpp"
 
 int main(int argc, char const *argv[])
 {
