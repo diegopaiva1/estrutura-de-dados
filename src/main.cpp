@@ -8,15 +8,16 @@ int main(int argc, char const *argv[])
 
   PatriciaTree *patriciaTree = new PatriciaTree();
 
-  patriciaTree->insert("MACA");
-  patriciaTree->insert("MACACO");
-  patriciaTree->insert("MACAQUINHO");
-  patriciaTree->insert("MACAQUICE");
-  // patriciaTree->insert("INSETICIDA");
+  patriciaTree->insert("RODOVIA");
+  patriciaTree->insert("RODOVIARIO");
+  patriciaTree->insert("RODOVIARIA");
+  patriciaTree->insert("RODOANEL");
+  // patriciaTree->insert("ABELHA");
 
   std::cout << patriciaTree->root->word << '\n';
-  std::cout << patriciaTree->root->children.at(2)->word << '\n';
-  std::cout << patriciaTree->root->children.at(16)->word << '\n';
+  std::cout << patriciaTree->root->children.at(0)->word << '\n';
+  std::cout << patriciaTree->root->children.at(21)->word << '\n';
+  std::cout << patriciaTree->root->children.at(21)->children.at(17)->word << '\n';
 
   return 0;
 }

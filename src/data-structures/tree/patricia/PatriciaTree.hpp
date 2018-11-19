@@ -21,6 +21,7 @@ public:
 
   PatriciaNode* insert(char* word) { return insert(word, root); }
 
+private:
   PatriciaNode* insert(char* word, PatriciaNode *&node)
   {
     if (node == nullptr)
@@ -34,6 +35,9 @@ public:
     }
     else
     {
+      // Posição de inserção do filho no vetor de filhos do nó atual
+      int position;
+
       int wordLength = strlen(word);
       int nodeWordLength = strlen(node->word);
 
@@ -47,48 +51,60 @@ public:
         for (int i = 0, j = nodeWordLength; word[j] != '\0'; i++, j++)
           remainingCharacters[i] = word[j];
 
-       /* Posição de inserção do filho no vetor de filhos do nó atual. A posição é calculada utilizando
-        * o código ASCII da primeira letra da parte remanescente (parte que não é prefixo). Isso significa
-        * que se o primeiro caracter pós-prefixo é, por exemplo, a letra 'C' (ASCII = 67), então a posição
-        * do filho é 2. Esse cálculo segue a lógica de manter o padrão:
-        * Posição 0 => A, Posição 1 => B, Posição 2 => C e assim por diante.
-        */
-        int position = remainingCharacters[0] - 65;
+        position = remainingCharacters[0] - 65;
 
         node->children.at(position) = insert(remainingCharacters, node->children.at(position));
       }
       else
       {
         char* commonPrefixString = new char[nodeWordLength + 1];
-        char *remainingCharacters = new char[nodeWordLength + 1];
+        char *remainingCharactersFromNode = new char[nodeWordLength + 1];
+        char *remainingCharactersFromInputWord = new char[nodeWordLength + 1];
 
         // Preenche o prefixo comum encontrado
         for (int i = 0; i < nodeWordLength && word[i] == node->word[i]; i++)
           commonPrefixString[i] = node->word[i];
 
-        // Pega a parte remanescente da palavra (que não faz parte do prefixo comum)
+        // Pega a parte remanescente da palavra do nó (que não faz parte do prefixo comum)
         for (int i = strlen(commonPrefixString), j = 0; i < nodeWordLength; i++, j++)
-          remainingCharacters[j] = node->word[i];
+          remainingCharactersFromNode[j] = node->word[i];
+
+        // Pega a parte remanescente da palavra de entrada (que não faz parte do prefixo comum)
+        for (int i = strlen(commonPrefixString), j = 0; i < wordLength; i++, j++)
+          remainingCharactersFromInputWord[j] = word[i];
 
         PatriciaNode *commonPrefixNode = new PatriciaNode(commonPrefixString);
 
-        node->word = remainingCharacters;
+        node->word = remainingCharactersFromNode;
 
-        int position = remainingCharacters[0] - 65;
+        if (strlen(node->word) > 0)
+        {
+          position = getChildPosition(node->word);
 
-        commonPrefixNode->children.at(position) = insert(
-          node->word, commonPrefixNode->children.at(position)
-        );
+          commonPrefixNode->children.at(position) = insert(
+            node->word, commonPrefixNode->children.at(position)
+          );
+        }
 
-        // delete [] commonPrefixString;
-        // delete [] remainingCharacters;
+        if (strlen(remainingCharactersFromInputWord) > 0)
+        {
+          position = getChildPosition(remainingCharactersFromInputWord);
+
+          commonPrefixNode->children.at(position) = insert(
+            remainingCharactersFromInputWord, commonPrefixNode->children.at(position)
+          );
+        }
+
+        if (node == root)
+          root = commonPrefixNode;
+
+        return commonPrefixNode;
       }
     }
 
     return node;
   }
 
-private:
   // @returns true se word1 é prefixo de word2 e false caso contrário
   bool isPrefixOf(char *word1, char *word2)
   {
@@ -98,6 +114,16 @@ private:
       i++;
 
     return i == strlen(word1);
+  }
+
+ /* Calcula a posição do filho utilizando o código ASCII da primeira letra. Isso significa que se o primeiro
+  * caracter é, por exemplo, a letra 'C' (ASCII = 67), então a posição do filho é 2. Esse cálculo segue a
+  * lógica de manter o padrão:
+  * Posição 0 => A, Posição 1 => B, Posição 2 => C e assim por diante.
+  */
+  int getChildPosition(char *word)
+  {
+    return word[0] - 65;
   }
 };
 
