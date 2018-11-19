@@ -12,12 +12,13 @@ int main(int argc, char const *argv[])
   patriciaTree->insert("RODOVIARIO");
   patriciaTree->insert("RODOVIARIA");
   patriciaTree->insert("RODOANEL");
-  // patriciaTree->insert("ABELHA");
+  patriciaTree->insert("RODOPIAR");
+  patriciaTree->insert("RODOPIANDO");
+  patriciaTree->insert("ABELHA");
+  patriciaTree->insert("ABELHINHA");
+  patriciaTree->insert("REI");
 
-  std::cout << patriciaTree->root->word << '\n';
-  std::cout << patriciaTree->root->children.at(0)->word << '\n';
-  std::cout << patriciaTree->root->children.at(21)->word << '\n';
-  std::cout << patriciaTree->root->children.at(21)->children.at(17)->word << '\n';
+  patriciaTree->printKeysByLevel();
 
   return 0;
 }

@@ -8,6 +8,7 @@
 #define PATRICIATREE_H_INCLUDED
 
 #include <string.h>
+#include <queue>
 #include "PatriciaNode.hpp"
 
 class PatriciaTree
@@ -21,6 +22,35 @@ public:
 
   PatriciaNode* insert(char* word) { return insert(word, root); }
 
+  void printKeysByLevel()
+  {
+    if (root == nullptr)
+    {
+      return;
+    }
+    else
+    {
+      std::queue<PatriciaNode *> queue;
+      queue.push(root);
+
+      while (!queue.empty())
+      {
+        PatriciaNode *node = queue.front();
+
+        std::cout << node->word << " ";
+
+        queue.pop();
+
+        for (auto child : node->children)
+        {
+          if (child != nullptr)
+            queue.push(child);
+        }
+      }
+      printf("\n");
+    }
+  }
+
 private:
   PatriciaNode* insert(char* word, PatriciaNode *&node)
   {
@@ -28,7 +58,7 @@ private:
     {
       PatriciaNode* newNode = new PatriciaNode(word);
 
-      if (root == nullptr)
+      if (root == node)
         root = newNode;
 
       return newNode;
@@ -81,9 +111,7 @@ private:
         {
           position = getChildPosition(node->word);
 
-          commonPrefixNode->children.at(position) = insert(
-            node->word, commonPrefixNode->children.at(position)
-          );
+          commonPrefixNode->children.at(position) = node;
         }
 
         if (strlen(remainingCharactersFromInputWord) > 0)
