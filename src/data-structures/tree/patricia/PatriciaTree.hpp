@@ -37,7 +37,7 @@ public:
       {
         PatriciaNode *node = queue.front();
 
-        std::cout << node->word << " ";
+        std::cout << node->word << " (" << node->isCompleteWord << ") ";
 
         queue.pop();
 
@@ -122,6 +122,8 @@ private:
             remainingCharactersFromInputWord, commonPrefixNode->children.at(position)
           );
         }
+
+        commonPrefixNode->isCompleteWord = false;
 
         if (node == root)
           root = commonPrefixNode;
