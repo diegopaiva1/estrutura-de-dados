@@ -8,15 +8,14 @@ int main(int argc, char const *argv[])
 
   PatriciaTree *patriciaTree = new PatriciaTree();
 
-  patriciaTree->insert("RODOVIA");
-  patriciaTree->insert("RODOVIARIO");
-  patriciaTree->insert("RODOVIARIA");
-  patriciaTree->insert("RODOANEL");
-  patriciaTree->insert("RODOPIAR");
-  patriciaTree->insert("RODOPIANDO");
-  patriciaTree->insert("ABELHA");
-  patriciaTree->insert("ABELHINHA");
-  patriciaTree->insert("REI");
+  patriciaTree->insert("ROMANE");
+  patriciaTree->insert("ROMANUS");
+  patriciaTree->insert("ROMULUS");
+  patriciaTree->insert("RUBENS");
+  patriciaTree->insert("RUBER");
+  patriciaTree->insert("RUBICON");
+  patriciaTree->insert("RUBICUNDUS");
+  patriciaTree->insert("RUB");
 
   patriciaTree->printKeysByLevel();
 

@@ -81,9 +81,18 @@ private:
         for (int i = 0, j = nodeWordLength; word[j] != '\0'; i++, j++)
           remainingCharacters[i] = word[j];
 
-        position = remainingCharacters[0] - 65;
-
-        node->children.at(position) = insert(remainingCharacters, node->children.at(position));
+        if (strlen(remainingCharacters) > 0)
+        {
+          position = getChildPosition(remainingCharacters);
+          node->children.at(position) = insert(remainingCharacters, node->children.at(position));
+        }
+       /* Como o tamanho da palavra remanescente é igual 0, significa que 'word' é exatamente
+        * igual a 'node->word', então basta settar que este nó é uma palavra completa
+        */
+        else
+        {
+          node->isCompleteWord = true;
+        }
       }
       else
       {
@@ -110,14 +119,12 @@ private:
         if (strlen(node->word) > 0)
         {
           position = getChildPosition(node->word);
-
           commonPrefixNode->children.at(position) = node;
         }
 
         if (strlen(remainingCharactersFromInputWord) > 0)
         {
           position = getChildPosition(remainingCharactersFromInputWord);
-
           commonPrefixNode->children.at(position) = insert(
             remainingCharactersFromInputWord, commonPrefixNode->children.at(position)
           );
