@@ -17,6 +17,22 @@ int main(int argc, char const *argv[])
   patriciaTree->insert("RUBICUNDUS");
   patriciaTree->insert("RUB");
 
+  try
+  {
+    std::cout << patriciaTree->hasWord("ROMANE") << '\n';
+    std::cout << patriciaTree->hasWord("ROMANUS") << '\n';
+    std::cout << patriciaTree->hasWord("ROMULUS") << '\n';
+    std::cout << patriciaTree->hasWord("RUBENS") << '\n';
+    std::cout << patriciaTree->hasWord("RUBER") << '\n';
+    std::cout << patriciaTree->hasWord("RUBICON") << '\n';
+    std::cout << patriciaTree->hasWord("RUBICUNDUS") << '\n';
+    std::cout << patriciaTree->hasWord("RUBY") << '\n';
+  }
+  catch (char const* exception)
+  {
+    std::cerr << exception << std::endl;
+  }
+
   patriciaTree->printKeysByLevel();
 
   return 0;

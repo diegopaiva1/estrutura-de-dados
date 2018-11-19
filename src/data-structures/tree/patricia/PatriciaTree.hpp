@@ -22,6 +22,8 @@ public:
 
   PatriciaNode* insert(char* word) { return insert(word, root); }
 
+  bool hasWord(char* word) { return hasWord(word, root); }
+
   void printKeysByLevel()
   {
     if (root == nullptr)
@@ -140,6 +142,33 @@ private:
     }
 
     return node;
+  }
+
+  bool hasWord(char *word, PatriciaNode *&node)
+  {
+    if (node == nullptr)
+    {
+      return false;
+    }
+    else if (strcmp(node->word, word) == 0 && node->isCompleteWord)
+    {
+      return true;
+    }
+    else if (isPrefixOf(node->word, word))
+    {
+      char* remainingCharacters = new char[100];
+
+      for (int i = strlen(node->word), j = 0; i < strlen(word); i++, j++)
+        remainingCharacters[j] = word[i];
+
+      if (strlen(remainingCharacters) > 0)
+      {
+        int position = getChildPosition(remainingCharacters);
+        return hasWord(remainingCharacters, node->children.at(position));
+      }
+    }
+
+    return false;
   }
 
   // @returns true se word1 é prefixo de word2 e false caso contrário
