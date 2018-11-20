@@ -8,11 +8,11 @@ int main(int argc, char const *argv[])
 {
   srand(time(NULL));
 
-  // DeputyFileReader deputyFileReader;
-  // std::vector<Deputy> deputies = deputyFileReader.constructDeputies("dataset/teste.csv");
+  DeputyFileReader deputyFileReader;
+  std::vector<Deputy> deputies = deputyFileReader.constructDeputies("dataset/teste.csv");
 
-  // for (auto deputy : deputies)
-  //   std::cout << deputy.receiptDescription << '\n';
+  for (auto deputy : deputies)
+    std::cout << deputy.receiptDescription << '\n';
 
   PatriciaTree *patriciaTree = new PatriciaTree();
 

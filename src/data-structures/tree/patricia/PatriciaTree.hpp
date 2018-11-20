@@ -7,7 +7,7 @@
 #ifndef PATRICIATREE_H_INCLUDED
 #define PATRICIATREE_H_INCLUDED
 
-#include <string.h>
+#include <string>
 #include <queue>
 #include "PatriciaNode.hpp"
 
@@ -20,9 +20,9 @@ public:
 
   ~PatriciaTree() {}
 
-  PatriciaNode* insert(char* word) { return insert(word, root); }
+  PatriciaNode* insert(std::string word) { return insert(word, root); }
 
-  bool hasWord(char* word) { return hasWord(word, root); }
+  bool hasWord(std::string word) { return hasWord(word, root); }
 
   void printKeysByLevel()
   {
@@ -54,7 +54,7 @@ public:
   }
 
 private:
-  PatriciaNode* insert(char* word, PatriciaNode *&node)
+  PatriciaNode* insert(std::string word, PatriciaNode *&node)
   {
     if (node == nullptr)
     {
@@ -67,68 +67,53 @@ private:
     }
     else
     {
-      // Posição de inserção do filho no vetor de filhos do nó atual
-      int position;
-
-      int wordLength = strlen(word);
-      int nodeWordLength = strlen(node->word);
+      int childInsertionPosition;
 
       if (isPrefixOf(node->word, word))
       {
-        int remainingCharactersLength = wordLength - nodeWordLength + 1; // +1 é para armazenar o '\0'
+        std::string remainingCharacters = word.substr(node->word.length());
 
-        char* remainingCharacters = new char[remainingCharactersLength];
-
-        // Copia o resto da palavra (parte que não é prefixo) para 'remainingCharacters'
-        for (int i = 0, j = nodeWordLength; word[j] != '\0'; i++, j++)
-          remainingCharacters[i] = word[j];
-
-        if (strlen(remainingCharacters) > 0)
+        if (remainingCharacters.length() > 0)
         {
-          position = getChildPosition(remainingCharacters);
-          node->children.at(position) = insert(remainingCharacters, node->children.at(position));
+          childInsertionPosition = getChildPosition(remainingCharacters);
+          node->children.at(childInsertionPosition) = insert(
+            remainingCharacters, node->children.at(childInsertionPosition)
+          );
         }
-       /* Como o tamanho da palavra remanescente é igual 0, significa que 'word' é exatamente
-        * igual a 'node->word', então basta settar que este nó é uma palavra completa
-        */
-        else
-        {
+
+        if (word.compare(node->word) == 0)
           node->isCompleteWord = true;
-        }
       }
       else
       {
-        char* commonPrefixString = new char[nodeWordLength + 1];
-        char *remainingCharactersFromNode = new char[nodeWordLength + 1];
-        char *remainingCharactersFromInputWord = new char[nodeWordLength + 1];
+        std::string commonPrefixString;
+        commonPrefixString.reserve(node->word.length());
 
-        // Preenche o prefixo comum encontrado
-        for (int i = 0; i < nodeWordLength && word[i] == node->word[i]; i++)
-          commonPrefixString[i] = node->word[i];
+        // Preenche o prefixo comum encontrado (se existir)
+        for (int i = 0; i < node->word.length() && word[i] == node->word[i]; i++)
+          commonPrefixString.push_back(node->word[i]);
 
-        // Pega a parte remanescente da palavra do nó (que não faz parte do prefixo comum)
-        for (int i = strlen(commonPrefixString), j = 0; i < nodeWordLength; i++, j++)
-          remainingCharactersFromNode[j] = node->word[i];
+        // Parte remanescente da palavra do nó (que não faz parte do prefixo comum)
+        std::string remainingCharactersFromNode = node->word.substr(commonPrefixString.length());
 
-        // Pega a parte remanescente da palavra de entrada (que não faz parte do prefixo comum)
-        for (int i = strlen(commonPrefixString), j = 0; i < wordLength; i++, j++)
-          remainingCharactersFromInputWord[j] = word[i];
+        // Parte remanescente da palavra de entrada (que não faz parte do prefixo comum)
+        std::string remainingCharactersFromInputWord = word.substr(commonPrefixString.length());
 
         PatriciaNode *commonPrefixNode = new PatriciaNode(commonPrefixString);
 
         node->word = remainingCharactersFromNode;
 
-        if (strlen(node->word) > 0)
+        if (node->word.length() > 0)
         {
-          position = getChildPosition(node->word);
-          commonPrefixNode->children.at(position) = node;
+          childInsertionPosition = getChildPosition(node->word);
+          commonPrefixNode->children.at(childInsertionPosition) = node;
         }
 
-        if (strlen(remainingCharactersFromInputWord) > 0)
+        if (remainingCharactersFromInputWord.length() > 0)
         {
-          position = getChildPosition(remainingCharactersFromInputWord);
-          commonPrefixNode->children.at(position) = insert(
-            remainingCharactersFromInputWord, commonPrefixNode->children.at(position)
+          childInsertionPosition = getChildPosition(remainingCharactersFromInputWord);
+          commonPrefixNode->children.at(childInsertionPosition) = insert(
+            remainingCharactersFromInputWord, commonPrefixNode->children.at(childInsertionPosition)
           );
         }
 
@@ -144,45 +129,42 @@ private:
     return node;
   }
 
-  bool hasWord(char *word, PatriciaNode *&node)
+  bool hasWord(std::string word, PatriciaNode *&node)
   {
     if (node == nullptr)
     {
       return false;
     }
-    else if (strcmp(node->word, word) == 0 && node->isCompleteWord)
+    else if (node->word.compare(word) == 0 && node->isCompleteWord)
     {
       return true;
     }
     else if (isPrefixOf(node->word, word))
     {
-      char* remainingCharacters = new char[strlen(word) + 1];
+      std::string remainingCharacters;
 
-      for (int i = strlen(node->word), j = 0; i < strlen(word); i++, j++)
+      for (int i = node->word.length(), j = 0; i < word.length(); i++, j++)
         remainingCharacters[j] = word[i];
 
-      if (strlen(remainingCharacters) > 0)
+      if (remainingCharacters.length() > 0)
       {
         int position = getChildPosition(remainingCharacters);
         return hasWord(remainingCharacters, node->children.at(position));
       }
-
-      // Não mais utilizando, podemos deletar
-      delete [] remainingCharacters;
     }
 
     return false;
   }
 
   // @returns true se word1 é prefixo de word2 e false caso contrário
-  bool isPrefixOf(char *word1, char *word2)
+  bool isPrefixOf(std::string word1, std::string word2)
   {
     int i = 0;
 
     while (word2[i] != '\0' && word1[i] == word2[i])
       i++;
 
-    return i == strlen(word1);
+    return i == word1.length();
   }
 
  /* Calcula a posição do filho utilizando o código ASCII da primeira letra. Isso significa que se o primeiro
@@ -190,7 +172,7 @@ private:
   * lógica de manter o padrão:
   * Posição 0 => A, Posição 1 => B, Posição 2 => C e assim por diante.
   */
-  int getChildPosition(char *word)
+  int getChildPosition(std::string word)
   {
     return word[0] - 65;
   }

@@ -16,10 +16,10 @@ class PatriciaNode
 {
 public:
   std::vector<PatriciaNode *> children;
-  char* word;
+  std::string word;
   bool isCompleteWord;
 
-  PatriciaNode(char* word)
+  PatriciaNode(std::string word)
   {
     this->word = word;
     children.resize(ALPHABET_SIZE);
