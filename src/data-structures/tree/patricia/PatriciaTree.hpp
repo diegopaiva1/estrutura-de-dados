@@ -20,9 +20,17 @@ public:
 
   ~PatriciaTree() {}
 
-  PatriciaNode* insert(std::string word) { return insert(word, root); }
+  PatriciaNode* insert(std::string word)
+  {
+    toUppercase(word);
+    return insert(word, root);
+  }
 
-  bool hasWord(std::string word) { return hasWord(word, root); }
+  bool hasWord(std::string word)
+  {
+    toUppercase(word);
+    return hasWord(word, root);
+  }
 
   void printKeysByLevel()
   {
@@ -87,7 +95,7 @@ private:
       else
       {
         std::string commonPrefixString;
-        commonPrefixString.reserve(node->word.length());
+        commonPrefixString.reserve(std::max(word.length(), node->word.length()));
 
         // Preenche o prefixo comum encontrado (se existir)
         for (int i = 0; i < node->word.length() && word[i] == node->word[i]; i++)
@@ -141,10 +149,7 @@ private:
     }
     else if (isPrefixOf(node->word, word))
     {
-      std::string remainingCharacters;
-
-      for (int i = node->word.length(), j = 0; i < word.length(); i++, j++)
-        remainingCharacters[j] = word[i];
+      std::string remainingCharacters = word.substr(node->word.length());
 
       if (remainingCharacters.length() > 0)
       {
@@ -170,11 +175,33 @@ private:
  /* Calcula a posição do filho utilizando o código ASCII da primeira letra. Isso significa que se o primeiro
   * caracter é, por exemplo, a letra 'C' (ASCII = 67), então a posição do filho é 2. Esse cálculo segue a
   * lógica de manter o padrão:
-  * Posição 0 => A, Posição 1 => B, Posição 2 => C e assim por diante.
+  * Posição 0 => a, Posição 1 => b, Posição 2 => c e assim por diante.
   */
   int getChildPosition(std::string word)
   {
-    return word[0] - 65;
+    switch (word[0])
+    {
+      case '"':
+        return 26;
+        break;
+      case ',':
+        return 27;
+        break;
+      case '&':
+        return 28;
+        break;
+      case '.':
+        return 29;
+        break;
+      default:
+        return word[0] - 65;
+    }
+  }
+
+  void toUppercase(std::string &word)
+  {
+    for (int i = 0; i < word.length(); i++)
+      word[i] = toupper(word[i]);
   }
 };
 
