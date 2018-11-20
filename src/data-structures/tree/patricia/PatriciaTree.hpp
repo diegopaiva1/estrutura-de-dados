@@ -156,7 +156,7 @@ private:
     }
     else if (isPrefixOf(node->word, word))
     {
-      char* remainingCharacters = new char[100];
+      char* remainingCharacters = new char[strlen(word) + 1];
 
       for (int i = strlen(node->word), j = 0; i < strlen(word); i++, j++)
         remainingCharacters[j] = word[i];
@@ -166,6 +166,9 @@ private:
         int position = getChildPosition(remainingCharacters);
         return hasWord(remainingCharacters, node->children.at(position));
       }
+
+      // Não mais utilizando, podemos deletar
+      delete [] remainingCharacters;
     }
 
     return false;
