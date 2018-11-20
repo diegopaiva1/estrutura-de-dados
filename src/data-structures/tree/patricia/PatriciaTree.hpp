@@ -172,10 +172,11 @@ private:
     return i == word1.length();
   }
 
- /* Calcula a posição do filho utilizando o código ASCII da primeira letra. Isso significa que se o primeiro
+ /* Mapeia a posição do filho utilizando o código ASCII da primeira letra. Isso significa que se o primeiro
   * caracter é, por exemplo, a letra 'C' (ASCII = 67), então a posição do filho é 2. Esse cálculo segue a
   * lógica de manter o padrão:
   * Posição 0 => a, Posição 1 => b, Posição 2 => c e assim por diante.
+  * Caracteres especiais são mapeados em posições específicas.
   */
   int getChildPosition(std::string word)
   {
@@ -192,6 +193,9 @@ private:
         break;
       case '.':
         return 29;
+        break;
+      case ' ':
+        return 30;
         break;
       default:
         return word[0] - 65;

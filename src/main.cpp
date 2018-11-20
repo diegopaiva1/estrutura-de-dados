@@ -36,18 +36,6 @@ int main(int argc, char const *argv[])
   patriciaTree->insert("roman");
   patriciaTree->insert("rub");
 
-  std::cout << patriciaTree->hasWord("romane") << '\n';
-  std::cout << patriciaTree->hasWord("romanus") << '\n';
-  std::cout << patriciaTree->hasWord("romulus") << '\n';
-  std::cout << patriciaTree->hasWord("rubens") << '\n';
-  std::cout << patriciaTree->hasWord("ruber") << '\n';
-  std::cout << patriciaTree->hasWord("rubicon") << '\n';
-  std::cout << patriciaTree->hasWord("rubicundus") << '\n';
-  std::cout << patriciaTree->hasWord("ruby") << '\n';
-  std::cout << patriciaTree->hasWord("rubious") << '\n';
-  std::cout << patriciaTree->hasWord("roman") << '\n';
-  std::cout << patriciaTree->hasWord("rub") << '\n';
-
   patriciaTree->printKeysByLevel();
 
   return 0;
