@@ -8,6 +8,7 @@
 #define PATRICIATREE_H_INCLUDED
 
 #include <string>
+#include <stack>
 #include <queue>
 #include "PatriciaNode.hpp"
 
@@ -26,10 +27,50 @@ public:
     return insert(word, root);
   }
 
-  bool hasWord(std::string word)
+  PatriciaNode* get(std::string word)
   {
     toUppercase(word);
-    return hasWord(word, root);
+    return get(word, root);
+  }
+
+  std::vector<std::string> getSuggestedWords(std::string word)
+  {
+    try
+    {
+      toUppercase(word);
+      PatriciaNode* node = get(word);
+
+      std::vector<std::string> suggestedWords;
+      std::stack<PatriciaNode *> stack;
+
+      for (auto child : node->children)
+      {
+        if (child != nullptr)
+          stack.push(child);
+      }
+
+      while (!stack.empty())
+      {
+        PatriciaNode* node = stack.top();
+        suggestedWords.push_back(word + node->word);
+        stack.pop();
+
+        for (auto child : node->children)
+        {
+          if (child != nullptr)
+            stack.push(child);
+        }
+      }
+
+      if (suggestedWords.empty())
+        throw "Não há sugestões para esta busca";
+
+      return suggestedWords;
+    }
+    catch (const char* exception)
+    {
+      std::cerr << exception << std::endl;
+    }
   }
 
   void printKeysByLevel()
@@ -137,15 +178,15 @@ private:
     return node;
   }
 
-  bool hasWord(std::string word, PatriciaNode *&node)
+  PatriciaNode* get(std::string word, PatriciaNode *&node)
   {
     if (node == nullptr)
     {
-      return false;
+      throw "Não há sugestões para esta busca";
     }
     else if (node->word.compare(word) == 0 && node->isCompleteWord)
     {
-      return true;
+      return node;
     }
     else if (isPrefixOf(node->word, word))
     {
@@ -154,11 +195,11 @@ private:
       if (remainingCharacters.length() > 0)
       {
         int position = getChildPosition(remainingCharacters);
-        return hasWord(remainingCharacters, node->children.at(position));
+        return get(remainingCharacters, node->children.at(position));
       }
     }
 
-    return false;
+    return node;
   }
 
   // @returns true se word1 é prefixo de word2 e false caso contrário

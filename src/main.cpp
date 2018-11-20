@@ -24,17 +24,30 @@ int main(int argc, char const *argv[])
 
   PatriciaTree *patriciaTree = new PatriciaTree();
 
-  patriciaTree->insert("romane");
-  patriciaTree->insert("romanus");
-  patriciaTree->insert("romulus");
-  patriciaTree->insert("rubens");
-  patriciaTree->insert("ruber");
-  patriciaTree->insert("rubicon");
-  patriciaTree->insert("rubicundus");
-  patriciaTree->insert("ruby");
-  patriciaTree->insert("rubious");
-  patriciaTree->insert("roman");
-  patriciaTree->insert("rub");
+  for (auto deputy : deputies)
+    patriciaTree->insert(deputy.receiptDescription);
+
+  // patriciaTree->insert("romane");
+  // patriciaTree->insert("romanus");
+  // patriciaTree->insert("romulus");
+  // patriciaTree->insert("rubens");
+  // patriciaTree->insert("ruber");
+  // patriciaTree->insert("rubicon");
+  // patriciaTree->insert("rubicundus");
+  // patriciaTree->insert("ruby");
+  // patriciaTree->insert("rubious");
+  // patriciaTree->insert("roman");
+  // patriciaTree->insert("rub");
+
+  try
+  {
+    for (auto word : patriciaTree->getSuggestedWords("rom"))
+      std::cout << word << '\n';
+  }
+  catch (const char* exception)
+  {
+    std::cerr << exception << std::endl;
+  }
 
   patriciaTree->printKeysByLevel();
 
