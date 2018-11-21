@@ -68,7 +68,6 @@ public:
     return deputies;
   }
 
-private:
   std::vector<std::string> explode(std::string const & string, char delimiter)
   {
     std::vector<std::string> result;

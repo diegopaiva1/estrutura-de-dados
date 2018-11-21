@@ -58,6 +58,8 @@ public:
         return hasQueryPrefix(remainingCharacters, node->children.at(position));
       }
     }
+
+    return false;
   }
 
   void printAutocompletionSuggestions(std::string query)
@@ -71,24 +73,19 @@ public:
 
       PatriciaNode* queryLastMatchingNode = getLastMatchingNode(query, root);
 
-      if (queryLastMatchingNode != nullptr)
+      std::cout << query << '\n';
+
+      if (queryLastMatchingNode->children.empty())
       {
-        if (queryLastMatchingNode->children.empty())
-        {
-          return;
-        }
-        else
-        {
-          for (auto child : queryLastMatchingNode->children)
-          {
-            if (child != nullptr)
-              printAutocompletionSuggestions(query + child->word);
-          }
-        }
+        return;
       }
       else
       {
-        return;
+        for (auto child : queryLastMatchingNode->children)
+        {
+          if (child != nullptr)
+            printAutocompletionSuggestions(query + child->word);
+        }
       }
     }
   }
