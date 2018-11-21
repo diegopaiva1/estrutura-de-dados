@@ -8,7 +8,6 @@
 #define PATRICIATREE_H_INCLUDED
 
 #include <string>
-#include <stack>
 #include <queue>
 #include "PatriciaNode.hpp"
 
@@ -27,49 +26,70 @@ public:
     return insert(word, root);
   }
 
-  PatriciaNode* get(std::string word)
+  bool hasWord(std::string word)
   {
     toUppercase(word);
-    return get(word, root);
+    return hasWord(word, root);
   }
 
-  std::vector<std::string> getSuggestedWords(std::string word)
+  bool hasQueryPrefix(std::string query)
   {
-    try
+    toUppercase(query);
+    return hasQueryPrefix(query, root);
+  }
+
+  bool hasQueryPrefix(std::string query, PatriciaNode* node)
+  {
+    if (node == nullptr)
     {
-      toUppercase(word);
-      PatriciaNode* node = get(word);
+      return false;
+    }
+    else if (node->word.compare(query) == 0)
+    {
+      return true;
+    }
+    else if (isPrefixOf(node->word, query))
+    {
+      std::string remainingCharacters = query.substr(node->word.length());
 
-      std::vector<std::string> suggestedWords;
-      std::stack<PatriciaNode *> stack;
-
-      for (auto child : node->children)
+      if (remainingCharacters.length() > 0)
       {
-        if (child != nullptr)
-          stack.push(child);
+        int position = getChildPosition(remainingCharacters);
+        return hasQueryPrefix(remainingCharacters, node->children.at(position));
       }
+    }
+  }
 
-      while (!stack.empty())
+  void printAutocompletionSuggestions(std::string query)
+  {
+    toUppercase(query);
+
+    if (hasQueryPrefix(query))
+    {
+      if (hasWord(query))
+        std::cout << query << '\n';
+
+      PatriciaNode* queryLastMatchingNode = getLastMatchingNode(query, root);
+
+      if (queryLastMatchingNode != nullptr)
       {
-        PatriciaNode* node = stack.top();
-        suggestedWords.push_back(word + node->word);
-        stack.pop();
-
-        for (auto child : node->children)
+        if (queryLastMatchingNode->children.empty())
         {
-          if (child != nullptr)
-            stack.push(child);
+          return;
+        }
+        else
+        {
+          for (auto child : queryLastMatchingNode->children)
+          {
+            if (child != nullptr)
+              printAutocompletionSuggestions(query + child->word);
+          }
         }
       }
-
-      if (suggestedWords.empty())
-        throw "Não há sugestões para esta busca";
-
-      return suggestedWords;
-    }
-    catch (const char* exception)
-    {
-      std::cerr << exception << std::endl;
+      else
+      {
+        return;
+      }
     }
   }
 
@@ -178,15 +198,15 @@ private:
     return node;
   }
 
-  PatriciaNode* get(std::string word, PatriciaNode *&node)
+  bool hasWord(std::string word, PatriciaNode *&node)
   {
     if (node == nullptr)
     {
-      throw "Não há sugestões para esta busca";
+      return false;
     }
     else if (node->word.compare(word) == 0 && node->isCompleteWord)
     {
-      return node;
+      return true;
     }
     else if (isPrefixOf(node->word, word))
     {
@@ -195,11 +215,11 @@ private:
       if (remainingCharacters.length() > 0)
       {
         int position = getChildPosition(remainingCharacters);
-        return get(remainingCharacters, node->children.at(position));
+        return hasWord(remainingCharacters, node->children.at(position));
       }
     }
 
-    return node;
+    return false;
   }
 
   // @returns true se word1 é prefixo de word2 e false caso contrário
@@ -235,12 +255,33 @@ private:
       case '.':
         return 29;
         break;
-      case ' ':
-        return 30;
-        break;
       default:
         return word[0] - 65;
     }
+  }
+
+  PatriciaNode* getLastMatchingNode(std::string word, PatriciaNode *&node)
+  {
+    if (node == nullptr)
+    {
+      throw "err";
+    }
+    else if (node->word.compare(word) == 0 && node->isCompleteWord)
+    {
+      return node;
+    }
+    else if (isPrefixOf(node->word, word))
+    {
+      std::string remainingCharacters = word.substr(node->word.length());
+
+      if (remainingCharacters.length() > 0)
+      {
+        int position = getChildPosition(remainingCharacters);
+        return getLastMatchingNode(remainingCharacters, node->children.at(position));
+      }
+    }
+
+    return node;
   }
 
   void toUppercase(std::string &word)

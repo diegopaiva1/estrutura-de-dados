@@ -10,7 +10,7 @@
 
 #include <vector>
 
-#define ALPHABET_SIZE 31
+#define ALPHABET_SIZE 30
 
 class PatriciaNode
 {

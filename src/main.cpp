@@ -19,37 +19,28 @@ int main(int argc, char const *argv[])
 {
   srand(time(NULL));
 
-  DeputyFileReader deputyFileReader;
-  std::vector<Deputy> deputies = deputyFileReader.constructDeputies("dataset/teste.csv");
-
   PatriciaTree *patriciaTree = new PatriciaTree();
 
-  for (auto deputy : deputies)
-    patriciaTree->insert(deputy.receiptDescription);
+  // DeputyFileReader deputyFileReader;
+  // std::vector<Deputy> deputies = deputyFileReader.constructDeputies("dataset/teste.csv");
 
-  // patriciaTree->insert("romane");
-  // patriciaTree->insert("romanus");
-  // patriciaTree->insert("romulus");
-  // patriciaTree->insert("rubens");
-  // patriciaTree->insert("ruber");
-  // patriciaTree->insert("rubicon");
-  // patriciaTree->insert("rubicundus");
-  // patriciaTree->insert("ruby");
-  // patriciaTree->insert("rubious");
-  // patriciaTree->insert("roman");
-  // patriciaTree->insert("rub");
+  // for (auto deputy : deputies)
+  //   patriciaTree->insert(deputy.receiptDescription);
+
+  patriciaTree->insert("romane");
+  patriciaTree->insert("romanes");
+  patriciaTree->insert("romulus");
+  patriciaTree->insert("rub");
+  patriciaTree->insert("ruby");
 
   try
   {
-    for (auto word : patriciaTree->getSuggestedWords("rom"))
-      std::cout << word << '\n';
+    patriciaTree->printAutocompletionSuggestions("r");
   }
   catch (const char* exception)
   {
     std::cerr << exception << std::endl;
   }
-
-  patriciaTree->printKeysByLevel();
 
   return 0;
 }
