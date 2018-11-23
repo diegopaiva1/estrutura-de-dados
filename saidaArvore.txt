@@ -1,0 +1,640 @@
+Resultados para P7AVLTree em Thu Nov 22 17:41:43 2018
+
+Tempo de execução para        N = 1000 - Conjunto 1: 0.001068s
+Número de comparações para    N = 1000 - Conjunto 1: 26636
+Número de cópias geradas para N = 1000 - Conjunto 1: 0
+
+Tempo de execução para        N = 1000 - Conjunto 2: 0.001698s
+Número de comparações para    N = 1000 - Conjunto 2: 29133
+Número de cópias geradas para N = 1000 - Conjunto 2: 0
+
+Tempo de execução para        N = 1000 - Conjunto 3: 0.00176s
+Número de comparações para    N = 1000 - Conjunto 3: 30563
+Número de cópias geradas para N = 1000 - Conjunto 3: 0
+
+Tempo de execução para        N = 1000 - Conjunto 4: 0.00194s
+Número de comparações para    N = 1000 - Conjunto 4: 31687
+Número de cópias geradas para N = 1000 - Conjunto 4: 0
+
+Tempo de execução para        N = 1000 - Conjunto 5: 0.001137s
+Número de comparações para    N = 1000 - Conjunto 5: 32310
+Número de cópias geradas para N = 1000 - Conjunto 5: 0
+
+Tempo médio de execução = 0.001521s
+Número médio de comparações = 3.007e+04
+Número médio de cópias geradas = 0
+
+===========================================================
+
+Tempo de execução para        N = 5000 - Conjunto 1: 0.002501s
+Número de comparações para    N = 5000 - Conjunto 1: 174073
+Número de cópias geradas para N = 5000 - Conjunto 1: 0
+
+Tempo de execução para        N = 5000 - Conjunto 2: 0.002101s
+Número de comparações para    N = 5000 - Conjunto 2: 181464
+Número de cópias geradas para N = 5000 - Conjunto 2: 0
+
+Tempo de execução para        N = 5000 - Conjunto 3: 0.002137s
+Número de comparações para    N = 5000 - Conjunto 3: 186443
+Número de cópias geradas para N = 5000 - Conjunto 3: 0
+
+Tempo de execução para        N = 5000 - Conjunto 4: 0.002187s
+Número de comparações para    N = 5000 - Conjunto 4: 190464
+Número de cópias geradas para N = 5000 - Conjunto 4: 0
+
+Tempo de execução para        N = 5000 - Conjunto 5: 0.002472s
+Número de comparações para    N = 5000 - Conjunto 5: 194044
+Número de cópias geradas para N = 5000 - Conjunto 5: 0
+
+Tempo médio de execução = 0.00228s
+Número médio de comparações = 1.853e+05
+Número médio de cópias geradas = 0
+
+===========================================================
+
+Tempo de execução para        N = 10000 - Conjunto 1: 0.00524s
+Número de comparações para    N = 10000 - Conjunto 1: 397334
+Número de cópias geradas para N = 10000 - Conjunto 1: 0
+
+Tempo de execução para        N = 10000 - Conjunto 2: 0.00542s
+Número de comparações para    N = 10000 - Conjunto 2: 405405
+Número de cópias geradas para N = 10000 - Conjunto 2: 0
+
+Tempo de execução para        N = 10000 - Conjunto 3: 0.006354s
+Número de comparações para    N = 10000 - Conjunto 3: 412057
+Número de cópias geradas para N = 10000 - Conjunto 3: 0
+
+Tempo de execução para        N = 10000 - Conjunto 4: 0.005857s
+Número de comparações para    N = 10000 - Conjunto 4: 417232
+Número de cópias geradas para N = 10000 - Conjunto 4: 0
+
+Tempo de execução para        N = 10000 - Conjunto 5: 0.006097s
+Número de comparações para    N = 10000 - Conjunto 5: 420884
+Número de cópias geradas para N = 10000 - Conjunto 5: 0
+
+Tempo médio de execução = 0.005794s
+Número médio de comparações = 4.106e+05
+Número médio de cópias geradas = 0
+
+===========================================================
+
+Tempo de execução para        N = 50000 - Conjunto 1: 0.03691s
+Número de comparações para    N = 50000 - Conjunto 1: 2177878
+Número de cópias geradas para N = 50000 - Conjunto 1: 0
+
+Tempo de execução para        N = 50000 - Conjunto 2: 0.04825s
+Número de comparações para    N = 50000 - Conjunto 2: 2225481
+Número de cópias geradas para N = 50000 - Conjunto 2: 0
+
+Tempo de execução para        N = 50000 - Conjunto 3: 0.05557s
+Número de comparações para    N = 50000 - Conjunto 3: 2259870
+Número de cópias geradas para N = 50000 - Conjunto 3: 0
+
+Tempo de execução para        N = 50000 - Conjunto 4: 0.08092s
+Número de comparações para    N = 50000 - Conjunto 4: 2285916
+Número de cópias geradas para N = 50000 - Conjunto 4: 0
+
+Tempo de execução para        N = 50000 - Conjunto 5: 0.07626s
+Número de comparações para    N = 50000 - Conjunto 5: 2301716
+Número de cópias geradas para N = 50000 - Conjunto 5: 0
+
+Tempo médio de execução = 0.05958s
+Número médio de comparações = 2.25e+06
+Número médio de cópias geradas = 0
+
+===========================================================
+
+Tempo de execução para        N = 100000 - Conjunto 1: 0.1657s
+Número de comparações para    N = 100000 - Conjunto 1: 4656077
+Número de cópias geradas para N = 100000 - Conjunto 1: 0
+
+Tempo de execução para        N = 100000 - Conjunto 2: 0.1271s
+Número de comparações para    N = 100000 - Conjunto 2: 4688088
+Número de cópias geradas para N = 100000 - Conjunto 2: 0
+
+Tempo de execução para        N = 100000 - Conjunto 3: 0.1184s
+Número de comparações para    N = 100000 - Conjunto 3: 4710224
+Número de cópias geradas para N = 100000 - Conjunto 3: 0
+
+Tempo de execução para        N = 100000 - Conjunto 4: 0.1149s
+Número de comparações para    N = 100000 - Conjunto 4: 4719721
+Número de cópias geradas para N = 100000 - Conjunto 4: 0
+
+Tempo de execução para        N = 100000 - Conjunto 5: 0.1155s
+Número de comparações para    N = 100000 - Conjunto 5: 4730272
+Número de cópias geradas para N = 100000 - Conjunto 5: 0
+
+Tempo médio de execução = 0.1283s
+Número médio de comparações = 4.701e+06
+Número médio de cópias geradas = 0
+
+===========================================================
+
+Tempo de execução para        N = 500000 - Conjunto 1: 0.6658s
+Número de comparações para    N = 500000 - Conjunto 1: 23718771
+Número de cópias geradas para N = 500000 - Conjunto 1: 0
+
+Tempo de execução para        N = 500000 - Conjunto 2: 0.6502s
+Número de comparações para    N = 500000 - Conjunto 2: 23587187
+Número de cópias geradas para N = 500000 - Conjunto 2: 0
+
+Tempo de execução para        N = 500000 - Conjunto 3: 0.6393s
+Número de comparações para    N = 500000 - Conjunto 3: 23513144
+Número de cópias geradas para N = 500000 - Conjunto 3: 0
+
+Tempo de execução para        N = 500000 - Conjunto 4: 0.6493s
+Número de comparações para    N = 500000 - Conjunto 4: 23406185
+Número de cópias geradas para N = 500000 - Conjunto 4: 0
+
+Tempo de execução para        N = 500000 - Conjunto 5: 0.6443s
+Número de comparações para    N = 500000 - Conjunto 5: 23363078
+Número de cópias geradas para N = 500000 - Conjunto 5: 0
+
+Tempo médio de execução = 0.6498s
+Número médio de comparações = 2.352e+07
+Número médio de cópias geradas = 0
+
+===========================================================
+
+===================== Fim do processo =====================
+
+Resultados para P7AVLTree em Thu Nov 22 18:26:32 2018
+
+Tempo de execução para        N = 1000 - Conjunto 1: 0.00102s
+Número de comparações para    N = 1000 - Conjunto 1: 100967
+Número de cópias geradas para N = 1000 - Conjunto 1: 30430
+
+Tempo de execução para        N = 1000 - Conjunto 2: 0.001041s
+Número de comparações para    N = 1000 - Conjunto 2: 111737
+Número de cópias geradas para N = 1000 - Conjunto 2: 33498
+
+Tempo de execução para        N = 1000 - Conjunto 3: 0.00144s
+Número de comparações para    N = 1000 - Conjunto 3: 118136
+Número de cópias geradas para N = 1000 - Conjunto 3: 35337
+
+Tempo de execução para        N = 1000 - Conjunto 4: 0.001799s
+Número de comparações para    N = 1000 - Conjunto 4: 122927
+Número de cópias geradas para N = 1000 - Conjunto 4: 36725
+
+Tempo de execução para        N = 1000 - Conjunto 5: 0.001379s
+Número de comparações para    N = 1000 - Conjunto 5: 126432
+Número de cópias geradas para N = 1000 - Conjunto 5: 37673
+
+Tempo médio de execução = 0.001336s
+Número médio de comparações = 1.16e+05
+Número médio de cópias geradas = 3.473e+04
+
+===========================================================
+
+Tempo de execução para        N = 5000 - Conjunto 1: 0.009232s
+Número de comparações para    N = 5000 - Conjunto 1: 685931
+Número de cópias geradas para N = 5000 - Conjunto 1: 203970
+
+Tempo de execução para        N = 5000 - Conjunto 2: 0.0088s
+Número de comparações para    N = 5000 - Conjunto 2: 716582
+Número de cópias geradas para N = 5000 - Conjunto 2: 212677
+
+Tempo de execução para        N = 5000 - Conjunto 3: 0.01067s
+Número de comparações para    N = 5000 - Conjunto 3: 738059
+Número de cópias geradas para N = 5000 - Conjunto 3: 218845
+
+Tempo de execução para        N = 5000 - Conjunto 4: 0.009136s
+Número de comparações para    N = 5000 - Conjunto 4: 756634
+Número de cópias geradas para N = 5000 - Conjunto 4: 224338
+
+Tempo de execução para        N = 5000 - Conjunto 5: 0.01137s
+Número de comparações para    N = 5000 - Conjunto 5: 768225
+Número de cópias geradas para N = 5000 - Conjunto 5: 227764
+
+Tempo médio de execução = 0.009842s
+Número médio de comparações = 7.331e+05
+Número médio de cópias geradas = 2.175e+05
+
+===========================================================
+
+Tempo de execução para        N = 10000 - Conjunto 1: 0.01254s
+Número de comparações para    N = 10000 - Conjunto 1: 1579751
+Número de cópias geradas para N = 10000 - Conjunto 1: 468511
+
+Tempo de execução para        N = 10000 - Conjunto 2: 0.01375s
+Número de comparações para    N = 10000 - Conjunto 2: 1613138
+Número de cópias geradas para N = 10000 - Conjunto 2: 478104
+
+Tempo de execução para        N = 10000 - Conjunto 3: 0.01209s
+Número de comparações para    N = 10000 - Conjunto 3: 1641450
+Número de cópias geradas para N = 10000 - Conjunto 3: 487089
+
+Tempo de execução para        N = 10000 - Conjunto 4: 0.01263s
+Número de comparações para    N = 10000 - Conjunto 4: 1662825
+Número de cópias geradas para N = 10000 - Conjunto 4: 493367
+
+Tempo de execução para        N = 10000 - Conjunto 5: 0.0136s
+Número de comparações para    N = 10000 - Conjunto 5: 1680688
+Número de cópias geradas para N = 10000 - Conjunto 5: 498959
+
+Tempo médio de execução = 0.01292s
+Número médio de comparações = 1.636e+06
+Número médio de cópias geradas = 4.852e+05
+
+===========================================================
+
+Tempo de execução para        N = 50000 - Conjunto 1: 0.2012s
+Número de comparações para    N = 50000 - Conjunto 1: 8768587
+Número de cópias geradas para N = 50000 - Conjunto 1: 2608528
+
+Tempo de execução para        N = 50000 - Conjunto 2: 0.1198s
+Número de comparações para    N = 50000 - Conjunto 2: 9007958
+Número de cópias geradas para N = 50000 - Conjunto 2: 2685150
+
+Tempo de execução para        N = 50000 - Conjunto 3: 0.0947s
+Número de comparações para    N = 50000 - Conjunto 3: 9173419
+Número de cópias geradas para N = 50000 - Conjunto 3: 2740007
+
+Tempo de execução para        N = 50000 - Conjunto 4: 0.1024s
+Número de comparações para    N = 50000 - Conjunto 4: 9302354
+Número de cópias geradas para N = 50000 - Conjunto 4: 2785810
+
+Tempo de execução para        N = 50000 - Conjunto 5: 0.1059s
+Número de comparações para    N = 50000 - Conjunto 5: 9401851
+Número de cópias geradas para N = 50000 - Conjunto 5: 2822501
+
+Tempo médio de execução = 0.1248s
+Número médio de comparações = 9.131e+06
+Número médio de cópias geradas = 2.728e+06
+
+===========================================================
+
+Tempo de execução para        N = 100000 - Conjunto 1: 0.2934s
+Número de comparações para    N = 100000 - Conjunto 1: 19166107
+Número de cópias geradas para N = 100000 - Conjunto 1: 5773716
+
+Tempo de execução para        N = 100000 - Conjunto 2: 0.2563s
+Número de comparações para    N = 100000 - Conjunto 2: 19397188
+Número de cópias geradas para N = 100000 - Conjunto 2: 5867524
+
+Tempo de execução para        N = 100000 - Conjunto 3: 0.2588s
+Número de comparações para    N = 100000 - Conjunto 3: 19589225
+Número de cópias geradas para N = 100000 - Conjunto 3: 5943020
+
+Tempo de execução para        N = 100000 - Conjunto 4: 0.2631s
+Número de comparações para    N = 100000 - Conjunto 4: 19767435
+Número de cópias geradas para N = 100000 - Conjunto 4: 6014431
+
+Tempo de execução para        N = 100000 - Conjunto 5: 0.2808s
+Número de comparações para    N = 100000 - Conjunto 5: 19915783
+Número de cópias geradas para N = 100000 - Conjunto 5: 6075916
+
+Tempo médio de execução = 0.2705s
+Número médio de comparações = 1.957e+07
+Número médio de cópias geradas = 5.935e+06
+
+===========================================================
+
+Tempo de execução para        N = 500000 - Conjunto 1: 1.87s
+Número de comparações para    N = 500000 - Conjunto 1: 102462834
+Número de cópias geradas para N = 500000 - Conjunto 1: 31740869
+
+Tempo de execução para        N = 500000 - Conjunto 2: 1.556s
+Número de comparações para    N = 500000 - Conjunto 2: 103815161
+Número de cópias geradas para N = 500000 - Conjunto 2: 32418583
+
+Tempo de execução para        N = 500000 - Conjunto 3: 1.855s
+Número de comparações para    N = 500000 - Conjunto 3: 105005667
+Número de cópias geradas para N = 500000 - Conjunto 3: 33002115
+
+Tempo de execução para        N = 500000 - Conjunto 4: 1.644s
+Número de comparações para    N = 500000 - Conjunto 4: 105761595
+Número de cópias geradas para N = 500000 - Conjunto 4: 33452613
+
+Tempo de execução para        N = 500000 - Conjunto 5: 1.685s
+Número de comparações para    N = 500000 - Conjunto 5: 106448276
+Número de cópias geradas para N = 500000 - Conjunto 5: 33838425
+
+Tempo médio de execução = 1.722s
+Número médio de comparações = 1.047e+08
+Número médio de cópias geradas = 3.289e+07
+
+===========================================================
+
+===================== Fim do processo =====================
+
+Resultados para P7AVLTree em Thu Nov 22 18:28:45 2018
+
+Tempo de execução para        N = 1000 - Conjunto 1: 0.0009243s
+Número de comparações para    N = 1000 - Conjunto 1: 101164
+Número de cópias geradas para N = 1000 - Conjunto 1: 30465
+
+Tempo de execução para        N = 1000 - Conjunto 2: 0.0007339s
+Número de comparações para    N = 1000 - Conjunto 2: 112038
+Número de cópias geradas para N = 1000 - Conjunto 2: 33521
+
+Tempo de execução para        N = 1000 - Conjunto 3: 0.0007706s
+Número de comparações para    N = 1000 - Conjunto 3: 118304
+Número de cópias geradas para N = 1000 - Conjunto 3: 35315
+
+Tempo de execução para        N = 1000 - Conjunto 4: 0.0007824s
+Número de comparações para    N = 1000 - Conjunto 4: 122237
+Número de cópias geradas para N = 1000 - Conjunto 4: 36448
+
+Tempo de execução para        N = 1000 - Conjunto 5: 0.000806s
+Número de comparações para    N = 1000 - Conjunto 5: 125625
+Número de cópias geradas para N = 1000 - Conjunto 5: 37462
+
+Tempo médio de execução = 0.0008034s
+Número médio de comparações = 1.159e+05
+Número médio de cópias geradas = 3.464e+04
+
+===========================================================
+
+Tempo de execução para        N = 5000 - Conjunto 1: 0.004414s
+Número de comparações para    N = 5000 - Conjunto 1: 682821
+Número de cópias geradas para N = 5000 - Conjunto 1: 203206
+
+Tempo de execução para        N = 5000 - Conjunto 2: 0.004564s
+Número de comparações para    N = 5000 - Conjunto 2: 715162
+Número de cópias geradas para N = 5000 - Conjunto 2: 212546
+
+Tempo de execução para        N = 5000 - Conjunto 3: 0.00477s
+Número de comparações para    N = 5000 - Conjunto 3: 737215
+Número de cópias geradas para N = 5000 - Conjunto 3: 218904
+
+Tempo de execução para        N = 5000 - Conjunto 4: 0.006109s
+Número de comparações para    N = 5000 - Conjunto 4: 753166
+Número de cópias geradas para N = 5000 - Conjunto 4: 223560
+
+Tempo de execução para        N = 5000 - Conjunto 5: 0.009278s
+Número de comparações para    N = 5000 - Conjunto 5: 767105
+Número de cópias geradas para N = 5000 - Conjunto 5: 227819
+
+Tempo médio de execução = 0.005827s
+Número médio de comparações = 7.311e+05
+Número médio de cópias geradas = 2.172e+05
+
+===========================================================
+
+Tempo de execução para        N = 10000 - Conjunto 1: 0.01366s
+Número de comparações para    N = 10000 - Conjunto 1: 1578177
+Número de cópias geradas para N = 10000 - Conjunto 1: 468264
+
+Tempo de execução para        N = 10000 - Conjunto 2: 0.02483s
+Número de comparações para    N = 10000 - Conjunto 2: 1611092
+Número de cópias geradas para N = 10000 - Conjunto 2: 478128
+
+Tempo de execução para        N = 10000 - Conjunto 3: 0.0216s
+Número de comparações para    N = 10000 - Conjunto 3: 1637333
+Número de cópias geradas para N = 10000 - Conjunto 3: 486080
+
+Tempo de execução para        N = 10000 - Conjunto 4: 0.02052s
+Número de comparações para    N = 10000 - Conjunto 4: 1660456
+Número de cópias geradas para N = 10000 - Conjunto 4: 493026
+
+Tempo de execução para        N = 10000 - Conjunto 5: 0.01358s
+Número de comparações para    N = 10000 - Conjunto 5: 1680681
+Número de cópias geradas para N = 10000 - Conjunto 5: 498855
+
+Tempo médio de execução = 0.01884s
+Número médio de comparações = 1.634e+06
+Número médio de cópias geradas = 4.849e+05
+
+===========================================================
+
+Tempo de execução para        N = 50000 - Conjunto 1: 0.07476s
+Número de comparações para    N = 50000 - Conjunto 1: 8762335
+Número de cópias geradas para N = 50000 - Conjunto 1: 2607675
+
+Tempo de execução para        N = 50000 - Conjunto 2: 0.08573s
+Número de comparações para    N = 50000 - Conjunto 2: 8982084
+Número de cópias geradas para N = 50000 - Conjunto 2: 2678862
+
+Tempo de execução para        N = 50000 - Conjunto 3: 0.09109s
+Número de comparações para    N = 50000 - Conjunto 3: 9146732
+Número de cópias geradas para N = 50000 - Conjunto 3: 2733720
+
+Tempo de execução para        N = 50000 - Conjunto 4: 0.1027s
+Número de comparações para    N = 50000 - Conjunto 4: 9271601
+Número de cópias geradas para N = 50000 - Conjunto 4: 2778137
+
+Tempo de execução para        N = 50000 - Conjunto 5: 0.1025s
+Número de comparações para    N = 50000 - Conjunto 5: 9379906
+Número de cópias geradas para N = 50000 - Conjunto 5: 2816078
+
+Tempo médio de execução = 0.09134s
+Número médio de comparações = 9.109e+06
+Número médio de cópias geradas = 2.723e+06
+
+===========================================================
+
+Tempo de execução para        N = 100000 - Conjunto 1: 0.2257s
+Número de comparações para    N = 100000 - Conjunto 1: 19115398
+Número de cópias geradas para N = 100000 - Conjunto 1: 5764921
+
+Tempo de execução para        N = 100000 - Conjunto 2: 0.2358s
+Número de comparações para    N = 100000 - Conjunto 2: 19376810
+Número de cópias geradas para N = 100000 - Conjunto 2: 5862325
+
+Tempo de execução para        N = 100000 - Conjunto 3: 0.2387s
+Número de comparações para    N = 100000 - Conjunto 3: 19567583
+Número de cópias geradas para N = 100000 - Conjunto 3: 5939834
+
+Tempo de execução para        N = 100000 - Conjunto 4: 0.2467s
+Número de comparações para    N = 100000 - Conjunto 4: 19726822
+Número de cópias geradas para N = 100000 - Conjunto 4: 6006516
+
+Tempo de execução para        N = 100000 - Conjunto 5: 0.2544s
+Número de comparações para    N = 100000 - Conjunto 5: 19860425
+Número de cópias geradas para N = 100000 - Conjunto 5: 6064099
+
+Tempo médio de execução = 0.2403s
+Número médio de comparações = 1.953e+07
+Número médio de cópias geradas = 5.928e+06
+
+===========================================================
+
+Tempo de execução para        N = 500000 - Conjunto 1: 1.733s
+Número de comparações para    N = 500000 - Conjunto 1: 102277378
+Número de cópias geradas para N = 500000 - Conjunto 1: 31703390
+
+Tempo de execução para        N = 500000 - Conjunto 2: 1.501s
+Número de comparações para    N = 500000 - Conjunto 2: 103641202
+Número de cópias geradas para N = 500000 - Conjunto 2: 32387392
+
+Tempo de execução para        N = 500000 - Conjunto 3: 1.47s
+Número de comparações para    N = 500000 - Conjunto 3: 104718810
+Número de cópias geradas para N = 500000 - Conjunto 3: 32947255
+
+Tempo de execução para        N = 500000 - Conjunto 4: 1.545s
+Número de comparações para    N = 500000 - Conjunto 4: 105616644
+Número de cópias geradas para N = 500000 - Conjunto 4: 33409570
+
+Tempo de execução para        N = 500000 - Conjunto 5: 1.652s
+Número de comparações para    N = 500000 - Conjunto 5: 106331769
+Número de cópias geradas para N = 500000 - Conjunto 5: 33811784
+
+Tempo médio de execução = 1.58s
+Número médio de comparações = 1.045e+08
+Número médio de cópias geradas = 3.285e+07
+
+===========================================================
+
+===================== Fim do processo =====================
+
+Resultados para P12RedBlackTree em Fri Nov 23 10:21:18 2018
+
+Tempo de execução para        N = 1000 - Conjunto 1: 0.0004352s
+Número de comparações para    N = 1000 - Conjunto 1: 26656
+Número de cópias geradas para N = 1000 - Conjunto 1: 0
+
+Tempo de execução para        N = 1000 - Conjunto 2: 0.0005088s
+Número de comparações para    N = 1000 - Conjunto 2: 28997
+Número de cópias geradas para N = 1000 - Conjunto 2: 0
+
+Tempo de execução para        N = 1000 - Conjunto 3: 0.0005234s
+Número de comparações para    N = 1000 - Conjunto 3: 30625
+Número de cópias geradas para N = 1000 - Conjunto 3: 0
+
+Tempo de execução para        N = 1000 - Conjunto 4: 0.0004502s
+Número de comparações para    N = 1000 - Conjunto 4: 31582
+Número de cópias geradas para N = 1000 - Conjunto 4: 0
+
+Tempo de execução para        N = 1000 - Conjunto 5: 0.0004532s
+Número de comparações para    N = 1000 - Conjunto 5: 32276
+Número de cópias geradas para N = 1000 - Conjunto 5: 0
+
+Tempo médio de execução = 0.0004742s
+Número médio de comparações = 3.003e+04
+Número médio de cópias geradas = 0
+
+===========================================================
+
+Tempo de execução para        N = 5000 - Conjunto 1: 0.001972s
+Número de comparações para    N = 5000 - Conjunto 1: 174365
+Número de cópias geradas para N = 5000 - Conjunto 1: 0
+
+Tempo de execução para        N = 5000 - Conjunto 2: 0.002052s
+Número de comparações para    N = 5000 - Conjunto 2: 181273
+Número de cópias geradas para N = 5000 - Conjunto 2: 0
+
+Tempo de execução para        N = 5000 - Conjunto 3: 0.002292s
+Número de comparações para    N = 5000 - Conjunto 3: 186882
+Número de cópias geradas para N = 5000 - Conjunto 3: 0
+
+Tempo de execução para        N = 5000 - Conjunto 4: 0.002315s
+Número de comparações para    N = 5000 - Conjunto 4: 190760
+Número de cópias geradas para N = 5000 - Conjunto 4: 0
+
+Tempo de execução para        N = 5000 - Conjunto 5: 0.002416s
+Número de comparações para    N = 5000 - Conjunto 5: 193805
+Número de cópias geradas para N = 5000 - Conjunto 5: 0
+
+Tempo médio de execução = 0.002209s
+Número médio de comparações = 1.854e+05
+Número médio de cópias geradas = 0
+
+===========================================================
+
+Tempo de execução para        N = 10000 - Conjunto 1: 0.005751s
+Número de comparações para    N = 10000 - Conjunto 1: 398492
+Número de cópias geradas para N = 10000 - Conjunto 1: 0
+
+Tempo de execução para        N = 10000 - Conjunto 2: 0.007537s
+Número de comparações para    N = 10000 - Conjunto 2: 406721
+Número de cópias geradas para N = 10000 - Conjunto 2: 0
+
+Tempo de execução para        N = 10000 - Conjunto 3: 0.009237s
+Número de comparações para    N = 10000 - Conjunto 3: 411822
+Número de cópias geradas para N = 10000 - Conjunto 3: 0
+
+Tempo de execução para        N = 10000 - Conjunto 4: 0.00928s
+Número de comparações para    N = 10000 - Conjunto 4: 416757
+Número de cópias geradas para N = 10000 - Conjunto 4: 0
+
+Tempo de execução para        N = 10000 - Conjunto 5: 0.007479s
+Número de comparações para    N = 10000 - Conjunto 5: 420825
+Número de cópias geradas para N = 10000 - Conjunto 5: 0
+
+Tempo médio de execução = 0.007857s
+Número médio de comparações = 4.109e+05
+Número médio de cópias geradas = 0
+
+===========================================================
+
+Tempo de execução para        N = 50000 - Conjunto 1: 0.04174s
+Número de comparações para    N = 50000 - Conjunto 1: 2180252
+Número de cópias geradas para N = 50000 - Conjunto 1: 0
+
+Tempo de execução para        N = 50000 - Conjunto 2: 0.05051s
+Número de comparações para    N = 50000 - Conjunto 2: 2225724
+Número de cópias geradas para N = 50000 - Conjunto 2: 0
+
+Tempo de execução para        N = 50000 - Conjunto 3: 0.05053s
+Número de comparações para    N = 50000 - Conjunto 3: 2260140
+Número de cópias geradas para N = 50000 - Conjunto 3: 0
+
+Tempo de execução para        N = 50000 - Conjunto 4: 0.05292s
+Número de comparações para    N = 50000 - Conjunto 4: 2286101
+Número de cópias geradas para N = 50000 - Conjunto 4: 0
+
+Tempo de execução para        N = 50000 - Conjunto 5: 0.08253s
+Número de comparações para    N = 50000 - Conjunto 5: 2302397
+Número de cópias geradas para N = 50000 - Conjunto 5: 0
+
+Tempo médio de execução = 0.05565s
+Número médio de comparações = 2.251e+06
+Número médio de cópias geradas = 0
+
+===========================================================
+
+Tempo de execução para        N = 100000 - Conjunto 1: 0.1471s
+Número de comparações para    N = 100000 - Conjunto 1: 4656105
+Número de cópias geradas para N = 100000 - Conjunto 1: 0
+
+Tempo de execução para        N = 100000 - Conjunto 2: 0.1899s
+Número de comparações para    N = 100000 - Conjunto 2: 4691566
+Número de cópias geradas para N = 100000 - Conjunto 2: 0
+
+Tempo de execução para        N = 100000 - Conjunto 3: 0.1346s
+Número de comparações para    N = 100000 - Conjunto 3: 4709457
+Número de cópias geradas para N = 100000 - Conjunto 3: 0
+
+Tempo de execução para        N = 100000 - Conjunto 4: 0.1256s
+Número de comparações para    N = 100000 - Conjunto 4: 4730378
+Número de cópias geradas para N = 100000 - Conjunto 4: 0
+
+Tempo de execução para        N = 100000 - Conjunto 5: 0.1817s
+Número de comparações para    N = 100000 - Conjunto 5: 4738130
+Número de cópias geradas para N = 100000 - Conjunto 5: 0
+
+Tempo médio de execução = 0.1558s
+Número médio de comparações = 4.705e+06
+Número médio de cópias geradas = 0
+
+===========================================================
+
+Tempo de execução para        N = 500000 - Conjunto 1: 0.9222s
+Número de comparações para    N = 500000 - Conjunto 1: 23746755
+Número de cópias geradas para N = 500000 - Conjunto 1: 0
+
+Tempo de execução para        N = 500000 - Conjunto 2: 1.112s
+Número de comparações para    N = 500000 - Conjunto 2: 23728880
+Número de cópias geradas para N = 500000 - Conjunto 2: 0
+
+Tempo de execução para        N = 500000 - Conjunto 3: 0.8972s
+Número de comparações para    N = 500000 - Conjunto 3: 23639172
+Número de cópias geradas para N = 500000 - Conjunto 3: 0
+
+Tempo de execução para        N = 500000 - Conjunto 4: 0.771s
+Número de comparações para    N = 500000 - Conjunto 4: 23532693
+Número de cópias geradas para N = 500000 - Conjunto 4: 0
+
+Tempo de execução para        N = 500000 - Conjunto 5: 0.7396s
+Número de comparações para    N = 500000 - Conjunto 5: 23482171
+Número de cópias geradas para N = 500000 - Conjunto 5: 0
+
+Tempo médio de execução = 0.8884s
+Número médio de comparações = 2.363e+07
+Número médio de cópias geradas = 0
+
+===========================================================
+
+===================== Fim do processo =====================
+

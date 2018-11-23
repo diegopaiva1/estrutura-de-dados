@@ -79,17 +79,21 @@ public:
       {
         for (int execution = 0; execution < EXECUTIONS_AMOUNT; execution++)
         {
+
+          for (int i = 0; i < n; i++)
+          {
+            auto gasto = deputies.at(rand() % deputies.size()).gasto_id;
+            tree->insert(gasto);
+          }
+
           tree->copies = 0;
           tree->comparisons = 0;
+
           Time::time_point t1 = Time::now(); // Tempo inicial de execução
           for (int i = 0; i < n; i++)
           {
             auto gasto = deputies.at(rand() % deputies.size()).gasto_id;
-            if (i == 0)
-            {
-              tree->root = tree->insert(gasto);
-            }
-            tree->insert(gasto);
+            tree->get(gasto);
           }
           Time::time_point t2 = Time::now(); // Tempo final de execução
 
