@@ -35,27 +35,35 @@ public:
   bool hasQueryPrefix(std::string query)
   {
     toUppercase(query);
-    return hasQueryPrefix(query, root);
+    return hasQueryPrefix(query, root->word);
   }
 
-  bool hasQueryPrefix(std::string query, PatriciaNode* node)
+  bool hasQueryPrefix(std::string query, std::string word)
   {
-    if (node == nullptr)
-    {
-      return false;
-    }
-    else if (node->word.compare(query) == 0)
+    if (isPrefixOf(query, word))
     {
       return true;
     }
-    else if (isPrefixOf(node->word, query))
+    else
     {
-      std::string remainingCharacters = query.substr(node->word.length());
+      std::string prefix;
 
-      if (remainingCharacters.length() > 0)
+      for (auto character : word)
       {
-        int position = getChildPosition(remainingCharacters);
-        return hasQueryPrefix(remainingCharacters, node->children.at(position));
+        prefix.push_back(character);
+
+        if (prefix.compare(query) == 0)
+          return true;
+      }
+
+      PatriciaNode* wordLastMatchingNode = getLastMatchingNode(word, root);
+
+      std::string r = (query.substr(word.length()));
+
+      if (r.length() > 0)
+      {
+        int position = getChildPosition(r);
+        return hasQueryPrefix(query, query + wordLastMatchingNode->children.at(position)->word);
       }
     }
 
@@ -66,25 +74,44 @@ public:
   {
     toUppercase(query);
 
-    if (hasQueryPrefix(query))
+    if (!hasQueryPrefix(query))
+    {
+      return;
+    }
+    else
     {
       if (hasWord(query))
         std::cout << query << '\n';
 
       PatriciaNode* queryLastMatchingNode = getLastMatchingNode(query, root);
+      int depth = getLastMatchingNodeDepth(query, queryLastMatchingNode);
 
-      std::cout << query << '\n';
-
-      if (queryLastMatchingNode->children.empty())
+      if (depth < queryLastMatchingNode->word.length())
       {
-        return;
+        if (hasWord(query + queryLastMatchingNode->word.substr(depth)))
+          std::cout << query + queryLastMatchingNode->word.substr(depth) << '\n';
       }
-      else
+
+      for (auto child : queryLastMatchingNode->children)
       {
-        for (auto child : queryLastMatchingNode->children)
+        if (child != nullptr)
         {
-          if (child != nullptr)
+          if (query.compare(queryLastMatchingNode->word) != 0)
+          {
+            if (query.length() <= queryLastMatchingNode->word.length())
+            {
+              std::string r = queryLastMatchingNode->word.substr(query.length());
+              printAutocompletionSuggestions(query + r + child->word);
+            }
+            else
+            {
+              printAutocompletionSuggestions(query + child->word);
+            }
+          }
+          else
+          {
             printAutocompletionSuggestions(query + child->word);
+          }
         }
       }
     }
@@ -263,7 +290,7 @@ private:
     {
       throw "err";
     }
-    else if (node->word.compare(word) == 0 && node->isCompleteWord)
+    else if (node->word.compare(word) == 0)
     {
       return node;
     }
@@ -279,6 +306,27 @@ private:
     }
 
     return node;
+  }
+
+  int getLastMatchingNodeDepth(std::string word, PatriciaNode* node)
+  {
+    int depth = 0;
+    PatriciaNode* aux = root;
+
+    while (isPrefixOf(aux->word, word) && aux != node)
+    {
+      depth++;
+
+      word = word.substr(aux->word.length());
+
+      if (word.length() > 0)
+      {
+        int position = getChildPosition(word);
+        aux = aux->children.at(position);
+      }
+    }
+
+    return depth;
   }
 
   void toUppercase(std::string &word)

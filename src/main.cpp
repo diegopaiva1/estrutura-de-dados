@@ -21,22 +21,28 @@ int main(int argc, char const *argv[])
       patriciaTree->insert(gasto);
   }
 
-  // patriciaTree->insert("romane");
-  // patriciaTree->insert("romanes");
-  // patriciaTree->insert("romulus");
-  // patriciaTree->insert("rub");
-  // patriciaTree->insert("ruby");
+  // patriciaTree->insert("PORTA");
+  // patriciaTree->insert("PORTAL");
+  // patriciaTree->insert("PORTAIS");
+  // patriciaTree->insert("PORTELA");
+  // patriciaTree->insert("PERCEVEJO");
+  // patriciaTree->insert("PERGUNTA");
+  // patriciaTree->insert("AMEIXA");
+  // patriciaTree->insert("AMAR");
+  // patriciaTree->insert("PORCELANA");
+  // patriciaTree->insert("PIMENTA");
+  // patriciaTree->insert("ABACATE");
+  // patriciaTree->insert("INSETO");
+  // patriciaTree->insert("INSETICIDA");
 
   try
   {
-    patriciaTree->printAutocompletionSuggestions("tel");
+    patriciaTree->printAutocompletionSuggestions("T");
   }
   catch (const char* exception)
   {
     std::cerr << exception << std::endl;
   }
-
-  //patriciaTree->printKeysByLevel();
 
   return 0;
 }
