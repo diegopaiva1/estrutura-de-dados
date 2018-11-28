@@ -22,6 +22,7 @@
 #include <fstream>
 #include <sstream>
 #include <utility>
+#include <algorithm>
 
 #include "../../Deputy.hpp"
 
@@ -48,10 +49,10 @@ public:
       std::vector<std::string> data;
       std::string line;
       std::cout << "Processando..." << std::endl;
-      while(std::getline(inFile, line) && lineNumber <= 2000000)
+      while (std::getline(inFile, line) && lineNumber <= 1000000)
       {
         // Não queremos ler a primeira linha do arquivo pois ela é o cabeçalho contendo as colunas
-        if(lineNumber != 1)
+        if (lineNumber != 1)
         {
           data = explode(line, ';');
           Deputy *deputy = new Deputy(data);
@@ -67,16 +68,13 @@ public:
     return deputies;
   }
 
-private:
   std::vector<std::string> explode(std::string const & string, char delimiter)
   {
     std::vector<std::string> result;
     std::istringstream iss(string);
 
     for (std::string token; std::getline(iss, token, delimiter); )
-    {
       result.push_back(std::move(token));
-    }
 
     return result;
   }

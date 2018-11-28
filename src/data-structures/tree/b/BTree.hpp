@@ -66,6 +66,62 @@ public:
     // Se chegou até aqui, todas as possibilidades foram exploradas
     throw "Chave inexistente na árvore B";
   }
-};
+
+  BNode* getNode(int key)
+  {
+    BNode *node = root;
+
+    while (node != nullptr)
+    {
+      unsigned int index = 0;
+
+      while (index < node->keys.size() && key > node->keys.at(index))
+        index++;
+
+      if (index < node->keys.size() && key == node->keys.at(index))
+        return node;
+
+      node = node->children.at(index);
+    }
+
+    throw "Chave inexistente na árvore B";
+  }
+
+  void remove(int key)
+  {
+    BNode *node = getNode(key);
+    unsigned int index = 0;
+    while (index < node->keys.size() && key > node->keys.at(index))
+      index++;
+    if (index < node->keys.size() && key == node->keys.at(index))
+      if(node->isLeaf)
+      {
+        node->keys.erase (node->keys.begin()+index);
+      }
+      else
+      {
+        BNode* nearest = node->children.at(index+1);
+        if(nearest->keys.front()!=NULL)
+        {
+          std::swap(node->keys.at(index), nearest->keys.front());
+        }
+        else
+        {
+          nearest = node->children.at(index);
+          std::swap(node->keys.at(index), nearest->keys.back());
+        }
+        node->keys.erase (node->keys.begin()+index);
+      }
+      if(node->hasOverflow())
+      {
+      fixUnderflow(node);
+      }
+    }
+
+    void fixUnderflow(BNode* &node)
+    {
+
+    }
+  };
 
 #endif // BTREE_H_INCLUDED

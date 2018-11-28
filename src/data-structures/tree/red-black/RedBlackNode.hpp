@@ -8,7 +8,7 @@
 #ifndef REDBLACKNODE_H_INCLUDED
 #define REDBLACKNODE_H_INCLUDED
 
-enum Color {RED, BLACK};
+enum Color {RED, BLACK, DOUBLE_BLACK};
 
 class RedBlackNode
 {
@@ -30,11 +30,6 @@ public:
 
   ~RedBlackNode() {};
 
-  bool hasUncle()
-  {
-    return uncle() != nullptr;
-  }
-
   RedBlackNode* uncle()
   {
     if (hasGrandparent())
@@ -48,50 +43,39 @@ public:
     return nullptr;
   }
 
-  bool hasGrandparent()
+  RedBlackNode* sibling()
   {
-    return grandparent() != nullptr;
+    if (this->isLeftChild())
+      return parent->right;
+    else
+      return parent->left;
   }
 
-  RedBlackNode* grandparent()
-  {
-    return parent->parent;
-  }
+  RedBlackNode* grandparent() { return parent->parent; }
 
-  bool hasFather()
-  {
-    return parent != nullptr;
-  }
+  bool hasUncle() { return uncle() != nullptr; }
 
-  void recolor()
-  {
-    color == RED ? color = BLACK : color = RED;
-  }
+  bool hasGrandparent() { return grandparent() != nullptr; }
 
-  bool isRed()
-  {
-    return color == RED;
-  }
+  bool hasSibling() { return sibling() != nullptr; }
 
-  bool isBlack()
-  {
-    return color == BLACK;
-  }
+  bool hasParent() { return parent != nullptr; }
 
-  bool hasNoChildren()
-  {
-    return right == nullptr && left == nullptr;
-  }
+  bool isLeftChild() { return this == parent->left; }
 
-  bool hasLeftChildOnly()
-  {
-    return left != nullptr && right == nullptr;
-  }
+  bool isRightChild() { return this == parent->right; }
 
-  bool hasRightChildOnly()
-  {
-    return right != nullptr && left == nullptr;
-  }
+  void recolor() { color == RED ? color = BLACK : color = RED; }
+
+  bool isRed() { return color == RED; }
+
+  bool isBlack() { return color == BLACK; }
+
+  bool hasNoChildren() { return right == nullptr && left == nullptr; }
+
+  bool hasLeftChildOnly() { return left != nullptr && right == nullptr; }
+
+  bool hasRightChildOnly() { return right != nullptr && left == nullptr; }
 };
 
 #endif // REDBLACKNODE_H_INCLUDED
