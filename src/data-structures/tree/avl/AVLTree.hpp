@@ -12,7 +12,7 @@
 #ifndef AVLTREE_H_INCLUDED
 #define AVLTREE_H_INCLUDED
 
-#define BALANCE_FACTOR_LIMIT 2
+#define BALANCE_FACTOR_LIMIT 1
 
 #include <queue>
 #include "AVLNode.hpp"

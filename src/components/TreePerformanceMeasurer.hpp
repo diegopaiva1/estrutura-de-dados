@@ -89,6 +89,8 @@ public:
           tree->copies = 0;
           tree->comparisons = 0;
 
+
+          // Teste do tempo de busca
           Time::time_point t1 = Time::now(); // Tempo inicial de execução
           for (int i = 0; i < n; i++)
           {
