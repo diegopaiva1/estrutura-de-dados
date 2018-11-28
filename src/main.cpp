@@ -90,7 +90,8 @@ int main(int argc, char const *argv[])
   }
 
   // Método que avalia se este gasto está presente na árvore
-  patriciaTree->hasWord("TELEPHONY") ? "Gasto encontrado" : "Gasto não encontrado";
+  patriciaTree->hasWord("TELEPHONY") ? std::cout << "Gasto encontrado" << '\n'
+                                     : std::cout << "Gasto não encontrado" << '\n';
 
   // Printa todas as sugestões de gastos com o prefixo "T"
   patriciaTree->printAutocompletionSuggestions("T");

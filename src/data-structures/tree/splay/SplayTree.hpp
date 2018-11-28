@@ -103,18 +103,18 @@ private:
       //zig-zig
       if (node->left->key > key)
       {
-        copies =+2;
+        copies +=2;
         node->left->left = splay(node->left->left, key);
         node = rotateRight(node);
       }
       //zig-zag
       else if (node->left->key < key)
       {
-        comparisons =+1;
-        copies =+1;
+        comparisons +=1;
+        copies +=1;
         node->left->right = splay(node->left->right, key);
         if (node->left->right != nullptr){
-          copies =+1;
+          copies +=1;
           node->left = rotateLeft(node->left);
         }
       }
@@ -136,17 +136,17 @@ private:
       //zag-zig
       if (node->right->key > key)
       {
-        copies =+1;
+        copies +=1;
         node->right->left = splay(node->right->left, key);
         if (node->right->left != nullptr){
-          copies =+1;
+          copies +=1;
           node->right = rotateRight(node->right);
         }
       }
         //zag-zag
       else if (node->right->key < key)
       {
-        copies =+2;
+        copies +=2;
         comparisons +=1;
         node->right->right = splay(node->right->right, key);
         node = rotateLeft(node);
