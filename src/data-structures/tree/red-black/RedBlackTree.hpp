@@ -15,6 +15,8 @@ class RedBlackTree
 {
 public:
   RedBlackNode *root;
+  long long int copies;
+  long long int comparisons;
 
   RedBlackTree()
   {
@@ -25,8 +27,10 @@ public:
 
   void insert(int key)
   {
+    copies++;
     RedBlackNode *toBeInserted = new RedBlackNode(key);
 
+    copies++;
     // A inserção atualiza a raíz, caso seja necessário
     root = insert(toBeInserted, root);
 
@@ -78,19 +82,23 @@ public:
 private:
   RedBlackNode* insert(RedBlackNode *&toBeInserted, RedBlackNode *&node)
   {
+    comparisons++;
     if (node == nullptr)
     {
       return toBeInserted;
     }
     else
     {
+      comparisons++;
       if (toBeInserted->key < node->key)
       {
+        copies += 2;
         node->left = insert(toBeInserted, node->left);
         node->left->parent = node;
       }
       else
       {
+        copies += 2;
         node->right = insert(toBeInserted, node->right);
         node->right->parent = node;
       }
@@ -103,14 +111,17 @@ private:
   {
     if (node == nullptr)
     {
-      throw "Esta chave não existe na árvore";
+      comparisons++;
+      return node;
     }
     else if (key < node->key)
     {
+      comparisons += 2;
       return get(key, node->left);
     }
     else if (key > node->key)
     {
+      comparisons += 3;
       return get(key, node->right);
     }
     else
@@ -126,30 +137,42 @@ private:
   {
     while (node != root && node->isRed() && node->parent->isRed())
     {
+      comparisons++;
+      copies += 2;
       RedBlackNode *parent = node->parent;
       RedBlackNode *grandparent = node->grandparent();
 
+      comparisons++;
       // Se o tio do nó é vermelho, basta apenas realizar as recolorações
       if (node->hasUncle() && node->uncle()->isRed())
       {
+        copies += 2;
         node->uncle()->recolor();
         parent->recolor();
 
+        comparisons++;
         if (node->hasGrandparent())
+        {
+          copies++;
           grandparent->recolor();
+        }
 
+        copies++;
         node = grandparent;
       }
       // Caso contrário, é necessário aplicar as rotações & recolorações necessárias
       else
       {
+        comparisons++;
         // Árvore está desbalanceada à esquerda
         if (parent == grandparent->left)
         {
           // Se a condição abaixo é verdadeira, temos um zig-zag (necessário rotação dupla)
           if (node == parent->right)
           {
+            comparisons++;
             rotateLeft(parent);
+            copies += 2;
             node = parent;
             parent = node->parent;
           }
@@ -159,10 +182,13 @@ private:
         // Árvore está desbalanceada à direita
         else if (parent == grandparent->right)
         {
+          comparisons += 2;
           // Se a condição abaixo é verdadeira, temos um zig-zag (necessário rotação dupla)
+          comparisons++;
           if (node == parent->left)
           {
             rotateRight(parent);
+            copies += 2;
             node = parent;
             parent = node->parent;
           }
@@ -170,13 +196,16 @@ private:
           rotateLeft(grandparent);
         }
 
+        copies += 3;
         // Recoloração pós-rotação
         std::swap(parent->color, grandparent->color);
 
+        copies++;
         node = parent;
       }
     }
 
+    copies++;
     // A raíz é sempre preta!
     root->color = BLACK;
   }
@@ -186,20 +215,35 @@ private:
     RedBlackNode *right = node->right;
     node->right = right->left;
 
+    comparisons++;
     if (node->right != nullptr)
+    {
+      copies++;
       node->right->parent = node;
+    }
 
     right->parent = node->parent;
 
     if (!node->hasParent())
+    {
+      comparisons++;
       root = right;
+    }
     else if (node->isLeftChild())
+    {
+      comparisons += 2;
       node->parent->left = right;
+    }
     else
+    {
+      comparisons += 2;
       node->parent->right = right;
+    }
 
     right->left = node;
     node->parent = right;
+
+    copies += 6;
   }
 
   void rotateRight(RedBlackNode *&node)
@@ -207,20 +251,36 @@ private:
     RedBlackNode *left = node->left;
     node->left = left->right;
 
+    comparisons++;
     if (node->left != nullptr)
+    {
+      copies++;
       node->left->parent = node;
+    }
 
+    copies++;
     left->parent = node->parent;
 
     if (!node->hasParent())
+    {
+      comparisons++;
       root = left;
+    }
     else if (node->isLeftChild())
+    {
+      comparisons += 2;
       node->parent->left = left;
+    }
     else
+    {
+      comparisons += 2;
       node->parent->right = left;
+    }
 
     left->right = node;
     node->parent = left;
+
+    copies += 6;
   }
 
   RedBlackNode* remove(int key, RedBlackNode *&node)

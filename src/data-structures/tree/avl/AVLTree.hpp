@@ -214,14 +214,17 @@ private:
   {
     if (node == nullptr)
     {
-      throw "Esta chave não existe na árvore";
+      comparisons++;
+      return node;
     }
     else if (key < node->key)
     {
+      comparisons += 2;
       return get(key, node->left);
     }
     else if (key > node->key)
     {
+      comparisons += 3;
       return get(key, node->right);
     }
     else
@@ -234,14 +237,19 @@ private:
   {
     if (node == nullptr)
     {
-      throw "Esta chave não pode ser removida pois não está contida na árvore";
+      comparisons++;
+      return node;
     }
     else if (key < node->key)
     {
+      comparisons += 2;
+      copies++;
       node->left = remove(key, node->left);
     }
     else if (key > node->key)
     {
+      comparisons += 3;
+      copies++;
       node->right = remove(key, node->right);
     }
     // A chave de remoção foi encontrada. Os 4 casos possíveis de remoção são tratados.
@@ -249,12 +257,16 @@ private:
     {
       if (node->hasNoChildren())
       {
+        comparisons++;
         delete node;
+        copies++;
         node = nullptr;
         return node;
       }
       else if (node->hasLeftChildOnly())
       {
+        comparisons += 2;
+        copies += 2;
         AVLNode *sucessor = node->left;
         delete node;
         node = nullptr;
@@ -262,6 +274,8 @@ private:
       }
       else if (node->hasRightChildOnly())
       {
+        comparisons += 3;
+        copies += 2;
         AVLNode *sucessor = node->right;
         delete node;
         node = nullptr;
@@ -274,14 +288,17 @@ private:
       */
       else
       {
+        comparisons++;
         if (node->left->height > node->right->height)
         {
+          copies += 3;
           int sucessorKey = getMaxKey(node->left);
           node->key = sucessorKey;
           node->left = remove(sucessorKey, node->left);
         }
         else
         {
+          copies += 3;
           int sucessorKey = getMinKey(node->right);
           node->key = sucessorKey;
           node->right = remove(sucessorKey, node->right);
@@ -304,6 +321,8 @@ private:
 
     while (node != nullptr)
     {
+      copies += 2;
+      comparisons++;
       min = node;
       node = node->left;
     }
@@ -317,6 +336,8 @@ private:
 
     while (node != nullptr)
     {
+      comparisons++;
+      copies += 2;
       max = node;
       node = node->right;
     }

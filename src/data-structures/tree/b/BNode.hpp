@@ -33,8 +33,9 @@ public:
 
   ~BNode() {};
 
-  void insert(int key)
+  void insert(int key, long long int &comparisons, long long int &copies)
   {
+    comparisons++;
     // Se for folha, insere normalmente e ordena
     if (this->isLeaf)
     {
@@ -53,23 +54,27 @@ public:
         * pois sabemos que ele certamente ficará à esquerda deste nó. Caso contrário, continua a
         * busca
         */
+       comparisons++;
         if (key < keys.at(i))
         {
+          copies += 2;
           child = children.at(i);
           index = i;
           break;
         }
         else
         {
+          copies += 2;
           child = children.at(i + 1);
           index = i + 1;
         }
       }
 
-      child->insert(key);
+      child->insert(key, comparisons, copies);
 
+      comparisons++;
       if (child->hasOverflow())
-        split(child, index);
+        split(child, index, comparisons, copies);
     }
   }
 
@@ -78,8 +83,9 @@ public:
     return keys.size() == maxDegree;
   }
 
-  void split(BNode *&splitted, int splittedIndex)
+  void split(BNode *&splitted, int splittedIndex, long long int &comparisons, long long int &copies)
   {
+    copies++;
     BNode *node = new BNode(splitted->maxDegree, splitted->isLeaf);
 
     // Copia metade à direita das chaves do nó a ser dividido para o novo nó
@@ -89,11 +95,13 @@ public:
       splitted->keys.erase(splitted->keys.begin() + i);
     }
 
+    comparisons++;
     if (!splitted->isLeaf)
     {
       // Copia metade dos filhos à direita do nó a ser dividido para o novo nó
       for (unsigned int i = maxDegree/2 + 1; i < maxDegree + 1; i++)
       {
+        copies += 2;
         node->children.at(i - (maxDegree/2 + 1)) = splitted->children.at(i);
         splitted->children.at(i) = nullptr;
       }
@@ -101,8 +109,12 @@ public:
 
     // Arranja espaço para alocação do novo filho, caso seja necessário
     for (int i = keys.size(); i >= splittedIndex + 1; i--)
+    {
+      copies++;
       children.at(i + 1) = children.at(i);
+    }
 
+    copies++;
     // Linka o novo nó como filho
     children.at(splittedIndex + 1) = node;
 
