@@ -61,8 +61,6 @@ public:
   void highestsSpent(int n)
   {
     this->calculateSpent();
-    QuickSort *quickSort = new QuickSort();
-    quickSort->sort(this->spent);
     for(int i=0; i<n; i++)
     {
       std::cout << this->spent.at(this->spent.size()-1-i).name << ": " << this->spent.at(this->spent.size()-1-i).spent << std::endl;
@@ -72,8 +70,6 @@ public:
   void lowestsSpent(int n)
   {
     this->calculateSpent();
-    QuickSort *quickSort = new QuickSort();
-    quickSort->sort(this->spent);
     for(int i=0; i<n; i++)
     {
       std::cout << this->spent.at(i).name << ": " << this->spent.at(i).spent << std::endl;
@@ -101,33 +97,34 @@ private:
 
   void calculateSpent()
   {
+    this->spent.clear();
     for(int i=0; i<deputies.size(); i++)
     {
       // Encontramos a lista de gastos do deputado ou partido
       auto list = this->deputies.at(i);
       int sum = 0;
       Spent *s = new Spent();
-      for (auto k = list.begin(); k != list.end(); k++)
-      {
-        auto deputy = *k;
-        if(this->keyType == "nome")
-        {
-          s->name = deputy.name;
-        }
-        else if(this->keyType == "partido")
-        {
-          s->name = deputy.party;
-        }
-        break;
-      }
       for (auto j = list.begin(); j != list.end(); j++)
       {
         Deputy d = *j;
+        if(this->keyType == "nome")
+        {
+          s->name = d.name;
+        }
+        else if(this->keyType == "partido")
+        {
+          s->name = d.party;
+        }
         sum += d.receiptValue;
       }
-      s->spent  = sum;
-      this->spent.push_back(*s);
+      if(sum!=0)
+      {
+        s->spent  = sum;
+        this->spent.push_back(*s);
+      }
     }
+    QuickSort *quickSort = new QuickSort();
+    quickSort->sort(this->spent);
   }
 };
 
