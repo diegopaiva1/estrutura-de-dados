@@ -13,17 +13,21 @@
 #include "data-structures/tree/b/BTree.hpp"
 #include "data-structures/tree/red-black/RedBlackTree.hpp"
 #include "data-structures/tree/splay/SplayTree.hpp"
+#include "components/deputy/Deputy.hpp"
+#include "components/deputy/DeputyHashTable.hpp"
+#include "components/deputy/file/reader/DeputyFileReader.hpp"
 
 int main(int argc, char const *argv[])
 {
   while (true)
   {
-    system("cls || clear");
+    // system("cls || clear");
 
     int option;
     int operation;
-    std::vector<int> validOptions = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
+    std::vector<int> validOptions = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
     std::string outFileName;
+    DeputyFileReader deputyFileReader;
     SortingAlgorithmPerformanceMeasurer sortingMeasurer;
     HashTableComparisonsMeasurer hashMeasurer;
     TreePerformanceMeasurer treeMeasurer;
@@ -45,7 +49,9 @@ int main(int argc, char const *argv[])
     std::cout << "13. Computar estatísticas de desempenho: Árvore AVL" << '\n';
     std::cout << "14. Computar estatísticas de desempenho: Árvore Vermelho e Preta" << '\n';
     std::cout << "15. Computar estatísticas de desempenho: Árvore Splay" << '\n';
-    std::cout << "16. Computar estatísticas de desempenho: Árvore B\n" << '\n';
+    std::cout << "16. Computar estatísticas de desempenho: Árvore B" << '\n';
+    std::cout << "17. Computar deputados que mais gastam" << '\n';
+    std::cout << "18. Computar partidos que mais gastam\n" << '\n';
 
     std::cout << "Selecione uma opção: ";
     std::cin >> option;
@@ -208,6 +214,22 @@ int main(int argc, char const *argv[])
 
         treeMeasurer.storePerformanceResults("dataset/entrada.txt", new BTree(pageSize),
                                              operation, outFileName);
+      break;
+      case 17:
+      {
+        std::vector<Deputy> deps = deputyFileReader.constructDeputies("dataset/teste.csv");
+        DeputyHashTable *ht = new DeputyHashTable(deps, 0.75);
+
+        ht->highestsSpent(10);
+      }
+      break;
+      case 18:
+      {
+        std::vector<Deputy> deps = deputyFileReader.constructDeputies("dataset/teste.csv");
+        DeputyHashTable *ht = new DeputyHashTable(deps, 0.75, "partido");
+
+        ht->highestsSpent(10);
+      }
       break;
     }
   }
