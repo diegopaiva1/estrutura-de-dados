@@ -23,6 +23,7 @@ public:
   int size;
 
   HashTableSeparateChaining() {};
+
   ~HashTableSeparateChaining() {};
 
   HashTableSeparateChaining(int size, float loadFactor = 0.75)
@@ -48,9 +49,11 @@ public:
     }
   }
 
-  void insert(int data)
+  int insert(int data)
   {
     this->data.at(hash(data)).push_back(data);
+    // Retornando o total de comparações para fazer a inserção, neste caso é sempre 0
+    return 0;
   }
 
   // Retornando o número de comparações necessárias para obter o dado

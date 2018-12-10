@@ -1,5 +1,5 @@
 bin/
 dataset/deputies.csv
-.vscode/
+.vscode
 saida.txt
 hash-out.txt

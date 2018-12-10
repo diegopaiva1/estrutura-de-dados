@@ -4,7 +4,7 @@
  * @date    17/09/2018
  *
  * O propósito da classe SortingAlgorithmPerformanceMeasurer é contabilizar, para um determinado
- * conjunto de dados, o tempo total de execução, o número de comparações e número de trocas realizadas
+ * conjunto de dados, o tempo total de execução, o número de comparações e número de cópias realizadas
  * dos algoritmos de ordenação implementados dentro deste projeto. Este conjunto de dados é gerado
  * a partir da leitura de um arquivo que deve ser passado como parâmetro. O arquivo deve estar disposto
  * da seguinte forma:
@@ -37,10 +37,6 @@
 #include <iomanip> // std::setprecision, std::setw
 #include <typeinfo> // typeid
 
-// Descomente as duas linhas abaixo se for testar para o Quicksort com deputados
-#include "./deputy/file/reader/DeputyFileReader.hpp"
-#include "./deputy/Deputy.hpp"
-
 class SortingAlgorithmPerformanceMeasurer
 {
 public:
@@ -57,10 +53,6 @@ public:
 
     std::ofstream outFile(outFileName, std::ifstream::app);
 
-    // Descomente as duas linhas abaixo se for testar para o Quicksort com deputados
-    DeputyFileReader *deputyFileReader = new DeputyFileReader();
-    std::vector<Deputy> deputies = deputyFileReader->constructDeputies("dataset/deputies.csv");
-
     if (!inFile.is_open())
     {
       std::cout << "Falha na leitura do arquivo" << std::endl;
@@ -73,24 +65,16 @@ public:
       // Nome do algoritmo passado como entrada e data que foi compilado
       outFile << "Resultados para " << typeid(algorithm).name() << " em " << getCurrentTime() << std::endl;
 
-      while(inFile >> n)
+      while (inFile >> n)
       {
-        // Adaptamos a capacidade do vector ao valor que acabou de ser lido do arquivo
-        randomDeputies.resize(n);
+        randomNumbers.resize(n);
 
         for (int execution = 0; execution < EXECUTIONS_AMOUNT; execution++)
         {
           for (int i = 0; i < n; i++)
-          {
-            // Preenchendo com números aleatórios
-            // randomNumbers.at(i) = rand() % n + 1;
+            randomNumbers.at(i) = rand() % n + 1;
 
-            // Descomente as duas linhas abaixos se for testar com ids aleatórios dos deputados
-            int index = rand() % deputies.size();
-            randomDeputies.at(i) = deputies.at(index);
-          }
-
-          algorithm->sort(randomDeputies, 0, 10);
+          algorithm->sort(randomNumbers);
 
           this->comparisons[execution] = algorithm->comparisons;
           this->copies[execution] = algorithm->copies;
@@ -113,13 +97,10 @@ public:
       }
     }
     outFile << "===================== Fim do processo =====================\n" << std::endl;
-    inFile.close();
-    outFile.close();
   }
 
 private:
   std::vector<int> randomNumbers;
-  std::vector<Deputy> randomDeputies;
   double executionTimes[EXECUTIONS_AMOUNT];
   long long int comparisons[EXECUTIONS_AMOUNT];
   long long int copies[EXECUTIONS_AMOUNT];

@@ -25,8 +25,8 @@
  * "n" é 5. Todos os resultados são gravados em um arquivo de saída.
  */
 
-#ifndef SORTINGALGORITHMPERFORMANCEMEASURER_H_INCLUDED
-#define SORTINGALGORITHMPERFORMANCEMEASURER_H_INCLUDED
+#ifndef TREEPERFORMANCEMEASURER_H_INCLUDED
+#define TREEPERFORMANCEMEASURER_H_INCLUDED
 
 #define EXECUTIONS_AMOUNT 5
 
@@ -51,7 +51,8 @@ public:
   ~TreePerformanceMeasurer() {};
 
   template<typename T>
-  void storePerformanceResults(std::string inFileName, T* tree, std::string outFileName = "saidaArvore.txt")
+  void storePerformanceResults(std::string inFileName, T* tree, int operation = 1,
+                               std::string outFileName = "saidaArvore.txt")
   {
     // Initialize random seed
     srand(time(NULL));
@@ -75,27 +76,52 @@ public:
       // Tipo da árvore passada como entrada e data que foi compilado
       outFile << "Resultados para " << typeid(tree).name() << " em " << getCurrentTime() << std::endl;
 
-      while(inFile >> n)
+      while (inFile >> n)
       {
         for (int execution = 0; execution < EXECUTIONS_AMOUNT; execution++)
         {
-
-          for (int i = 0; i < n; i++)
-          {
-            auto gasto = deputies.at(rand() % deputies.size()).gasto_id;
-            tree->insert(gasto);
-          }
-
           tree->copies = 0;
           tree->comparisons = 0;
 
+          if (operation != 1)
+          {
+            for (int i = 0; i < n; i++)
+            {
+              auto gasto = deputies.at(rand() % deputies.size()).gasto_id;
+              tree->insert(gasto);
+            }
+          }
 
           // Teste do tempo de busca
           Time::time_point t1 = Time::now(); // Tempo inicial de execução
-          for (int i = 0; i < n; i++)
+          // Inserção
+          if (operation == 1)
           {
-            auto gasto = deputies.at(rand() % deputies.size()).gasto_id;
-            tree->get(gasto);
+            for (int i = 0; i < n; i++)
+            {
+              auto gasto = deputies.at(rand() % deputies.size()).gasto_id;
+              tree->insert(gasto);
+            }
+          }
+          else
+          {
+            // Busca
+            if (operation == 2)
+            {
+              for (int i = 0; i < n; i++)
+              {
+                auto gasto = deputies.at(rand() % deputies.size()).gasto_id;
+                tree->get(gasto);
+              }
+            }
+            else
+            {
+              for (int i = 0; i < n; i++)
+              {
+                auto gasto = deputies.at(rand() % deputies.size()).gasto_id;
+                tree->remove(gasto);
+              }
+            }
           }
           Time::time_point t2 = Time::now(); // Tempo final de execução
 
@@ -125,8 +151,6 @@ public:
       }
     }
     outFile << "===================== Fim do processo =====================\n" << std::endl;
-    inFile.close();
-    outFile.close();
   }
 
 private:
@@ -153,4 +177,4 @@ private:
   }
 };
 
-#endif // SORTINGALGORITHMPERFORMANCEMEASURER_H_INCLUDED
+#endif // TREEPERFORMANCEMEASURER_H_INCLUDED

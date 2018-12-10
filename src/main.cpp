@@ -1,111 +1,216 @@
-#include <iostream>
+#include "components/TreePerformanceMeasurer.hpp"
+#include "components/HashTableComparisonsMeasurer.hpp"
+#include "components/SortingAlgorithmPerformanceMeasurer.hpp"
+#include "algorithms/sorting/HeapSort.hpp"
+#include "algorithms/sorting/InsertionSort.hpp"
+#include "algorithms/sorting/MergeSort.hpp"
+#include "algorithms/sorting/QuickSort.hpp"
+#include "algorithms/sorting/SelectionSort.hpp"
+#include "data-structures/hash-table/HashTableSeparateChaining.hpp"
+#include "data-structures/hash-table/HashTableCoalescedChaining.hpp"
+#include "data-structures/hash-table/HashTableOpenAddressing.hpp"
 #include "data-structures/tree/avl/AVLTree.hpp"
 #include "data-structures/tree/b/BTree.hpp"
-#include "data-structures/tree/patricia/PatriciaTree.hpp"
 #include "data-structures/tree/red-black/RedBlackTree.hpp"
 #include "data-structures/tree/splay/SplayTree.hpp"
-#include "components/TreePerformanceMeasurer.hpp"
 
 int main(int argc, char const *argv[])
 {
-  // ==================== Exemplos práticos das árvores implementadas ====================
-
-  // Instanciando a árvore AVL e seus algoritmos de inserção, busca e remoção
-  AVLTree *avlTree = new AVLTree();
-  avlTree->insert(50);
-  avlTree->insert(78);
-  avlTree->insert(112);
-  avlTree->insert(120);
-  avlTree->remove(120);
-  avlTree->get(50);
-  avlTree->get(120);
-
-  // Instanciando a árvore B com m = 3 e seus algoritmos de inserção, busca e remoção
-  BTree *bTree3 = new BTree(3);
-  bTree3->insert(50);
-  bTree3->insert(78);
-  bTree3->insert(112);
-  bTree3->insert(120);
-  bTree3->remove(120);
-  bTree3->get(50);
-  bTree3->get(120);
-
-  // Instanciando a árvore B com m = 5 e seus algoritmos de inserção, busca e remoção
-  BTree *bTree5 = new BTree(5);
-  bTree5->insert(50);
-  bTree5->insert(78);
-  bTree5->insert(112);
-  bTree5->insert(120);
-  bTree5->remove(120);
-  bTree5->get(50);
-  bTree5->get(120);
-
-  // Instanciando a árvore B com m = 7 e seus algoritmos de inserção, busca e remoção
-  BTree *bTree7 = new BTree(7);
-  bTree7->insert(50);
-  bTree7->insert(78);
-  bTree7->insert(112);
-  bTree7->insert(120);
-  bTree7->remove(120);
-  bTree7->get(50);
-  bTree7->get(120);
-
-  // Instanciando a árvore rubro-negra e seus algoritmos de inserção, busca e remoção
-  RedBlackTree *redBlackTree = new RedBlackTree();
-  redBlackTree->insert(50);
-  redBlackTree->insert(78);
-  redBlackTree->insert(112);
-  redBlackTree->insert(120);
-  redBlackTree->remove(120);
-  redBlackTree->get(50);
-  redBlackTree->get(120);
-
-  // Instanciando a árvore de espalhamento e seus algoritmos de inserção, busca e remoção
-  SplayTree *splayTree = new SplayTree();
-  splayTree->insert(50);
-  splayTree->insert(78);
-  splayTree->insert(112);
-  splayTree->insert(120);
-  splayTree->remove(120);
-  splayTree->get(50);
-  splayTree->get(120);
-
-  // ================= Fim dos exemplos práticos das árvores implementadas =======================
-  // =============================================================================================
-
-  // ================= Busca dos gastos dos deputados utilizando Árvore Patrícia =================
-
-  PatriciaTree *patriciaTree = new PatriciaTree();
-
-  DeputyFileReader deputyFileReader;
-  std::vector<Deputy> deputies = deputyFileReader.constructDeputies("dataset/deputies.csv");
-
-  for (auto deputy : deputies)
+  while (true)
   {
-    // Quebra os gastos por palavra (vetor de palavras)
-    std::vector<std::string> gasto = deputyFileReader.explode(deputy.receiptDescription, ' ');
+    system("cls || clear");
 
-    for (auto palavra : gasto)
-      patriciaTree->insert(palavra);
+    int option;
+    int operation;
+    std::vector<int> validOptions = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
+    std::string outFileName;
+    SortingAlgorithmPerformanceMeasurer sortingMeasurer;
+    HashTableComparisonsMeasurer hashMeasurer;
+    TreePerformanceMeasurer treeMeasurer;
+
+    std::cout << "=================================================== MENU ===================================================\n" << '\n';
+
+    std::cout << "1.  Computar estatísticas de desempenho: HeapSort" << '\n';
+    std::cout << "2.  Computar estatísticas de desempenho: InsertionSort" << '\n';
+    std::cout << "3.  Computar estatísticas de desempenho: MergeSort" << '\n';
+    std::cout << "4.  Computar estatísticas de desempenho: QuickSort Recursivo Clássico" << '\n';
+    std::cout << "5.  Computar estatísticas de desempenho: QuickSort Mediana" << '\n';
+    std::cout << "6.  Computar estatísticas de desempenho: QuickSort Inserção" << '\n';
+    std::cout << "7.  Computar estatísticas de desempenho: SelectionSort" << '\n';
+    std::cout << "8.  Computar estatísticas de desempenho: Hash Endereçamento Aberto - Sondagem Linear" << '\n';
+    std::cout << "9.  Computar estatísticas de desempenho: Hash Endereçamento Aberto - Sondagem Quadrática" << '\n';
+    std::cout << "10. Computar estatísticas de desempenho: Hash Endereçamento Aberto - Duplo Hash" << '\n';
+    std::cout << "11. Computar estatísticas de desempenho: Hash Encadeamento Separado" << '\n';
+    std::cout << "12. Computar estatísticas de desempenho: Hash Encadeamento Coalescido" << '\n';
+    std::cout << "13. Computar estatísticas de desempenho: Árvore AVL" << '\n';
+    std::cout << "14. Computar estatísticas de desempenho: Árvore Vermelho e Preta" << '\n';
+    std::cout << "15. Computar estatísticas de desempenho: Árvore Splay" << '\n';
+    std::cout << "16. Computar estatísticas de desempenho: Árvore B\n" << '\n';
+
+    std::cout << "Selecione uma opção: ";
+    std::cin >> option;
+
+    bool isValidOption = false;
+
+    for (int validOption : validOptions)
+      if (option == validOption)
+        isValidOption = true;
+
+    while (!isValidOption)
+    {
+      std::cout << "\nOpção inválida! Selecione uma opção: ";
+      std::cin >> option;
+    }
+
+    std::cout << "\nComputando..." << '\n';
+    switch (option)
+    {
+      case 1:
+        sortingMeasurer.storePerformanceResults("dataset/entrada.txt", new HeapSort(), "heapsort.txt");
+      break;
+      case 2:
+        sortingMeasurer.storePerformanceResults("dataset/entrada.txt", new InsertionSort(), "insertionsort.txt");
+      break;
+      case 3:
+        sortingMeasurer.storePerformanceResults("dataset/entrada.txt", new MergeSort(), "mergesort.txt");
+      break;
+      case 4:
+        sortingMeasurer.storePerformanceResults("dataset/entrada.txt", new QuickSort(), "quicksort.txt");
+      break;
+      case 5:
+        // TODO - Passar "k" como parâmetro do número de elementos da mediana
+        sortingMeasurer.storePerformanceResults("dataset/entrada.txt", new QuickSort(), "quicksort-mediana.txt");
+      break;
+      case 6:
+        // TODO - Passar "m" como parâmetro do número de elementos ordenados pelo InsertionSort
+        sortingMeasurer.storePerformanceResults("dataset/entrada.txt", new QuickSort(), "quicksort-insercao.txt");
+      break;
+      case 7:
+        sortingMeasurer.storePerformanceResults("dataset/entrada.txt", new SelectionSort(), "selectionsort.txt");
+      break;
+      case 8:
+        hashMeasurer.storeComparisonsResults("dataset/entrada.txt",
+                                             new HashTableOpenAddressing("Linear Probing"),
+                                             "hash-sondagem-linear.txt");
+      break;
+      case 9:
+        hashMeasurer.storeComparisonsResults("dataset/entrada.txt",
+                                             new HashTableOpenAddressing("Quadratic Probing"),
+                                             "hash-sondagem-quadratica.txt");
+      break;
+      case 10:
+        hashMeasurer.storeComparisonsResults("dataset/entrada.txt",
+                                             new HashTableOpenAddressing("Double Hashing"),
+                                             "hash-duplo-hashing.txt");
+      break;
+      case 11:
+        hashMeasurer.storeComparisonsResults("dataset/entrada.txt", new HashTableSeparateChaining(),
+                                             "hash-encadeamento-separado.txt");
+      break;
+      case 12:
+        // TODO - Consertar um erro no hashMeasurer pro encadeamento coalescido
+        hashMeasurer.storeComparisonsResults("dataset/entrada.txt", new HashTableCoalescedChaining(),
+                                             "hash-encadeamento-coalescido.txt");
+      break;
+      case 13:
+        int operation;
+        std::cout << "\n1. Inserção" << '\n';
+        std::cout << "2. Busca" << '\n';
+        std::cout << "3. Remoção" << '\n';
+        std::cout << "\nDigite a operação que deseja realizar: ";
+        std::cin >> operation;
+
+        while (operation != 1 && operation != 2 && operation != 3)
+        {
+          std::cout << "\nOperação inválida! Digite novamente: ";
+          std::cin >> operation;
+        }
+
+        if (operation == 1)
+          outFileName = "saida-insercao-avl.txt";
+        else if (operation == 2)
+          outFileName = "saida-busca-avl.txt";
+        else
+          outFileName = "saida-remocao-avl.txt";
+
+        treeMeasurer.storePerformanceResults("dataset/entrada.txt", new AVLTree(),
+                                             operation, outFileName);
+      break;
+      case 14:
+        std::cout << "\n1. Inserção" << '\n';
+        std::cout << "2. Busca" << '\n';
+        std::cout << "3. Remoção" << '\n';
+        std::cout << "\nDigite a operação que deseja realizar: ";
+        std::cin >> operation;
+
+        while (operation != 1 && operation != 2 && operation != 3)
+        {
+          std::cout << "\nOperação inválida! Digite novamente: ";
+          std::cin >> operation;
+        }
+
+        if (operation == 1)
+          outFileName = "saida-insercao-redblack.txt";
+        else if (operation == 2)
+          outFileName = "saida-busca-redblack.txt";
+        else
+          outFileName = "saida-remocao-redblack.txt";
+
+        treeMeasurer.storePerformanceResults("dataset/entrada.txt", new RedBlackTree(),
+                                             operation, outFileName);
+      break;
+      case 15:
+        std::cout << "\n1. Inserção" << '\n';
+        std::cout << "2. Busca" << '\n';
+        std::cout << "3. Remoção" << '\n';
+        std::cout << "\nDigite a operação que deseja realizar: ";
+        std::cin >> operation;
+
+        while (operation != 1 && operation != 2 && operation != 3)
+        {
+          std::cout << "\nOperação inválida! Digite novamente: ";
+          std::cin >> operation;
+        }
+
+        if (operation == 1)
+          outFileName = "saida-insercao-splay.txt";
+        else if (operation == 2)
+          outFileName = "saida-busca-splay.txt";
+        else
+          outFileName = "saida-remocao-splay.txt";
+
+        treeMeasurer.storePerformanceResults("dataset/entrada.txt", new SplayTree(),
+                                             operation, outFileName);
+      break;
+      case 16:
+        int pageSize;
+        std::cout << "\n1. Inserção" << '\n';
+        std::cout << "2. Busca" << '\n';
+        std::cout << "3. Remoção" << '\n';
+        std::cout << "\nDigite a operação que deseja realizar: ";
+        std::cin >> operation;
+
+        while (operation != 1 && operation != 2 && operation != 3)
+        {
+          std::cout << "\nOperação inválida! Digite novamente: ";
+          std::cin >> operation;
+        }
+
+        std::cout << "\nDigite o tamanho do bloco: ";
+        std::cin >> pageSize;
+
+        if (operation == 1)
+          outFileName = "saida-insercao-b.txt";
+        else if (operation == 2)
+          outFileName = "saida-busca-b.txt";
+        else
+          outFileName = "saida-remocao-b.txt";
+
+        treeMeasurer.storePerformanceResults("dataset/entrada.txt", new BTree(pageSize),
+                                             operation, outFileName);
+      break;
+    }
   }
-
-  // Método que avalia se este gasto está presente na árvore
-  patriciaTree->hasWord("TELEPHONY") ? std::cout << "Gasto encontrado" << '\n'
-                                     : std::cout << "Gasto não encontrado" << '\n';
-
-  // Printa todas as sugestões de gastos com o prefixo "T"
-  patriciaTree->printAutocompletionSuggestions("T");
-
-  // ========== Fim da busca dos gastos dos deputados utilizando Árvore Patrícia =================
-  // =============================================================================================
-
-  /* Classe utilizada para medir a performance de uma determinada árvore como parâmetro.
-   * Neste exemplo estamos testando o desempenho da AVL com escrita das estatisticas no
-   * arquivo "saidaInsercao.txt". Os tamanhos dos conjuntos de teste estão definidos no
-   * arquivo "dataset/entrada.txt"
-   */
-  TreePerformanceMeasurer tpm;
-  tpm.storePerformanceResults("dataset/entrada.txt", new AVLTree(), "saidaInsercao.txt");
 
   return 0;
 }
