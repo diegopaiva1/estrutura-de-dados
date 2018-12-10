@@ -49,7 +49,7 @@ public:
       std::vector<std::string> data;
       std::string line;
       std::cout << "Processando..." << std::endl;
-      while (std::getline(inFile, line) && lineNumber <= 1000000)
+      while (std::getline(inFile, line) && lineNumber <= 1000001)
       {
         // Não queremos ler a primeira linha do arquivo pois ela é o cabeçalho contendo as colunas
         if (lineNumber != 1)

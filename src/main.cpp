@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
 
     int option;
     int operation;
-    std::vector<int> validOptions = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
+    std::vector<int> validOptions = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
     std::string outFileName;
     DeputyFileReader deputyFileReader;
     SortingAlgorithmPerformanceMeasurer sortingMeasurer;
@@ -51,7 +51,9 @@ int main(int argc, char const *argv[])
     std::cout << "15. Computar estatísticas de desempenho: Árvore Splay" << '\n';
     std::cout << "16. Computar estatísticas de desempenho: Árvore B" << '\n';
     std::cout << "17. Computar deputados que mais gastam" << '\n';
-    std::cout << "18. Computar partidos que mais gastam\n" << '\n';
+    std::cout << "18. Computar deputados que menos gastam" << '\n';
+    std::cout << "19. Computar partidos que mais gastam" << '\n';
+    std::cout << "20. Computar partidos que menos gastam\n" << '\n';
 
     std::cout << "Selecione uma opção: ";
     std::cin >> option;
@@ -217,18 +219,46 @@ int main(int argc, char const *argv[])
       break;
       case 17:
       {
-        std::vector<Deputy> deps = deputyFileReader.constructDeputies("dataset/teste.csv");
+        int N;
+        std::cout << "\nDigite o valor de N (será exibido os N primeiros deputados que mais gastam): ";
+        std::cin >> N;
+        std::vector<Deputy> deps = deputyFileReader.constructDeputies("dataset/deputies.csv");
         DeputyHashTable *ht = new DeputyHashTable(deps, 0.75);
 
-        ht->highestsSpent(10);
+        ht->highestsSpent(N);
       }
       break;
       case 18:
       {
-        std::vector<Deputy> deps = deputyFileReader.constructDeputies("dataset/teste.csv");
+        int N;
+        std::cout << "\nDigite o valor de N (será exibido os N primeiros deputados que menos gastam): ";
+        std::cin >> N;
+        std::vector<Deputy> deps = deputyFileReader.constructDeputies("dataset/deputies.csv");
+        DeputyHashTable *ht = new DeputyHashTable(deps, 0.75);
+
+        ht->lowestsSpent(N);
+      }
+      break;
+      case 19:
+      {
+        int N;
+        std::cout << "\nDigite o valor de N (será exibido os N primeiros partidos que mais gastam): ";
+        std::cin >> N;
+        std::vector<Deputy> deps = deputyFileReader.constructDeputies("dataset/deputies.csv");
         DeputyHashTable *ht = new DeputyHashTable(deps, 0.75, "partido");
 
-        ht->highestsSpent(10);
+        ht->highestsSpent(N);
+      }
+      break;
+      case 20:
+      {
+        int N;
+        std::cout << "\nDigite o valor de N (será exibido os N primeiros partidos que menos gastam): ";
+        std::cin >> N;
+        std::vector<Deputy> deps = deputyFileReader.constructDeputies("dataset/deputies.csv");
+        DeputyHashTable *ht = new DeputyHashTable(deps, 0.75, "partido");
+
+        ht->lowestsSpent(N);
       }
       break;
     }
