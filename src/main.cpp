@@ -1,4 +1,5 @@
 #include "components/TreePerformanceMeasurer.hpp"
+#include "components/QuickSortMeasurer.hpp"
 #include "components/HashTableComparisonsMeasurer.hpp"
 #include "components/SortingAlgorithmPerformanceMeasurer.hpp"
 #include "algorithms/sorting/HeapSort.hpp"
@@ -34,6 +35,7 @@ int main(int argc, char const *argv[])
     SortingAlgorithmPerformanceMeasurer sortingMeasurer;
     HashTableComparisonsMeasurer hashMeasurer;
     TreePerformanceMeasurer treeMeasurer;
+    QuickSortMeasurer quickSortMeasurer;
 
     std::cout << "=================================================== MENU ===================================================\n" << '\n';
 
@@ -90,12 +92,16 @@ int main(int argc, char const *argv[])
         sortingMeasurer.storePerformanceResults("dataset/entrada.txt", new QuickSort(), "quicksort.txt");
       break;
       case 5:
-        // TODO - Passar "k" como parâmetro do número de elementos da mediana
-        sortingMeasurer.storePerformanceResults("dataset/entrada.txt", new QuickSort(), "quicksort-mediana.txt");
+        int k;
+        std::cout << "\nDigite k (número de elementos da mediana): ";
+        std::cin >> k;
+        quickSortMeasurer.storePerformanceResults("dataset/entrada.txt", new QuickSort(), true, false, k, 0, "quicksort-mediana.txt");
       break;
       case 6:
-        // TODO - Passar "m" como parâmetro do número de elementos ordenados pelo InsertionSort
-        sortingMeasurer.storePerformanceResults("dataset/entrada.txt", new QuickSort(), "quicksort-insercao.txt");
+        int m;
+        std::cout << "\nDigite m (número de elementos ordenados pelo InsertionSort): ";
+        std::cin >> m;
+        quickSortMeasurer.storePerformanceResults("dataset/entrada.txt", new QuickSort(), false, true, 0, m, "quicksort-insercao.txt");
       break;
       case 7:
         sortingMeasurer.storePerformanceResults("dataset/entrada.txt", new SelectionSort(), "selectionsort.txt");
