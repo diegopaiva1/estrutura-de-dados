@@ -1,0 +1,35 @@
+Resultados para P26HashTableCoalescedChaining em Tue Dec 11 16:01:00 2018
+
+Comparações para N = 1000 - Conjunto 1: 459
+Comparações para N = 1000 - Conjunto 2: 3
+Comparações para N = 1000 - Conjunto 3: 472
+Comparações para N = 1000 - Conjunto 4: 3
+Comparações para N = 1000 - Conjunto 5: 3
+Número médio de comparações = 188
+
+Comparações para N = 5000 - Conjunto 1: 2068
+Comparações para N = 5000 - Conjunto 2: 3
+Comparações para N = 5000 - Conjunto 3: 3
+Comparações para N = 5000 - Conjunto 4: 3
+Comparações para N = 5000 - Conjunto 5: 2176
+Número médio de comparações = 850.6
+
+Comparações para N = 10000 - Conjunto 1: 3
+Comparações para N = 10000 - Conjunto 2: 3
+Comparações para N = 10000 - Conjunto 3: 4275
+Comparações para N = 10000 - Conjunto 4: 3
+Comparações para N = 10000 - Conjunto 5: 4244
+Número médio de comparações = 1705.6
+
+Comparações para N = 50000 - Conjunto 1: 21476
+Comparações para N = 50000 - Conjunto 2: 21733
+Comparações para N = 50000 - Conjunto 3: 3
+Comparações para N = 50000 - Conjunto 4: 21219
+Comparações para N = 50000 - Conjunto 5: 21441
+Número médio de comparações = 17174.4
+
+Comparações para N = 100000 - Conjunto 1: 3
+Comparações para N = 100000 - Conjunto 2: 3
+Comparações para N = 100000 - Conjunto 3: 43006
+Comparações para N = 100000 - Conjunto 4: 3
+Comparações para N = 100000 - Conjunto 5: 43120

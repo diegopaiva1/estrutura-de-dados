@@ -1,4 +1,5 @@
 #include "components/TreePerformanceMeasurer.hpp"
+#include "components/CoalescedHashComparisonsMeasurer.hpp"
 #include "components/QuickSortMeasurer.hpp"
 #include "components/HashTableComparisonsMeasurer.hpp"
 #include "components/SortingAlgorithmPerformanceMeasurer.hpp"
@@ -36,6 +37,7 @@ int main(int argc, char const *argv[])
     HashTableComparisonsMeasurer hashMeasurer;
     TreePerformanceMeasurer treeMeasurer;
     QuickSortMeasurer quickSortMeasurer;
+    CoalescedHashComparisonsMeasurer coalescedHashMeasurer;
 
     std::cout << "=================================================== MENU ===================================================\n" << '\n';
 
@@ -127,8 +129,8 @@ int main(int argc, char const *argv[])
       break;
       case 12:
         // TODO - Consertar um erro no hashMeasurer pro encadeamento coalescido
-        hashMeasurer.storeComparisonsResults("dataset/entrada.txt", new HashTableCoalescedChaining(),
-                                             "hash-encadeamento-coalescido.txt");
+        coalescedHashMeasurer.storeComparisonsResults("dataset/entrada.txt", new HashTableCoalescedChaining(),
+                                                      "hash-encadeamento-coalescido.txt");
       break;
       case 13:
         int operation;
