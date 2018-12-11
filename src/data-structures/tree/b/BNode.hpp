@@ -78,6 +78,16 @@ public:
     return keys.size() == maxDegree;
   }
 
+bool hasUnderflow()
+  {
+    return keys.size()<((maxDegree/2)-1);
+  }
+
+bool hasMinimumNumberKeys()
+  {
+    return keys.size()==((maxDegree/2)-1);
+  }
+
   void split(BNode *&splitted, int splittedIndex)
   {
     BNode *node = new BNode(splitted->maxDegree, splitted->isLeaf);

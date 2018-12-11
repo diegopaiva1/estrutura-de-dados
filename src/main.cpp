@@ -9,7 +9,7 @@ int main(int argc, char const *argv[])
 {
   srand(time(NULL));
 
-  BTree *bTree = new BTree(7);
+  BTree *bTree = new BTree(3);
 
   bTree->insert(9);
   bTree->insert(120);
@@ -24,41 +24,32 @@ int main(int argc, char const *argv[])
   bTree->insert(378);
   bTree->insert(4);
 
+  for (auto key : bTree->root->keys)
+    std::cout << key << std::endl;
+
+  for (auto child : bTree->root->children)
+    if (child != nullptr)
+      for (auto key : child->keys)
+        std::cout << key << std::endl;
+
+  std::cout << std::endl;
+
   try
   {
-     bTree->remove(88);
+     bTree->remove(120);
   }
   catch (const char* exception)
   {
     std::cerr << exception << '\n';
   }
 
-  /*
-  SplayTree *splayTree = new SplayTree();
+  for (auto key : bTree->root->keys)
+    std::cout << key << std::endl;
 
-  splayTree->insert(9);
-  splayTree->insert(120);
-  splayTree->insert(13);
-  splayTree->insert(45);
-  splayTree->insert(155);
-  splayTree->insert(1023);
-  splayTree->insert(71);
-  splayTree->insert(88);
-  splayTree->insert(901);
-  splayTree->insert(12);
-  splayTree->insert(378);
-  splayTree->insert(4);
-
-  splayTree->printKeysByLevel();
-
-  try
-  {
-    std::cout << splayTree->remove(88)->key << '\n';
-  }
-  catch (const char* exception)
-  {
-    std::cerr << exception << '\n';
-  }*/
+  for (auto child : bTree->root->children)
+    if (child != nullptr)
+      for (auto key : child->keys)
+        std::cout << key << std::endl;
 
   return 0;
 }
