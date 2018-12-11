@@ -60,7 +60,16 @@ public:
           // hashTable->pointer.resize(hashTable->size);
 
           for (int i = 0; i < n; i++)
-            this->comparisons[execution] = hashTable->insert(rand() % n + 1);
+          {
+            try
+            {
+              this->comparisons[execution] = hashTable->insert(rand() % n + 1);
+            }
+            catch (char const *exception)
+            {
+              std::cerr << exception << std::endl;
+            }
+          }
 
           // Escrita do número de comparações no arquivo de saída
           outFile << "Comparações para N = " << n  << " - Conjunto " << execution + 1 << ": "
