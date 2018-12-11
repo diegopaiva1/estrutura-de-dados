@@ -12,6 +12,7 @@
 #include "data-structures/tree/avl/AVLTree.hpp"
 #include "data-structures/tree/b/BTree.hpp"
 #include "data-structures/tree/red-black/RedBlackTree.hpp"
+#include "data-structures/tree/patricia/PatriciaTree.hpp"
 #include "data-structures/tree/splay/SplayTree.hpp"
 #include "components/deputy/Deputy.hpp"
 #include "components/deputy/DeputyHashTable.hpp"
@@ -19,13 +20,13 @@
 
 int main(int argc, char const *argv[])
 {
+  system("cls || clear");
+
   while (true)
   {
-    // system("cls || clear");
-
     int option;
     int operation;
-    std::vector<int> validOptions = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+    std::vector<int> validOptions = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
     std::string outFileName;
     DeputyFileReader deputyFileReader;
     SortingAlgorithmPerformanceMeasurer sortingMeasurer;
@@ -53,7 +54,8 @@ int main(int argc, char const *argv[])
     std::cout << "17. Computar deputados que mais gastam" << '\n';
     std::cout << "18. Computar deputados que menos gastam" << '\n';
     std::cout << "19. Computar partidos que mais gastam" << '\n';
-    std::cout << "20. Computar partidos que menos gastam\n" << '\n';
+    std::cout << "20. Computar partidos que menos gastam" << '\n';
+    std::cout << "21. Buscar gasto\n" << '\n';
 
     std::cout << "Selecione uma opção: ";
     std::cin >> option;
@@ -223,9 +225,9 @@ int main(int argc, char const *argv[])
         std::cout << "\nDigite o valor de N (será exibido os N primeiros deputados que mais gastam): ";
         std::cin >> N;
         std::vector<Deputy> deps = deputyFileReader.constructDeputies("dataset/deputies.csv");
-        DeputyHashTable *ht = new DeputyHashTable(deps, 0.75);
+        DeputyHashTable ht(deps, 0.75);
 
-        ht->highestsSpent(N);
+        ht.highestsSpent(N);
       }
       break;
       case 18:
@@ -234,9 +236,9 @@ int main(int argc, char const *argv[])
         std::cout << "\nDigite o valor de N (será exibido os N primeiros deputados que menos gastam): ";
         std::cin >> N;
         std::vector<Deputy> deps = deputyFileReader.constructDeputies("dataset/deputies.csv");
-        DeputyHashTable *ht = new DeputyHashTable(deps, 0.75);
+        DeputyHashTable ht(deps, 0.75);
 
-        ht->lowestsSpent(N);
+        ht.lowestsSpent(N);
       }
       break;
       case 19:
@@ -245,9 +247,9 @@ int main(int argc, char const *argv[])
         std::cout << "\nDigite o valor de N (será exibido os N primeiros partidos que mais gastam): ";
         std::cin >> N;
         std::vector<Deputy> deps = deputyFileReader.constructDeputies("dataset/deputies.csv");
-        DeputyHashTable *ht = new DeputyHashTable(deps, 0.75, "partido");
+        DeputyHashTable ht(deps, 0.75, "partido");
 
-        ht->highestsSpent(N);
+        ht.highestsSpent(N);
       }
       break;
       case 20:
@@ -256,9 +258,38 @@ int main(int argc, char const *argv[])
         std::cout << "\nDigite o valor de N (será exibido os N primeiros partidos que menos gastam): ";
         std::cin >> N;
         std::vector<Deputy> deps = deputyFileReader.constructDeputies("dataset/deputies.csv");
-        DeputyHashTable *ht = new DeputyHashTable(deps, 0.75, "partido");
+        DeputyHashTable ht(deps, 0.75, "partido");
 
-        ht->lowestsSpent(N);
+        ht.lowestsSpent(N);
+      }
+      break;
+      case 21:
+      {
+        std::string gasto;
+        std::cout << "\nDigite o gasto que deseja encontrar: ";
+        std::cin >> gasto;
+
+        PatriciaTree *patriciaTree = new PatriciaTree();
+
+        DeputyFileReader deputyFileReader;
+        std::vector<Deputy> deputies = deputyFileReader.constructDeputies("dataset/deputies.csv");
+
+        for (auto deputy : deputies)
+        {
+          // Quebra os gastos por palavra (vetor de palavras)
+          std::vector<std::string> gasto = deputyFileReader.explode(deputy.receiptDescription, ' ');
+
+          for (auto palavra : gasto)
+            patriciaTree->insert(palavra);
+        }
+
+        if (patriciaTree->hasWord(gasto))
+          std::cout << "Gasto encontrado" << '\n';
+        else
+        {
+          std::cout << "Gasto não encontrado! Talvez você queira dizer: " << '\n';
+          patriciaTree->printAutocompletionSuggestions(gasto);
+        }
       }
       break;
     }
